@@ -290,6 +290,14 @@ Flowtab.wallet = (function () {
         // body...
     };
 
+    self.buildConfirmationView = function Flowtab_wallet_buildConfirmationView() {
+        // body...
+    };
+
+    self.buildConfigurationView = function Flowtab_wallet_buildConfigurationView() {
+        // body...
+    };
+
     self.showWelcomeView = function Flowtab_wallet_showWelcomeView() {
         currentViewId = 'welcome';
         
@@ -350,6 +358,18 @@ Flowtab.wallet = (function () {
 
     self.showCheckoutView = function Flowtab_wallet_showCheckoutView() {
         currentViewId = 'checkout';
+
+        //jQTouch goto currentViewId
+    };
+
+    self.showConfirmationView = function Flowtab_wallet_showConfirmationView() {
+        currentViewId = 'confirmation';
+
+        //jQTouch goto currentViewId
+    };
+
+    self.showConfigurationView = function Flowtab_wallet_showConfigurationView() {
+        currentViewId = 'configuration';
 
         //jQTouch goto currentViewId
     };
