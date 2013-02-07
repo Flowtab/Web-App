@@ -1,7 +1,7 @@
 Flowtab.wallet = (function () {
     var STRIPE_PUBLISHABLE_KEY = 'pk_0DqYGS5XKylBAqcUtb5PetXFkvKQk'
-      , self = { element: {} }
-      , element = self.element
+      , self = { view: {} }
+      , view = self.view
       , framework = Flowtab.framework
       , currentUser = null
       , currentViewId = null
@@ -93,20 +93,20 @@ Flowtab.wallet = (function () {
     };
 
     self.buildWelcomeView = function Flowtab_wallet_buildWelcomeView() {
-        if (element.welcome)
-            return;
-
         var $container = $('#welcome')
           , $template = $('#welcome-template');
+
+        $container.empty();
 
         //TODO: write template to container
 
         var $signUpButton = $container.find('.sign-up-button')
           , $signInButton = $container.find('.sign-in-button')
 
-        element.welcome = {
-            signUpButton: $signUpButton
-          , signInButton: $signInButton
+        view.welcome = {
+            $container: $container
+          , $signUpButton: $signUpButton
+          , $signInButton: $signInButton
         };
 
         $signUpButton.bind('click', self.showSignUpView);
@@ -114,20 +114,20 @@ Flowtab.wallet = (function () {
     };
 
     self.buildSignUpView = function Flowtab_wallet_buildSignUpView() {
-        if (element.signUp)
-            return;
-
         var $container = $('#sign-up')
           , $template = $('#sign-up-template');
+
+        $container.empty();
 
         //TODO: write template to container
 
         var $form = $container.find('form')
           , $signUpButton = $form.find('button[type="submit"]');
 
-        element.signUp = {
-            form: $form
-          , submitButton: $signUpButton
+        view.signUp = {
+            $container: $container
+          , $form: $form
+          , $submitButton: $signUpButton
         };
 
         $form.bind('submit', function () {
@@ -164,11 +164,10 @@ Flowtab.wallet = (function () {
     };
 
     self.buildSignInView = function Flowtab_wallet_buildSignInView() {
-        if (element.signIn)
-            return;
-
         var $container = $('#sign-in')
           , $template = $('#sign-in-template');
+
+        $container.empty();
 
         //TODO: write template to container
 
@@ -176,10 +175,11 @@ Flowtab.wallet = (function () {
           , $submitButton = $form.find('button[type="submit"]')
           , $passwordResetButton = $form.find('.password-reset-button')
 
-        element.signIn = {
-            form: $form
-          , submitButton: $submitButton
-          , passwordResetButton: $passwordResetButton
+        view.signIn = {
+            $container: $container
+          , $form: $form
+          , $submitButton: $submitButton
+          , $passwordResetButton: $passwordResetButton
         };
 
         $form.bind('submit', function () {
@@ -219,14 +219,17 @@ Flowtab.wallet = (function () {
         var $container = $('#save-credit-card')
           , $template = $('#save-credit-card-template');
 
+        $container.empty();
+
         //TODO: write template to container
 
         var $form = $container.find('form')
           , $submitButton = $form.find('button[type="submit"]')
 
-        element.saveCreditCard = {
-          , form: $form
-          , submitButton: $submitButton
+        view.saveCreditCard = {
+            $container: $container
+          , $form: $form
+          , $submitButton: $submitButton
         };
 
         $form.bind('submit', function () {
