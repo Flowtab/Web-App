@@ -377,6 +377,24 @@ Flowtab.wallet = (function () {
         //jQTouch goto currentViewId
     };
 
+    self.showAboutHowItWorksView = function Flowtab_wallet_showAboutHowItWorksView() {
+        currentViewId = 'about-how-it-works';
+
+        //jQTouch goto currentViewId
+    };
+
+    self.showAboutSecurityView = function Flowtab_wallet_showAboutSecurityView() {
+        currentViewId = 'about-security';
+
+        //jQTouch goto currentViewId
+    };
+
+    self.showShareView = function Flowtab_wallet_showShareView() {
+        currentViewId = 'share';
+
+        //jQTouch goto currentViewId
+    };
+
     showSpinner();
 
     new Zepto.jQTouch({
