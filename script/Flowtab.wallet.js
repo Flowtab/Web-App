@@ -4,8 +4,10 @@ Flowtab.wallet = (function () {
       , element = self.element
       , framework = Flowtab.framework
       , currentUser = null
-      , currentView = null
+      , currentViewId = null
       , venues = null
+      , menus = null
+      , products = {}
       , hasLoadedUser = false
       , hasLoadedDocument = false
       , hasLoadedVenues = false;
@@ -54,82 +56,120 @@ Flowtab.wallet = (function () {
         // body...
     }
 
-    self.showErrorView = function Flowtab_wallet_showErrorView() {
-        currentView = 'error';
-        // body...
-    };
+    function showError() {
+        hideSpinner();
 
-    self.showWelcomeView = function Flowtab_wallet_showWelcomeView() {
-        currentView = 'welcome';
-        // body...
-    };
+        //write error message to currentViewId
+    }
 
-    self.showVenuesView = function Flowtab_wallet_showVenuesView() {
-        currentView = 'venues';
-
-        if (!hasLoadedVenues)
+    self.loadVenues = function Flowtab_wallet_loadVenues() {
+        if (currentViewId === 'venues')
             showSpinner();
-        else if (venues === null)
-            self.showErrorView();
-    };
-
-    self.loadVenuesView = function Flowtab_wallet_loadVenuesView() {
-        if (currentView === 'venues')
-            self.showSpinner();
 
         framework.service.getVenues(function (data) {
             venues = data.venues;
             hasLoadedVenues = true;
 
-            if (venues !== null)
-                self.buildVenuesView();
+            self.buildVenuesView(venues);
 
-            if (currentView === 'venues')
-                self.hideSpinner();
+            if (currentViewId === 'venues')
+                hideSpinner();
         });
     };
 
-    self.showMenusView = function Flowtab_wallet_showMenusView() {
-        currentView = 'menus';
+    self.loadMenus = function Flowtab_wallet_loadMenus() {
+        if (currentViewId.indexOf('categories') === 0)
+            showSpinner();
 
-        if (hasLoadedVenue) {
-            if (Venue === null) {
-                self.showErrorView();
+        framework.service.getMenus(function (data) {
+            menus = data.menus;
+            hasLoadedMenus = true;
 
-                return;
-            }
-            
-            hideSpinner();
-            self.buildVenuesView();
+            self.buildCategoriesView(menus);
 
-            return;
-        }
-        
-        showSpinner();
+            if (currentViewId.indexOf('categories') === 0)
+                hideSpinner();
+        });
     };
 
-    self.buildVenuesView = function Flowtab_wallet_buildVenuesView() {
+    self.buildVenuesView = function Flowtab_wallet_buildVenuesView(venues) {
         // body...
+    };
+
+    self.buildCategoriesView = function Flowtab_wallet_buildCategoriesView(categories) {
+        // body...
+    };
+
+    self.buildProductsView = function Flowtab_wallet_buildProductsView(products) {
+        // body...
+    };
+
+    self.buildCheckoutView = function Flowtab_wallet_buildCheckoutView() {
+        // body...
+    };
+
+    self.showWelcomeView = function Flowtab_wallet_showWelcomeView() {
+        currentViewId = 'welcome';
+        
+        //jQTouch goto currentViewId
+    };
+
+    self.showVenuesView = function Flowtab_wallet_showVenuesView() {
+        currentViewId = 'venues';
+
+        //jQTouch goto currentViewId;
+
+        if (!hasLoadedVenues)
+            showSpinner();
+        else if (venues === null)
+            showError();
+    };
+
+    self.showCategoriesView = function Flowtab_wallet_showCategoriesView(id) {
+        currentViewId = 'categories' + id;
+
+        //jQTouch goto currentViewId
+
+        if (!hasLoadedMenus)
+            showSpinner();
+        else if (menus === null)
+            showError();
+    };
+
+    self.showProductsView = function Flowtab_wallet_showProductsView() {
+        currentViewId = 'products';
+        
+        //jQTouch goto currentViewId
     };
 
     self.showSignUpView = function Flowtab_wallet_showSignUpView() {
-        currentView = 'sign-up';
-        // body...
+        currentViewId = 'sign-up';
+        
+        //jQTouch goto currentViewId
     };
 
     self.showSignInView = function Flowtab_wallet_showSignInView() {
-        currentView = 'sign-in';
-        // body...
+        currentViewId = 'sign-in';
+        
+        //jQTouch goto currentViewId
     };
 
     self.showSaveCreditCardView = function Flowtab_wallet_showSaveCreditCardView() {
-        currentView = 'save-credit-card';
-        // body...
+        currentViewId = 'save-credit-card';
+        
+        //jQTouch goto currentViewId
     };
 
     self.showPasswordResetView = function Flowtab_wallet_showPasswordResetView() {
-        currentView = 'password-reset';
-        // body...
+        currentViewId = 'password-reset';
+        
+        //jQTouch goto currentViewId
+    };
+
+    self.showCheckoutView = function Flowtab_wallet_showCheckoutView() {
+        currentViewId = 'checkout';
+
+        //jQTouch goto currentViewId
     };
 
     showSpinner();
@@ -146,7 +186,7 @@ Flowtab.wallet = (function () {
     });
 
     Stripe.setPublishableKey(STRIPE_PUBLISHABLE_KEY);
-    self.loadVenuesView();
+    self.loadVenues();
 
     framework.service.getCurrentUser(function (data) {
         currentUser = data.user;
