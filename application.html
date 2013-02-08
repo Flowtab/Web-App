@@ -3,6 +3,113 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=UTF-8">
 		<title>Flowtab</title>
+
+		<style>
+		
+			/* jQTouch CSS */
+
+			body, #jqt {
+				width: 100%;
+				overflow: hidden;
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+				-webkit-touch-callout: none;
+			}
+			
+			#jqt {
+				position: absolute;
+				top: 0; bottom: 0;
+				left: 0; right: 0;
+				z-index: 1000;
+				-webkit-text-size-adjust: none;
+				-webkit-user-select: none;
+				user-select: none;
+				font-family: 'Open Sans', sans-serif;
+				position: absolute;
+			}
+			
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#jqt > * {
+				display: block;
+				left: 0;
+				top: 0;
+				min-height: 100%;
+				width: 100%;
+				overflow-x: hidden;
+				position: absolute;
+				z-index: 0;
+				display: -webkit-box;
+				display: box;
+				-webkit-box-orient: vertical;
+				box-orient: vertical;
+				-webkit-box-flex: 1;
+				box-flex: 1;
+			}
+			
+			#jqt > .current {
+				z-index: 10;
+			}
+			
+			#jqt > :not(.current) {
+				display: none;
+			}
+			
+			.touchscroll:not(.animating3d) {
+				overflow-y: auto;
+				-webkit-overflow-scrolling: touch;
+			}
+			
+			.touchscroll:not(.animating3d) > * {
+				height: 100%;
+			}
+			
+			.touchscroll:not(.animating3d) .scroll {
+				position: relative;
+				-webkit-box-flex: 1;
+				box-flex: 1;
+				overflow-y: auto;
+				-webkit-overflow-scrolling: touch;
+			}
+			
+			.scroll {
+				-webkit-margin-collapse: separate;
+			}
+			
+			.in, #jqt .out {
+				-webkit-animation-duration: 250ms;
+				-webkit-animation-fill-mode: both;
+				-webkit-animation-timing-function: ease-in-out;
+			}
+			
+			.in {
+				z-index: 10;
+			}
+			
+			.in:after {
+				content: "";
+				position: absolute;
+				display: block;
+				top: 0; bottom: 0;
+				left: 0; right: 0;
+			}
+			
+			.out {
+				z-index: 0 !important;
+			}
+			
+			.supports3d {
+				-webkit-perspective: 1000;
+			}
+			
+			.supports3d > * {
+				-webkit-transform: translate3d(0, 0, 0) rotate(0) scale(1);
+			}		
+		
+		</style>
+
 	</head>
 	<body>
 	
@@ -29,106 +136,111 @@
 				</div>
 			</div><!--/spinner-box-->
 		</div><!--/spinner-wrap-->
+
+
+		<div id="jqt">
 		
-		<div id="topbar">
-			<h1>Header<h1>
-		</div>
-
-		<div id="welcome">
-			<button class="sign-up-button">Sign Up</button>
-			<button class="sign-in-button">Sign In</button>
-		</div>
-
-		<div id="sign-up">
-			<form>
-				<button type="submit">Sign Up</button>
-			</form>
-		</div>
-
-		<div id="sign-in">
-			<form>
-				<button type="submit">Sign In</button>
-			</form>
-		</div>
-
-		<div id="save-credit-card">
-			<form>
-				<button type="submit">Save</button>
-			</form>
-		</div>
-
-		<div id="venues">
-			<ul>
-				<li>Flowtab Bar #1</li>
-				<li>Flowtab Bar #2</li>
-			</ul>
-		</div>	
-
-		<div id="categories-1">
-			<ul>
-				<li>Beer</li>
-				<li>Wine</li>
-				<li>Shots</li>
-			</ul>
-		</div>
-
-		<div id="categories-2">
-			<ul>
-				<li>Vodka</li>
-				<li>Whiskey</li>
-			</ul>
-		</div>
+			<div id="topbar">
+				<h1>Tob Bar<h1>
+			</div>
+	
+			<div id="welcome" class="current">
+				<button class="sign-up-button">Sign Up</button>
+				<button class="sign-in-button">Sign In</button>
+			</div>
+	
+			<div id="sign-up">
+				<form>
+					<button type="submit">Sign Up</button>
+				</form>
+			</div>
+	
+			<div id="sign-in">
+				<form>
+					<button type="submit">Sign In</button>
+				</form>
+			</div>
+	
+			<div id="save-credit-card">
+				<form>
+					<button type="submit">Save</button>
+				</form>
+			</div>
+	
+			<div id="venues">
+				<ul>
+					<li>Flowtab Bar #1</li>
+					<li>Flowtab Bar #2</li>
+				</ul>
+			</div>	
+	
+			<div id="categories-1">
+				<ul>
+					<li>Beer</li>
+					<li>Wine</li>
+					<li>Shots</li>
+				</ul>
+			</div>
+	
+			<div id="categories-2">
+				<ul>
+					<li>Vodka</li>
+					<li>Whiskey</li>
+				</ul>
+			</div>
+				
+			<div id="products">
+				<ul>
+					<li>Budweiser</li>
+					<li>Heinekin</li>
+				</ul>
+			</div>
 			
-		<div id="products">
-			<ul>
-				<li>Budweiser</li>
-				<li>Heinekin</li>
-			</ul>
-		</div>
+			<div id="checkout">
+				<button class="purchase-button">Place Order</button>
+			</div>
+			
+			<div id="confirmation-page">
+				<button class="categories-button">Done</button>
+			</div>
+			
+			<div id="settings">
+				<ul>
+					<li>Cards</li>
+					<li>Account Settings</li>
+					<li>How it Works</li>
+					<li>Security Information</li>
+					<li>Share this Shit</li>
+				</ul>
+			</div>
+			
+			<div id="account-settings">
+				<form>
+					<button class="submit">Update</button>
+				</form>
+			</div>
+			
+			<div id="how-it-works">
+				<!-- Static text -->
+			</div>
+	
+			<div id="security-information">
+				<!-- Static text -->
+			</div>
+	
+			<div id="share-this-shit">
+				<!-- Static text -->
+			</div>
+	
+			<div id="bottombar">
+				<button class="settings-button">Settings</button>
+				<button class="checkout-button">Checkout</button>
+			</div>
 		
-		<div id="checkout">
-			<button class="purchase-button">Place Order</button>
-		</div>
-		
-		<div id="confirmation-page">
-			<button class="categories-button">Done</button>
-		</div>
-		
-		<div id="settings">
-			<ul>
-				<li>Cards</li>
-				<li>Account Settings</li>
-				<li>How it Works</li>
-				<li>Security Information</li>
-				<li>Share this Shit</li>
-			</ul>
-		</div>
-		
-		<div id="account-settings">
-			<form>
-				<button class="submit">Update</button>
-			</form>
-		</div>
-		
-		<div id="how-it-works">
-			<!-- Static text -->
-		</div>
-
-		<div id="security-information">
-			<!-- Static text -->
-		</div>
-
-		<div id="share-this-shit">
-			<!-- Static text -->
-		</div>
-
-		<div id="bottombar">
-			<button class="settings-button">Settings</button>
-			<button class="checkout-button">Checkout</button>
-		</div>
+		</div><!--/jqt-->
 
 		<script type="text/javascript" src="/script/Zepto.js"></script>
-		<script type="text/javascript" src="/script/Zeptop.jQTouch.js"></script>
+		<script type="text/javascript" src="/script/Zepto.jQTouch.js"></script>
 		<script type="text/javascript" src="/script/Swiper.js"></script>
 		<script type="text/javascript" src="/script/iScroll.js"></script>
 		<script type="text/javascript" src="/script/Stripe.js"></script>
