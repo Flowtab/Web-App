@@ -249,7 +249,7 @@ Flowtab.wallet = (function () {
                   , cvc: data.code
                 }
               , function (status, data) {
-                    if (data.error)
+                    if (data.error) {
                         hideSpinner();
                         showSaveCreditCardFailureMessage(data.error);
 
