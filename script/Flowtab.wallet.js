@@ -112,11 +112,7 @@ Flowtab.wallet = (function () {
           , $signInButton: $signInButton
         };
 
-        $signUpButton
-        .bind('click', function function_name (argument) {
-            console.log('click');
-        })
-        .bind('click', self.showSignUpView);
+        $signUpButton.bind('click', self.showSignUpView);
         $signInButton.bind('click', self.showSignInView);
     };
 
