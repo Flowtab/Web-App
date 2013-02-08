@@ -24,6 +24,12 @@ Flowtab.wallet = (function () {
             self.showVenuesView();
     }
 
+    function removeViewBindings(viewStore) {
+        for (var k in viewStore)
+            if (k.charAt(0) === '$')
+                viewStore[k].unbind();
+    }
+
     function showSignUpFailureMessage(error) {
         // body...
     }
@@ -94,14 +100,11 @@ Flowtab.wallet = (function () {
 
     self.buildWelcomeView = function Flowtab_wallet_buildWelcomeView() {
         var $container = $('#welcome')
-          , $template = $('#welcome-template');
-
-        $container.empty();
-
-        //TODO: write template to container
-
-        var $signUpButton = $container.find('.sign-up-button')
+          , $template = $('#welcome-template')
+          , $signUpButton = $container.find('.sign-up-button')
           , $signInButton = $container.find('.sign-in-button')
+
+        removeViewBindings(view.welcome);
 
         view.welcome = {
             $container: $container
@@ -115,14 +118,11 @@ Flowtab.wallet = (function () {
 
     self.buildSignUpView = function Flowtab_wallet_buildSignUpView() {
         var $container = $('#sign-up')
-          , $template = $('#sign-up-template');
-
-        $container.empty();
-
-        //TODO: write template to container
-
-        var $form = $container.find('form')
+          , $template = $('#sign-up-template')
+          , $form = $container.find('form')
           , $signUpButton = $form.find('button[type="submit"]');
+
+        removeViewBindings(view.signUp);
 
         view.signUp = {
             $container: $container
@@ -165,15 +165,12 @@ Flowtab.wallet = (function () {
 
     self.buildSignInView = function Flowtab_wallet_buildSignInView() {
         var $container = $('#sign-in')
-          , $template = $('#sign-in-template');
-
-        $container.empty();
-
-        //TODO: write template to container
-
-        var $form = $container.find('form')
+          , $template = $('#sign-in-template')
+          , $form = $container.find('form')
           , $submitButton = $form.find('button[type="submit"]')
-          , $passwordResetButton = $form.find('.password-reset-button')
+          , $passwordResetButton = $form.find('.password-reset-button');
+
+        removeViewBindings(view.signIn);
 
         view.signIn = {
             $container: $container
@@ -219,7 +216,7 @@ Flowtab.wallet = (function () {
         var $container = $('#save-credit-card')
           , $template = $('#save-credit-card-template');
 
-        $container.empty();
+        //$container.empty();
 
         //TODO: write template to container
 
