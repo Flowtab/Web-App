@@ -4,13 +4,14 @@ Flowtab.wallet = (function () {
       , view = self.view
       , framework = Flowtab.framework
       , currentUser = null
-      , currentViewId = null
+      , currentView = null
       , venues = null
       , menus = null
       , products = {}
       , hasLoadedUser = false
       , hasLoadedDocument = false
-      , hasLoadedVenues = false;
+      , hasLoadedVenues = false
+      , jQT = new Zepto.jQTouch({});
 
     function initialize() {
         if (!hasLoadedDocument || !hasLoadedUser)
@@ -28,6 +29,19 @@ Flowtab.wallet = (function () {
         for (var k in viewStore)
             if (k.charAt(0) === '$')
                 viewStore[k].unbind();
+    }
+
+    function showView(view, method) {
+        if (currentView === view) {
+            console.warn('Flowtab.wallet.showView::view_already_shown_warning (view.id:' + view.id + ', ...)');
+
+            return;
+        }
+
+        currentView = view;
+        
+        console.info('Flowtab.wallet.showView::showView (view.id:' + view.id + ', ...)');
+        jQT.goTo(view.$container, method);
     }
 
     function showSignUpFailureMessage(error) {
@@ -54,6 +68,14 @@ Flowtab.wallet = (function () {
         // body...
     }
 
+    function showSaveCreditCardFailureMessage() {
+        // body...
+    }
+
+    function hideSaveCreditCardFailureMessage() {
+        // body...
+    }
+
     function showSpinner() {
         $("#spinner-wrap").show();
     }
@@ -65,11 +87,11 @@ Flowtab.wallet = (function () {
     function showError() {
         hideSpinner();
 
-        //write error message to currentViewId
+        //write error message to currentView
     }
 
     self.loadVenues = function Flowtab_wallet_loadVenues() {
-        if (currentViewId === 'venues')
+        if (currentView === view.venues)
             showSpinner();
 
         framework.service.getVenues(function (data) {
@@ -78,13 +100,13 @@ Flowtab.wallet = (function () {
 
             self.buildVenuesView(venues);
 
-            if (currentViewId === 'venues')
+            if (currentView === view.venues)
                 hideSpinner();
         });
     };
 
     self.loadMenus = function Flowtab_wallet_loadMenus() {
-        if (currentViewId.indexOf('categories') === 0)
+        if (currentView.id.indexOf('categories') === 0)
             showSpinner();
 
         framework.service.getMenus(function (data) {
@@ -93,42 +115,39 @@ Flowtab.wallet = (function () {
 
             self.buildCategoriesView(menus);
 
-            if (currentViewId.indexOf('categories') === 0)
+            if (currentView.id.indexOf('categories') === 0)
                 hideSpinner();
         });
     };
 
     self.buildWelcomeView = function Flowtab_wallet_buildWelcomeView() {
-        var $container = $('#welcome')
-          , $template = $('#welcome-template')
+        var $container = view.welcome.$container
           , $signUpButton = $container.find('.sign-up-button')
           , $signInButton = $container.find('.sign-in-button')
 
         removeViewBindings(view.welcome);
 
-        view.welcome = {
-            $container: $container
-          , $signUpButton: $signUpButton
+        $.extend(view.welcome, {
+            $signUpButton: $signUpButton
           , $signInButton: $signInButton
-        };
+        });
 
         $signUpButton.bind('click', self.showSignUpView);
         $signInButton.bind('click', self.showSignInView);
     };
 
     self.buildSignUpView = function Flowtab_wallet_buildSignUpView() {
-        var $container = $('#sign-up')
-          , $template = $('#sign-up-template')
+        var $container = view.signUp.$container
+          , $template = view.signUp.$template
           , $form = $container.find('form')
           , $signUpButton = $form.find('button[type="submit"]');
 
         removeViewBindings(view.signUp);
 
-        view.signUp = {
-            $container: $container
-          , $form: $form
+        $.extend(view.signUp, {
+            $form: $form
           , $submitButton: $signUpButton
-        };
+        });
 
         $form.bind('submit', function () {
             showSpinner();
@@ -137,8 +156,9 @@ Flowtab.wallet = (function () {
               , i = formEntries.length
               , data = {};
 
-            for (; i !== -1; --i)
-                data[formEntries[i].name] = formEntries[i].value;
+            if (i > 0)
+                for (; i !== -1; --i)
+                    data[formEntries[i].name] = formEntries[i].value;
 
             framework.service.createUser(data.firstName, data.lastName, data.phoneNumber, data.password, data.emailAddress, function (data) {
                 hideSpinner();
@@ -164,20 +184,18 @@ Flowtab.wallet = (function () {
     };
 
     self.buildSignInView = function Flowtab_wallet_buildSignInView() {
-        var $container = $('#sign-in')
-          , $template = $('#sign-in-template')
+        var $container = view.signIn.$container
           , $form = $container.find('form')
           , $submitButton = $form.find('button[type="submit"]')
           , $passwordResetButton = $form.find('.password-reset-button');
 
         removeViewBindings(view.signIn);
 
-        view.signIn = {
-            $container: $container
-          , $form: $form
+        $.extend(view.signIn, {
+            $form: $form
           , $submitButton: $submitButton
           , $passwordResetButton: $passwordResetButton
-        };
+        });
 
         $form.bind('submit', function () {
             showSpinner();
@@ -186,8 +204,9 @@ Flowtab.wallet = (function () {
               , i = formEntries.length
               , data = {};
 
-            for (; i !== -1; --i)
-                data[formEntries[i].name] = formEntries[i].value;
+            if (i > 0)
+                for (; i !== -1; --i)
+                    data[formEntries[i].name] = formEntries[i].value;
 
             framework.service.authenticateUser(data.phoneNumber, data.password, function (data) {
                 hideSpinner();
@@ -200,10 +219,10 @@ Flowtab.wallet = (function () {
 
                 currentUser = data.user;
 
-                if (currentUser.hasCreditCard)
-                    self.showVenuesView();
-                else
+                if (currentUser.creditCard === null)
                     self.showSaveCreditCardView();
+                else
+                    self.showVenuesView();
             });
 
             return false;
@@ -213,8 +232,7 @@ Flowtab.wallet = (function () {
     };
 
     self.buildSaveCreditCardView = function Flowtab_wallet_buildSaveCreditCardView() {
-        var $container = $('#save-credit-card')
-          , $template = $('#save-credit-card-template');
+        var $container = view.saveCreditCard.$container;
 
         //$container.empty();
 
@@ -223,11 +241,10 @@ Flowtab.wallet = (function () {
         var $form = $container.find('form')
           , $submitButton = $form.find('button[type="submit"]')
 
-        view.saveCreditCard = {
-            $container: $container
-          , $form: $form
+        $.extend(view.saveCreditCard, {
+            $form: $form
           , $submitButton: $submitButton
-        };
+        });
 
         $form.bind('submit', function () {
             showSpinner();
@@ -236,8 +253,9 @@ Flowtab.wallet = (function () {
               , i = formEntries.length
               , data = {};
 
-            for (; i !== -1; --i)
-                data[formEntries[i].name] = formEntries[i].value;
+            if (i > 0)
+                for (; i !== -1; --i)
+                    data[formEntries[i].name] = formEntries[i].value;
 
             Stripe.createToken({
                     number: data.number
@@ -253,7 +271,7 @@ Flowtab.wallet = (function () {
                         return;
                     }
                     
-                    framework.service.saveCreditCard(data.id, function (data) {
+                    framework.service.saveUserCreditCard(data.id, function (data) {
                         hideSpinner();
 
                         if (data.error) {
@@ -262,7 +280,7 @@ Flowtab.wallet = (function () {
                             return;
                         }
 
-                        currentUser.hasCreditCard = true;
+                        currentUser.creditCard = data.creditCard;
 
                         $form.get(0).reset();
                         self.showVenuesView();
@@ -299,15 +317,15 @@ Flowtab.wallet = (function () {
     };
 
     self.showWelcomeView = function Flowtab_wallet_showWelcomeView() {
-        currentViewId = 'welcome';
+        showView(view.welcome);
         
-        //jQTouch goto currentViewId
+        //jQTouch goto currentView
     };
 
     self.showVenuesView = function Flowtab_wallet_showVenuesView() {
-        currentViewId = 'venues';
+        showView(view.venues);
 
-        //jQTouch goto currentViewId;
+        //jQTouch goto currentView
 
         if (!hasLoadedVenues)
             showSpinner();
@@ -316,9 +334,9 @@ Flowtab.wallet = (function () {
     };
 
     self.showCategoriesView = function Flowtab_wallet_showCategoriesView(id) {
-        currentViewId = 'categories' + id;
+        showView(view['categories-' + i]);
 
-        //jQTouch goto currentViewId
+        //jQTouch goto currentView
 
         if (!hasLoadedMenus)
             showSpinner();
@@ -327,79 +345,74 @@ Flowtab.wallet = (function () {
     };
 
     self.showProductsView = function Flowtab_wallet_showProductsView() {
-        currentViewId = '#products';
-        
-        jQT.goTo($(currentViewId),"slideleft");
+        showView(view.products, 'slideleft');
     };
 
     self.showSignUpView = function Flowtab_wallet_showSignUpView() {
-        currentViewId = '#sign-up';
-        
-        jQT.goTo($(currentViewId),"slideup");
+        showView(view.signUp, 'slideup');
     };
 
     self.showSignInView = function Flowtab_wallet_showSignInView() {
-        currentViewId = '#sign-in';
-        
-        jQT.goTo($(currentViewId),"slideup");
+        showView(view.signIn, 'slideup');
     };
 
     self.showSaveCreditCardView = function Flowtab_wallet_showSaveCreditCardView() {
-        currentViewId = '#save-credit-card';
-        
-        jQT.goTo($(currentViewId),"slideleft");
+        showView(view.saveCreditCard, 'slideleft');
     };
 
     self.showPasswordResetView = function Flowtab_wallet_showPasswordResetView() {
-        currentViewId = '#password-reset';
-        
-        jQT.goTo($(currentViewId),"slideleft");
+        showView(view.passwordReset, 'slideleft');
     };
 
     self.showCheckoutView = function Flowtab_wallet_showCheckoutView() {
-        currentViewId = '#checkout';
-
-        jQT.goTo($(currentViewId),"slideleft");
+        showView(view.checkout, 'slideleft');
     };
 
     self.showConfirmationView = function Flowtab_wallet_showConfirmationView() {
-        currentViewId = '#confirmation';
-
-        jQT.goTo($(currentViewId),"slideleft");
+        showView(view.confirmation, 'slideleft');
     };
 
     self.showConfigurationView = function Flowtab_wallet_showConfigurationView() {
-        currentViewId = '#configuration';
-
-        jQT.goTo($(currentViewId),"slideleft");
+        showView(view.configuration, 'slideleft');
     };
 
     self.showAboutHowItWorksView = function Flowtab_wallet_showAboutHowItWorksView() {
-        currentViewId = '#about-how-it-works';
-
-        jQT.goTo($(currentViewId),"slideleft");
+        showView(view.aboutHowItWorks, 'slideleft');
     };
 
     self.showAboutSecurityView = function Flowtab_wallet_showAboutSecurityView() {
-        currentViewId = '#about-security';
-
-        jQT.goTo($(currentViewId),"slideleft");
+        showView(view.aboutSecurity, 'slideleft');
     };
 
     self.showShareView = function Flowtab_wallet_showShareView() {
-        currentViewId = '#share';
-
-        jQT.goTo($(currentViewId),"slideleft");
+        showView(view.share, 'slideleft');
     };
 
     showSpinner();
 
-	var jQT = new Zepto.jQTouch({
-	    preloadImages: [
-	    	// Images...
-	    ]
-	});
+    $('.view').each(function () {
+        var id = this.id
+          , s = ''
+          , t = id.split('-')
+          , n = t.length - 1
+          , tn;
 
+        if (n > 0) {
+            for (; n !== 0; --n) {
+                tn = t[n];
+                t[n] = tn.charAt(0).toUpperCase() + tn.substring(1);
+            }
+
+            id = t.join(s);
+        }
+
+        view[id] = {
+            id: id
+          , $container: $(this)
+          , $template: $('#' + id + '-template')
+        };
+    });
+    
     Stripe.setPublishableKey(STRIPE_PUBLISHABLE_KEY);
     self.loadVenues();
 

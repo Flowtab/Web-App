@@ -10,7 +10,10 @@ Flowtab.framework = (function () {
                       , lastName: 'Tab'
                       , phoneNumber: '0000000000'
                       , emailAddress: 'flowtab@flowtab.com'
-                      , hasCreditCard: true
+                      , creditCard: {
+                            lastGroup: '1234'
+                          , type: 'AMEX'
+                        }
                     }
                 };
 
@@ -27,7 +30,7 @@ Flowtab.framework = (function () {
                       , lastName: lastName
                       , phoneNumber: phoneNumber
                       , emailAddress: emailAddress
-                      , hasCreditCard: false
+                      , creditCard: null
                     }
                 };
 
@@ -39,6 +42,10 @@ Flowtab.framework = (function () {
       , saveUserCreditCard: function Flowtab_framework_service_saveUserCreditCard(token, callback) {
             var data = {
                     error: null
+                  , creditCard: {
+                        lastGroup: '1234'
+                      , type: 'AMEX'
+                    }
                 };
 
             setTimeout(function () {
@@ -54,7 +61,7 @@ Flowtab.framework = (function () {
                       , lastName: 'Tab'
                       , phoneNumber: phoneNumber
                       , emailAddress: 'flowtab@flowtab.com'
-                      , hasCreditCard: false
+                      , creditCard: null
                     }
                 };
 
