@@ -49,11 +49,11 @@ Flowtab.wallet = (function () {
     }
 
     function showSpinner() {
-        // body...
+        $("#spinner-wrap").show();
     }
 
     function hideSpinner() {
-        // body...
+        $("#spinner-wrap").hide();
     }
 
     function showError() {
@@ -399,12 +399,14 @@ Flowtab.wallet = (function () {
 
     new Zepto.jQTouch({
         preloadImages: [
+/*
             '/image/sprite-home14.png'
           , '/image/chicago9.jpg'
           , '/image/dropbar.jpg'
           , '/image/pattern.png'
           , '/image/topbar.png'
           , '/image/taps.jpg'
+*/
         ]
     });
 
