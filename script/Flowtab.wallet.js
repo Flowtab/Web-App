@@ -257,6 +257,12 @@ Flowtab.wallet = (function () {
                 for (; i !== -1; --i)
                     data[formEntries[i].name] = formEntries[i].value;
 
+            //NOTE: fake data
+            data.number = '4111111111111111';
+            data.expirationMonth = '5';
+            data.expirationYear = '2015';
+            data.code = '123';
+
             Stripe.createToken({
                     number: data.number
                   , exp_month: data.expirationMonth
