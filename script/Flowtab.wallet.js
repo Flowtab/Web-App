@@ -327,85 +327,78 @@ Flowtab.wallet = (function () {
     };
 
     self.showProductsView = function Flowtab_wallet_showProductsView() {
-        currentViewId = 'products';
+        currentViewId = '#products';
         
-        //jQTouch goto currentViewId
+        jQT.goTo($(currentViewId),"slideleft");
     };
 
     self.showSignUpView = function Flowtab_wallet_showSignUpView() {
-        currentViewId = 'sign-up';
+        currentViewId = '#sign-up';
         
-        //jQTouch goto currentViewId
+        jQT.goTo($(currentViewId),"slideup");
     };
 
     self.showSignInView = function Flowtab_wallet_showSignInView() {
-        currentViewId = 'sign-in';
+        currentViewId = '#sign-in';
         
-        //jQTouch goto currentViewId
+        jQT.goTo($(currentViewId),"slideup");
     };
 
     self.showSaveCreditCardView = function Flowtab_wallet_showSaveCreditCardView() {
-        currentViewId = 'save-credit-card';
+        currentViewId = '#save-credit-card';
         
-        //jQTouch goto currentViewId
+        jQT.goTo($(currentViewId),"slideleft");
     };
 
     self.showPasswordResetView = function Flowtab_wallet_showPasswordResetView() {
-        currentViewId = 'password-reset';
+        currentViewId = '#password-reset';
         
-        //jQTouch goto currentViewId
+        jQT.goTo($(currentViewId),"slideleft");
     };
 
     self.showCheckoutView = function Flowtab_wallet_showCheckoutView() {
-        currentViewId = 'checkout';
+        currentViewId = '#checkout';
 
-        //jQTouch goto currentViewId
+        jQT.goTo($(currentViewId),"slideleft");
     };
 
     self.showConfirmationView = function Flowtab_wallet_showConfirmationView() {
-        currentViewId = 'confirmation';
+        currentViewId = '#confirmation';
 
-        //jQTouch goto currentViewId
+        jQT.goTo($(currentViewId),"slideleft");
     };
 
     self.showConfigurationView = function Flowtab_wallet_showConfigurationView() {
-        currentViewId = 'configuration';
+        currentViewId = '#configuration';
 
-        //jQTouch goto currentViewId
+        jQT.goTo($(currentViewId),"slideleft");
     };
 
     self.showAboutHowItWorksView = function Flowtab_wallet_showAboutHowItWorksView() {
-        currentViewId = 'about-how-it-works';
+        currentViewId = '#about-how-it-works';
 
-        //jQTouch goto currentViewId
+        jQT.goTo($(currentViewId),"slideleft");
     };
 
     self.showAboutSecurityView = function Flowtab_wallet_showAboutSecurityView() {
-        currentViewId = 'about-security';
+        currentViewId = '#about-security';
 
-        //jQTouch goto currentViewId
+        jQT.goTo($(currentViewId),"slideleft");
     };
 
     self.showShareView = function Flowtab_wallet_showShareView() {
-        currentViewId = 'share';
+        currentViewId = '#share';
 
-        //jQTouch goto currentViewId
+        jQT.goTo($(currentViewId),"slideleft");
     };
 
     showSpinner();
 
-    new Zepto.jQTouch({
-        preloadImages: [
-/*
-            '/image/sprite-home14.png'
-          , '/image/chicago9.jpg'
-          , '/image/dropbar.jpg'
-          , '/image/pattern.png'
-          , '/image/topbar.png'
-          , '/image/taps.jpg'
-*/
-        ]
-    });
+	var jQT = new Zepto.jQTouch({
+	    preloadImages: [
+	    	// Images...
+	    ]
+	});
 
     Stripe.setPublishableKey(STRIPE_PUBLISHABLE_KEY);
     self.loadVenues();
