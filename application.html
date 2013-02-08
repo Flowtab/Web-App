@@ -4,7 +4,6 @@
 		<meta http-equiv="content-type" content="text/html;charset=UTF-8">
 		<title>Flowtab</title>
 		<style>
-		
 			/* Spinner */
 
 			#spinner-wrap {
@@ -70,11 +69,10 @@
 				from {opacity: 1;}
 				to {opacity: 0.25;}
 			}
-
 		</style>
-		
 		<link type="text/css" rel="stylesheet" href="/stylesheet/jqtouch.css">
-	
+	</head>
+	<body>
 		<div id="spinner-wrap">
 			<div id="spinner-box">
 				<div class="spinner">
@@ -90,117 +88,174 @@
 					<div class="bar10 spin-bars"></div>
 					<div class="bar11 spin-bars"></div>
 					<div class="bar12 spin-bars"></div>
-				</div><!--/spinner-->
-			</div><!--/spinner-box-->
-		</div><!--/spinner-wrap-->
-
-	</head>
-	<body>
-
-		<div id="jqt">
-		
-			<div id="topbar">
-				<h1>Tob Bar<h1>
+				</div>
 			</div>
-	
-			<div id="welcome" class="current">
+		</div>
+		<div id="jqt" class="touchscroll">
+			<div id="splash" class="view current">
+				<!-- TODO: static content -->
+			</div>
+			<div id="welcome" class="view">
 				<h1>Welcome</h1>
-				<button class="sign-up-button">Sign Up</button>
-				<button class="sign-in-button">Sign In</button>
+				<ul class="individual">
+                    <li>
+                    	<a class="sign-up-button">Sign Up</a>
+                    </li>
+                    <li>
+                    	<a class="sign-in-button">Sign In</a>
+                    </li>
+                </ul>
 			</div>
-	
-			<div id="sign-up">
-				<h1>Sign Up</h1>
+			<div id="sign-up" class="view">
+				<div class="toolbar">
+					<h1>Sign Up</h1>
+					<a href="#" class="back">Back</a>
+				</div>
 				<form>
-					<button type="submit">Sign Up</button>
+					<button type="submit" class="grayButton">Sign Up</button>
 				</form>
 			</div>
-	
-			<div id="sign-in">
-				<h1>Sign In</h1>
+			<div id="sign-in" class="view">
+				<div class="toolbar">
+					<h1>Sign In</h1>
+					<a href="#" class="back">Back</a>
+				</div>
 				<form>
-					<button type="submit">Sign In</button>
+					<button type="submit" class="grayButton">Sign In</button>
 				</form>
 			</div>
-	
-			<div id="save-credit-card">
+			<div id="save-credit-card" class="view">
+				<div class="toolbar">
+					<h1>Save Credit Card</h1>
+				</div>
 				<form>
-					<button type="submit">Save</button>
+					<button type="submit" class="grayButton">Save</button>
 				</form>
 			</div>
-	
-			<div id="venues">
-				<ul>
-					<li>Flowtab Bar #1</li>
-					<li>Flowtab Bar #2</li>
-				</ul>
-			</div>	
-	
-			<div id="categories-1">
-				<ul>
-					<li>Beer</li>
-					<li>Wine</li>
-					<li>Shots</li>
-				</ul>
+			<div id="venues" class="view">
+				<div class="toolbar">
+					<h1>Venues</h1>
+				</div>
+				<div class="scroll">
+					<ul>
+						<li>Flowtab Bar #1</li>
+						<li>Flowtab Bar #2</li>
+						<li>Flowtab Bar #3</li>
+						<li>Flowtab Bar #4</li>
+						<li>Flowtab Bar #5</li>
+						<li>Flowtab Bar #6</li>
+						<li>Flowtab Bar #7</li>
+						<li>Flowtab Bar #8</li>
+						<li>Flowtab Bar #9</li>
+						<li>Flowtab Bar #10</li>
+						<li>Flowtab Bar #11</li>
+						<li>Flowtab Bar #12</li>
+						<li>Flowtab Bar #13</li>
+						<li>Flowtab Bar #14</li>
+						<li>Flowtab Bar #15</li>
+						<li>Flowtab Bar #16</li>
+						<li>Flowtab Bar #17</li>
+						<li>Flowtab Bar #18</li>
+					</ul>
+				</div>
 			</div>
-	
-			<div id="categories-2">
-				<ul>
-					<li>Vodka</li>
-					<li>Whiskey</li>
-				</ul>
+			<div id="categories-1" class="view">
+				<div class="toolbar">
+					<h1>Categories</h1>
+					<a href="#" class="back">Back</a>
+				</div>
+				<div class="scroll">
+					<ul>
+						<li>Beer</li>
+						<li>Wine</li>
+						<li>Shots</li>
+					</ul>
+				</div>
 			</div>
-				
-			<div id="products">
-				<ul>
-					<li>Budweiser</li>
-					<li>Heinekin</li>
-				</ul>
+			<div id="categories-2" class="view">
+				<div class="toolbar">
+					<h1>Categories</h1>
+					<a href="#" class="back">Back</a>
+				</div>
+				<div class="scroll">
+					<ul>
+						<li>Vodka</li>
+						<li>Whiskey</li>
+					</ul>
+				</div>
 			</div>
-			
-			<div id="checkout">
-				<button class="purchase-button">Place Order</button>
+			<div id="products" class="view">
+				<div class="toolbar">
+					<h1>Products</h1>
+					<a href="#" class="back">Back</a>
+				</div>
+				<div class="scroll">
+					<ul>
+						<li>Budweiser</li>
+						<li>Heinekin</li>
+					</ul>
+				</div>
 			</div>
-			
-			<div id="confirmation-page">
-				<button class="categories-button">Done</button>
+			<div id="checkout" class="view">
+				<div class="toolbar">
+					<h1>Checkout</h1>
+					<a href="#" class="back">Back</a>
+				</div>
+				<button class="purchase-button greenButton">Place Order</button>
 			</div>
-			
-			<div id="settings">
-				<ul>
-					<li>Cards</li>
-					<li>Account Settings</li>
-					<li>How it Works</li>
-					<li>Security Information</li>
-					<li>Share this Shit</li>
-				</ul>
+			<div id="confirmation" class="view">
+				<button class="categories grayButton">Done</button>
 			</div>
-			
-			<div id="account-settings">
+			<div id="configuration" class="view">
+				<div class="toolbar">
+					<h1>Configuration</h1>
+					<a href="#" class="back">Back</a>
+				</div>
+				<div class="scroll">
+					<ul>
+						<li>Cards</li>
+						<li>Account Settings</li>
+						<li>How it Works</li>
+						<li>Security Information</li>
+						<li>Share this Shit</li>
+					</ul>
+				</div>
+			</div>
+			<div id="account" class="view">
+				<div class="toolbar">
+					<h1>Account</h1>
+					<a href="#" class="back">Back</a>
+				</div>
 				<form>
-					<button class="submit">Update</button>
+					<button type="submit" class="greenButton">Update</button>
 				</form>
 			</div>
-			
-			<div id="how-it-works">
-				<!-- Static text -->
+			<div id="about-how-it-works" class="view">
+				<div class="toolbar">
+					<h1>About</h1>
+					<a href="#" class="back">Back</a>
+				</div>
+				<!-- TODO: static content -->
 			</div>
-	
-			<div id="security-information">
-				<!-- Static text -->
+			<div id="about-security" class="view">
+				<div class="toolbar">
+					<h1>About</h1>
+					<a href="#" class="back">Back</a>
+				</div>
+				<!-- TODO: static content -->
 			</div>
-	
-			<div id="share-this-shit">
-				<!-- Static text -->
+			<div id="share" class="view">
+				<div class="toolbar">
+					<h1>About</h1>
+					<a href="#" class="back">Back</a>
+				</div>
+				<!-- TODO: static content -->
 			</div>
-	
 			<div id="bottombar">
-				<button class="settings-button">Settings</button>
-				<button class="checkout-button">Checkout</button>
+				<button class="settings button">Settings</button>
+				<button class="checkout button">Checkout</button>
 			</div>
-		
-		</div><!--/jqt-->
-
+		</div>
 		<script type="text/javascript" src="/script/Zepto.js"></script>
 		<script type="text/javascript" src="/script/Zepto.jQTouch.js"></script>
 		<script type="text/javascript" src="/script/Swiper.js"></script>
@@ -209,6 +264,5 @@
 		<script type="text/javascript" src="/script/Flowtab.js"></script>
 		<script type="text/javascript" src="/script/Flowtab.framework.js"></script>
 		<script type="text/javascript" src="/script/Flowtab.wallet.js"></script>
-
 	</body>
 </html>
