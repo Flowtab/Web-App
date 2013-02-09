@@ -137,16 +137,7 @@
 				<!-- TODO: add spinner -->
 			</div>
 			<div id="products" class="view">
-				<div class="toolbar">
-					<h1>Products</h1>
-					<a class="back">Back</a>
-				</div>
-				<div class="scroll">
-					<ul>
-						<li>Budweiser</li>
-						<li>Heinekin</li>
-					</ul>
-				</div>
+				<!-- TODO: add spinner -->
 			</div>
 			<div id="checkout" class="view">
 				<div class="toolbar">
@@ -240,9 +231,22 @@
 			</ul>
 		</div>
 		</script>
-		<script type="text/javascript" src="/script/Zepto.js"></script>
-		<script type="text/javascript" src="/script/Zepto.jQTouch.js"></script>
-		<script type="text/javascript" src="/script/lodash.js"></script>
+		<script id="products-template" type="text/html">
+		<div class="toolbar">
+			<h1>Products</h1>
+			<a class="back">Back</a>
+		</div>
+		<div class="scroll">
+			<ul>
+				{% for product in items %}
+				<li id="{{ product.id }}">{{ product.name }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		</script>
+		<script type="text/javascript" src="/script/$.js"></script>
+		<script type="text/javascript" src="/script/$.jQTouch.js"></script>
+		<script type="text/javascript" src="/script/_.js"></script>
 		<script type="text/javascript" src="/script/swig.js"></script>
 		<script type="text/javascript" src="/script/Swiper.js"></script>
 		<script type="text/javascript" src="/script/Stripe.js"></script>
