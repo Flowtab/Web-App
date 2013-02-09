@@ -1,6 +1,16 @@
 Flowtab.framework = (function () {
     var self = {};
 
+    self.util = {
+        createUuid: function Flowtab_framework_util_createUuid() { //gist.github.com/1308368
+            var a, b;
+
+            for (b = a = ''; a++ < 36; b += a * 51 & 52 ? (a ^ 15 ? 8 ^ Math.random() * (a ^ 20 ? 16 : 4) : 4).toString(16) : '-');
+
+            return b;
+        }
+    };
+
     self.service = {
         getCurrentUser: function Flowtab_framework_service_getCurrentUser(callback) {
             var data = {
@@ -78,7 +88,7 @@ Flowtab.framework = (function () {
 
             for (var i = 5; i >= 0; i--) {
                 data.venues[i] = {
-                    id: i,
+                    id: self.util.createUuid(),
                     fullName: 'Full Bar Name ' + i,
                     shortName: 'Bar ' + i,
                     address: {
@@ -98,25 +108,25 @@ Flowtab.framework = (function () {
                     callback(data);
             }, 1000);
         }
-      , getMenus: function Flowtab_framework_service_getMenus(venueId) {
+      , getMenu: function Flowtab_framework_service_getMenus(venueId, callback) {
             var data = {
                 error: null
-              , menus: [
+              , menu: [
                     {
-                        id: ''
+                        id: self.util.createUuid()
                       , name: 'Catgegory 1'
                       , kind: ''
                       , description: ''
                       , products: [
                             {
-                                id: ''
+                                id: self.util.createUuid()
                               , name: ''
                               , price: 7.0
                               , salePrice: 5.0
                               , description: ''
                             }
                           , {
-                                id: ''
+                                id: self.util.createUuid()
                               , name: ''
                               , price: 7.0
                               , salePrice: 5.0
@@ -125,20 +135,20 @@ Flowtab.framework = (function () {
                         ]
                     }
                   , {
-                        id: ''
+                        id: self.util.createUuid()
                       , name: 'Catgegory 2'
                       , kind: ''
                       , description: ''
                       , products: [
                             {
-                                id: ''
+                                id: self.util.createUuid()
                               , name: ''
                               , price: 7.0
                               , salePrice: 5.0
                               , description: ''
                             }
                           , {
-                                id: ''
+                                id: self.util.createUuid()
                               , name: ''
                               , price: 7.0
                               , salePrice: 5.0
@@ -147,32 +157,32 @@ Flowtab.framework = (function () {
                         ]
                     }
                   , {
-                        id: ''
+                        id: self.util.createUuid()
                       , name: 'Catgegory 3'
                       , kind: ''
                       , description: ''
                       , categories: [
                             {
-                                id: ''
+                                id: self.util.createUuid()
                               , name: 'Catgegory 3-1'
                               , kind: ''
                               , description: ''
                               , categories: [
                                     {
-                                        id: ''
+                                        id: self.util.createUuid()
                                       , name: 'Catgegory 3-1-1'
                                       , kind: ''
                                       , description: ''
                                       , products: [
                                             {
-                                                id: ''
+                                                id: self.util.createUuid()
                                               , name: ''
                                               , price: 7.0
                                               , salePrice: 5.0
                                               , description: ''
                                             }
                                           , {
-                                                id: ''
+                                                id: self.util.createUuid()
                                               , name: ''
                                               , price: 7.0
                                               , salePrice: 5.0
@@ -181,20 +191,20 @@ Flowtab.framework = (function () {
                                         ]
                                     }
                                   , {
-                                        id: ''
+                                        id: self.util.createUuid()
                                       , name: 'Catgegory 3-1-2'
                                       , kind: ''
                                       , description: ''
                                       , products: [
                                             {
-                                                id: ''
+                                                id: self.util.createUuid()
                                               , name: ''
                                               , price: 7.0
                                               , salePrice: 5.0
                                               , description: ''
                                             }
                                           , {
-                                                id: ''
+                                                id: self.util.createUuid()
                                               , name: ''
                                               , price: 7.0
                                               , salePrice: 5.0
@@ -205,26 +215,26 @@ Flowtab.framework = (function () {
                                 ]
                             }
                           , {
-                                id: ''
+                                id: self.util.createUuid()
                               , name: 'Catgegory 3-2'
                               , kind: ''
                               , description: ''
                               , categories: [
                                     {
-                                        id: ''
+                                        id: self.util.createUuid()
                                       , name: 'Catgegory 3-2-1'
                                       , kind: ''
                                       , description: ''
                                       , products: [
                                             {
-                                                id: ''
+                                                id: self.util.createUuid()
                                               , name: ''
                                               , price: 7.0
                                               , salePrice: 5.0
                                               , description: ''
                                             }
                                           , {
-                                                id: ''
+                                                id: self.util.createUuid()
                                               , name: ''
                                               , price: 7.0
                                               , salePrice: 5.0
@@ -233,20 +243,20 @@ Flowtab.framework = (function () {
                                         ]
                                     }
                                   , {
-                                        id: ''
+                                        id: self.util.createUuid()
                                       , name: 'Catgegory 3-2-2'
                                       , kind: ''
                                       , description: ''
                                       , products: [
                                             {
-                                                id: ''
+                                                id: self.util.createUuid()
                                               , name: ''
                                               , price: 7.0
                                               , salePrice: 5.0
                                               , description: ''
                                             }
                                           , {
-                                                id: ''
+                                                id: self.util.createUuid()
                                               , name: ''
                                               , price: 7.0
                                               , salePrice: 5.0
@@ -255,20 +265,20 @@ Flowtab.framework = (function () {
                                         ]
                                     }
                                   , {
-                                        id: ''
+                                        id: self.util.createUuid()
                                       , name: 'Catgegory 3-2-3'
                                       , kind: ''
                                       , description: ''
                                       , products: [
                                             {
-                                                id: ''
+                                                id: self.util.createUuid()
                                               , name: ''
                                               , price: 7.0
                                               , salePrice: 5.0
                                               , description: ''
                                             }
                                           , {
-                                                id: ''
+                                                id: self.util.createUuid()
                                               , name: ''
                                               , price: 7.0
                                               , salePrice: 5.0
@@ -281,26 +291,26 @@ Flowtab.framework = (function () {
                         ]
                     }
                   , {
-                        id: ''
+                        id: self.util.createUuid()
                       , name: 'Catgegory 4'
                       , kind: ''
                       , description: ''
                       , categories: [
                             {
-                                id: ''
+                                id: self.util.createUuid()
                               , name: 'Catgegory 4-1'
                               , kind: ''
                               , description: ''
                               , products: [
                                     {
-                                        id: ''
+                                        id: self.util.createUuid()
                                       , name: ''
                                       , price: 7.0
                                       , salePrice: 5.0
                                       , description: ''
                                     }
                                   , {
-                                        id: ''
+                                        id: self.util.createUuid()
                                       , name: ''
                                       , price: 7.0
                                       , salePrice: 5.0
@@ -309,20 +319,20 @@ Flowtab.framework = (function () {
                                 ]
                             }
                           , {
-                                id: ''
+                                id: self.util.createUuid()
                               , name: 'Catgegory 4-2'
                               , kind: ''
                               , description: ''
                               , products: [
                                     {
-                                        id: ''
+                                        id: self.util.createUuid()
                                       , name: ''
                                       , price: 7.0
                                       , salePrice: 5.0
                                       , description: ''
                                     }
                                   , {
-                                        id: ''
+                                        id: self.util.createUuid()
                                       , name: ''
                                       , price: 7.0
                                       , salePrice: 5.0
@@ -333,26 +343,26 @@ Flowtab.framework = (function () {
                         ]
                     }
                   , {
-                        id: ''
+                        id: self.util.createUuid()
                       , name: 'Catgegory 5'
                       , kind: ''
                       , description: ''
                       , categories: [
                             {
-                                id: ''
+                                id: self.util.createUuid()
                               , name: 'Catgegory 5-1'
                               , kind: ''
                               , description: ''
                               , products: [
                                     {
-                                        id: ''
+                                        id: self.util.createUuid()
                                       , name: ''
                                       , price: 7.0
                                       , salePrice: 5.0
                                       , description: ''
                                     }
                                   , {
-                                        id: ''
+                                        id: self.util.createUuid()
                                       , name: ''
                                       , price: 7.0
                                       , salePrice: 5.0
@@ -361,20 +371,20 @@ Flowtab.framework = (function () {
                                 ]
                             }
                           , {
-                                id: ''
+                                id: self.util.createUuid()
                               , name: 'Catgegory 5-2'
                               , kind: ''
                               , description: ''
                               , products: [
                                     {
-                                        id: ''
+                                        id: self.util.createUuid()
                                       , name: ''
                                       , price: 7.0
                                       , salePrice: 5.0
                                       , description: ''
                                     }
                                   , {
-                                        id: ''
+                                        id: self.util.createUuid()
                                       , name: ''
                                       , price: 7.0
                                       , salePrice: 5.0
