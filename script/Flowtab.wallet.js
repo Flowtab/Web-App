@@ -422,7 +422,7 @@ Flowtab.wallet = (function () {
 
         removeViewBindings(view.products);
 
-        $container.html(view.products.render({ products: products }));
+        $container.html(view.products.render({ items: products }));
     };
 
     self.buildCheckoutView = function Flowtab_wallet_buildCheckoutView() {
