@@ -6,11 +6,13 @@ Flowtab.wallet = (function () {
       , currentUser = null
       , currentView = null
       , venues = null
-      , menus = null
-      , products = {}
+      , menu = null
+      , categories = null
+      , products = null
       , hasLoadedUser = false
       , hasLoadedDocument = false
       , hasLoadedVenues = false
+      , hasLoadedMenu = false
       , jQT = new Zepto.jQTouch({});
 
     function initialize() {
@@ -29,6 +31,25 @@ Flowtab.wallet = (function () {
         for (var k in viewStore)
             if (k.charAt(0) === '$')
                 viewStore[k].unbind();
+    }
+
+    function buildMenu(data, parent) {
+        var i = data.length - 1
+          , o;
+
+        for (; i !== -1; --i) {
+            o = data[i];
+
+            if (!parent || parent.categories || parent.products)
+                categories[o.id] = o;
+            else
+                products[o.id] = o;
+
+            if (o.categories)
+                buildMenu(o.categories, o);
+            else if (o.products)
+                buildMenu(o.products, o);
+        }
     }
 
     function showView(view, method) {
@@ -97,6 +118,10 @@ Flowtab.wallet = (function () {
         framework.service.getVenues(function (data) {
             venues = data.venues;
             hasLoadedVenues = true;
+            hasLoadedMenu = false;
+            menu = null;
+            categories = null;
+            products = null;
 
             self.buildVenuesView(venues);
 
@@ -105,15 +130,18 @@ Flowtab.wallet = (function () {
         });
     };
 
-    self.loadMenus = function Flowtab_wallet_loadMenus() {
+    self.loadMenu = function Flowtab_wallet_loadMenu(venueId) {
         if (currentView.id.indexOf('categories') === 0)
             showSpinner();
 
-        framework.service.getMenus(function (data) {
-            menus = data.menus;
-            hasLoadedMenus = true;
+        framework.service.getMenu(venueId, function (data) {
+            hasLoadedMenu = true;
+            menu = data.menu;
+            categories = {};
+            products = {};
 
-            self.buildCategoriesView(menus);
+            buildMenu(data.menu);
+            self.buildCategoriesView(menu, view.categories1, view.categories2);
 
             if (currentView.id.indexOf('categories') === 0)
                 hideSpinner();
@@ -298,20 +326,104 @@ Flowtab.wallet = (function () {
         });
     };
 
-    self.buildVenuesView = function Flowtab_wallet_buildVenuesView(venues) {
-        // body...
+    self.buildVenuesView = function Flowtab_wallet_buildVenuesView(items) {
+        var $container = view.venues.$container;
+
+        removeViewBindings(view.venues);
+        
+        $container.html(view.venues.render({ items: items }));
+
+        var $items = $container.find('.venue');
+
+        $.extend(view.venues, {
+            $items: $items
+        });
+
+        $items.bind('click', function () {
+            showCategoriesView(1);
+            self.loadMenu(this.id);
+        });
     };
 
-    self.buildCategoriesView = function Flowtab_wallet_buildCategoriesView(categories) {
-        // body...
+    self.buildCategoriesView = function Flowtab_wallet_buildCategoriesView(items, targetView, nextView) {
+        var $container = targetView.$container;
+
+        removeViewBindings(targetView);
+        $container.html(view.categories1.render({ items: items }));
+
+        var $items = $container.find('.category');
+
+        $.extend(targetView, {
+            $items: $items
+        });
+
+        $items.bind('click', function () {
+            var item = categories[this.id];
+
+            if (item.categories) {
+                self.buildCategoriesView(item.categories, nextView, targetView);
+                showView(nextView, 'slideleft');
+            }
+            else if (item.products) {
+                self.buildProductsView(item.products);
+                showView(view.products, 'slideleft');
+            }
+            else {
+                console.error('Flowtab.wallet.buildCategoriesView::empty_category_error (item:' +  JSON.stringfy(item) + ')');
+            }
+        });
     };
 
     self.buildProductsView = function Flowtab_wallet_buildProductsView(products) {
-        // body...
+        var $container = view.products.$container;
+
+        removeViewBindings(view.products);
+
+        $container.html(view.products.render({ products: products }));
     };
 
     self.buildCheckoutView = function Flowtab_wallet_buildCheckoutView() {
-        // body...
+        var cart = {
+            products: {
+                '90114057-09ff-4099-bdbd-a252af3ee6a1': {
+                    id: '90114057-09ff-4099-bdbd-a252af3ee6a1'
+                  , name: 'Stella Artois'
+                  , category: {
+                        id: 'f33627aa-5544-4e52-ba7f-dc8c2fa1a4d8'
+                      , name: 'Regular Beer'
+                      , kind: 'Beer'
+                      , description: '...'
+                    }
+                  , price: 7.0
+                  , description: 'psuedo-fancy'
+                }
+              , 'a449ad0b-8f00-4cee-b03c-762b3234ac56': {
+                    id: 'a449ad0b-8f00-4cee-b03c-762b3234ac56'
+                  , name: 'Crabbys'
+                  , category: {
+                        id: 'af3ac88e-c673-481e-8191-af3b3f15c0f8'
+                      , name: 'American Beer'
+                      , kind: 'Beer'
+                      , description: '...'
+                    }
+                  , price: 10.5
+                  , description: 'super-fancy'
+                }
+              , '83ebbec5-f6da-4549-924d-e81702e3a310': {
+                    id: '83ebbec5-f6da-4549-924d-e81702e3a310'
+                  , name: 'Crabbys'
+                  , category: {
+                        id: 'af3ac88e-c673-481e-8191-af3b3f15c0f8'
+                      , name: 'America Beer'
+                      , kind: 'Beer'
+                      , description: '...'
+                    }
+                  , price: 5.0
+                  , description: 'super-weak'
+                }
+            }
+          , total: 22.5
+        };
     };
 
     self.buildConfirmationView = function Flowtab_wallet_buildConfirmationView() {
@@ -320,50 +432,6 @@ Flowtab.wallet = (function () {
 
     self.buildConfigurationView = function Flowtab_wallet_buildConfigurationView() {
         // body...
-    };
-
-    self.showWelcomeView = function Flowtab_wallet_showWelcomeView() {
-        showView(view.welcome);
-        
-        //jQTouch goto currentView
-    };
-
-    self.showVenuesView = function Flowtab_wallet_showVenuesView() {
-        showView(view.venues);
-
-        //jQTouch goto currentView
-
-        if (!hasLoadedVenues)
-            showSpinner();
-        else if (venues === null)
-            showError();
-    };
-
-    self.showCategoriesView = function Flowtab_wallet_showCategoriesView(id) {
-        showView(view['categories-' + i]);
-
-        //jQTouch goto currentView
-
-        if (!hasLoadedMenus)
-            showSpinner();
-        else if (menus === null)
-            showError();
-    };
-
-    self.showProductsView = function Flowtab_wallet_showProductsView() {
-        showView(view.products, 'slideleft');
-    };
-
-    self.showSignUpView = function Flowtab_wallet_showSignUpView() {
-        showView(view.signUp, 'slideup');
-    };
-
-    self.showSignInView = function Flowtab_wallet_showSignInView() {
-        showView(view.signIn, 'slideup');
-    };
-
-    self.showSaveCreditCardView = function Flowtab_wallet_showSaveCreditCardView() {
-        showView(view.saveCreditCard, 'slideleft');
     };
 
     self.showPasswordResetView = function Flowtab_wallet_showPasswordResetView() {
@@ -401,7 +469,8 @@ Flowtab.wallet = (function () {
           , s = ''
           , t = id.split('-')
           , n = t.length - 1
-          , tn;
+          , tn
+          , templateElement = document.getElementById(id + '-template');
 
         if (n > 0) {
             for (; n !== 0; --n) {
@@ -414,8 +483,8 @@ Flowtab.wallet = (function () {
 
         view[id] = {
             id: id
+          , render: templateElement === null ? null : swig.compile(templateElement.innerHTML, { filename: id })
           , $container: $(this)
-          , $template: $('#' + id + '-template')
         };
     });
     
