@@ -505,8 +505,6 @@ Flowtab.wallet = (function () {
         showView(view.share, 'slideleft');
     };
 
-    showSpinner();
-
     $('.view').each(function () {
         var id = this.id
           , s = ''
@@ -544,6 +542,7 @@ Flowtab.wallet = (function () {
     Zepto(function ($) {
         hasLoadedDocument = true;
 
+        showView(view.splash);
         self.buildWelcomeView();
         self.buildSignUpView();
         self.buildSignInView();
