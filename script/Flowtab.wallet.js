@@ -22,9 +22,9 @@ Flowtab.wallet = (function () {
         hideSpinner();
 
         if (currentUser === null)
-            self.showWelcomeView();
+            showView(view.welcome, 'slidedown');
         else
-            self.showVenuesView();
+            showVenuesView();
     }
 
     function removeViewBindings(viewStore) {
@@ -63,6 +63,24 @@ Flowtab.wallet = (function () {
         
         console.info('Flowtab.wallet.showView::showView (view.id:' + view.id + ', ...)');
         jQT.goTo(view.$container, method);
+    }
+
+    function showVenuesView() {
+        showView(view.venues, 'slideleft');
+
+        if (!hasLoadedVenues)
+            showSpinner();
+        else if (venues === null)
+            showError();
+    }
+
+    function showCategoriesView(id) {
+        showView(view['categories' + id], 'slideleft');
+
+        if (!hasLoadedMenu)
+            showSpinner();
+        else if (menu === null)
+            showError();
     }
 
     function showSignUpFailureMessage(error) {
@@ -160,20 +178,27 @@ Flowtab.wallet = (function () {
           , $signInButton: $signInButton
         });
 
-        $signUpButton.bind('click', self.showSignUpView);
-        $signInButton.bind('click', self.showSignInView);
+        $signUpButton.bind('click', function () {
+            showView(view.signUp, 'slideup');
+        });
+
+        $signInButton.bind('click', function () {
+            showView(view.signIn, 'slideup');
+        });
     };
 
     self.buildSignUpView = function Flowtab_wallet_buildSignUpView() {
         var $container = view.signUp.$container
           , $template = view.signUp.$template
+          , $closeButton = $container.find('.close-button')
           , $form = $container.find('form')
           , $signUpButton = $form.find('button[type="submit"]');
 
         removeViewBindings(view.signUp);
 
         $.extend(view.signUp, {
-            $form: $form
+            $closeButton: $closeButton
+          , $form: $form
           , $submitButton: $signUpButton
         });
 
@@ -203,9 +228,15 @@ Flowtab.wallet = (function () {
 
                 setTimeout(function () {
                     hideSignUpSuccessMessage();
-                    self.showSaveCreditCardView();
+                    showView(view.saveCreditCard, 'slideleft');
                 }, 2400);
             });
+
+            return false;
+        });
+
+        $closeButton.bind('click', function () {
+            showView(view.welcome, 'slidedown');
 
             return false;
         });
@@ -213,6 +244,7 @@ Flowtab.wallet = (function () {
 
     self.buildSignInView = function Flowtab_wallet_buildSignInView() {
         var $container = view.signIn.$container
+          , $closeButton = $container.find('.close-button')
           , $form = $container.find('form')
           , $submitButton = $form.find('button[type="submit"]')
           , $passwordResetButton = $form.find('.password-reset-button');
@@ -220,7 +252,8 @@ Flowtab.wallet = (function () {
         removeViewBindings(view.signIn);
 
         $.extend(view.signIn, {
-            $form: $form
+            $closeButton: $closeButton
+          , $form: $form
           , $submitButton: $submitButton
           , $passwordResetButton: $passwordResetButton
         });
@@ -248,23 +281,33 @@ Flowtab.wallet = (function () {
                 currentUser = data.user;
 
                 if (currentUser.creditCard === null)
-                    self.showSaveCreditCardView();
+                    showView(view.saveCreditCard, 'slideleft');
                 else
-                    self.showVenuesView();
+                    showVenuesView();
             });
 
             return false;
         });
 
-        $passwordResetButton.bind('click', self.showPasswordResetView);
+        $closeButton.bind('click', function () {
+            showView(view.welcome, 'slidedown');
+
+            return false;
+        });
+
+        $passwordResetButton.bind('click', function () {
+            showView(view.passwordReset, 'slideleft');
+
+            return false;
+        });
     };
 
     self.buildSaveCreditCardView = function Flowtab_wallet_buildSaveCreditCardView() {
         var $container = view.saveCreditCard.$container;
 
-        //$container.empty();
-
-        //TODO: write template to container
+        removeViewBindings(view.saveCreditCard);
+        
+        $container.html(view.saveCreditCard.render({ user: currentUser }));
 
         var $form = $container.find('form')
           , $submitButton = $form.find('button[type="submit"]')
@@ -317,7 +360,7 @@ Flowtab.wallet = (function () {
                         currentUser.creditCard = data.creditCard;
 
                         $form.get(0).reset();
-                        self.showVenuesView();
+                        showVenuesView();
                     });
                 }
             );
