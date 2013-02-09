@@ -109,7 +109,7 @@
 			<div id="sign-up" class="view">
 				<div class="toolbar">
 					<h1>Sign Up</h1>
-					<a href="#" class="back">Back</a>
+					<a class="right button close-button">Cancel</a>
 				</div>
 				<form>
 					<button type="submit" class="grayButton">Sign Up</button>
@@ -118,76 +118,28 @@
 			<div id="sign-in" class="view">
 				<div class="toolbar">
 					<h1>Sign In</h1>
-					<a href="#" class="back">Back</a>
+					<a class="right button close-button">Cancel</a>
 				</div>
 				<form>
 					<button type="submit" class="grayButton">Sign In</button>
 				</form>
 			</div>
 			<div id="save-credit-card" class="view">
-				<div class="toolbar">
-					<h1>Save Credit Card</h1>
-				</div>
-				<form>
-					<button type="submit" class="grayButton">Save</button>
-				</form>
+				<!-- TODO: add spinner -->
 			</div>
 			<div id="venues" class="view">
-				<div class="toolbar">
-					<h1>Venues</h1>
-				</div>
-				<div class="scroll">
-					<ul>
-						<li>Flowtab Bar #1</li>
-						<li>Flowtab Bar #2</li>
-						<li>Flowtab Bar #3</li>
-						<li>Flowtab Bar #4</li>
-						<li>Flowtab Bar #5</li>
-						<li>Flowtab Bar #6</li>
-						<li>Flowtab Bar #7</li>
-						<li>Flowtab Bar #8</li>
-						<li>Flowtab Bar #9</li>
-						<li>Flowtab Bar #10</li>
-						<li>Flowtab Bar #11</li>
-						<li>Flowtab Bar #12</li>
-						<li>Flowtab Bar #13</li>
-						<li>Flowtab Bar #14</li>
-						<li>Flowtab Bar #15</li>
-						<li>Flowtab Bar #16</li>
-						<li>Flowtab Bar #17</li>
-						<li>Flowtab Bar #18</li>
-					</ul>
-				</div>
+				<!-- TODO: add spinner -->
 			</div>
 			<div id="categories-1" class="view">
-				<div class="toolbar">
-					<h1>Categories</h1>
-					<a href="#" class="back">Back</a>
-				</div>
-				<div class="scroll">
-					<ul>
-						<li>Beer</li>
-						<li>Wine</li>
-						<li>Shots</li>
-					</ul>
-				</div>
+				<!-- TODO: add spinner -->
 			</div>
 			<div id="categories-2" class="view">
-				<div class="toolbar">
-					<h1>Categories</h1>
-					<a href="#" class="back">Back</a>
-				</div>
-				<div class="scroll">
-					<ul>
-						<li>Vodka</li>
-						<li>Whiskey</li>
-					</ul>
-				</div>
+				<!-- TODO: add spinner -->
 			</div>
 			<div id="products" class="view">
 				<div class="toolbar">
 					<h1>Products</h1>
-					<a href="#" class="back">Back</a>
+					<a class="back">Back</a>
 				</div>
 				<div class="scroll">
 					<ul>
@@ -199,7 +151,7 @@
 			<div id="checkout" class="view">
 				<div class="toolbar">
 					<h1>Checkout</h1>
-					<a href="#" class="back">Back</a>
+					<a class="back">Back</a>
 				</div>
 				<button class="purchase-button greenButton">Place Order</button>
 			</div>
@@ -209,7 +161,7 @@
 			<div id="configuration" class="view">
 				<div class="toolbar">
 					<h1>Configuration</h1>
-					<a href="#" class="back">Back</a>
+					<a class="back">Back</a>
 				</div>
 				<div class="scroll">
 					<ul>
@@ -224,7 +176,7 @@
 			<div id="account" class="view">
 				<div class="toolbar">
 					<h1>Account</h1>
-					<a href="#" class="back">Back</a>
+					<a class="back">Back</a>
 				</div>
 				<form>
 					<button type="submit" class="greenButton">Update</button>
@@ -233,21 +185,21 @@
 			<div id="about-how-it-works" class="view">
 				<div class="toolbar">
 					<h1>About</h1>
-					<a href="#" class="back">Back</a>
+					<a class="back">Back</a>
 				</div>
 				<!-- TODO: static content -->
 			</div>
 			<div id="about-security" class="view">
 				<div class="toolbar">
 					<h1>About</h1>
-					<a href="#" class="back">Back</a>
+					<a class="back">Back</a>
 				</div>
 				<!-- TODO: static content -->
 			</div>
 			<div id="share" class="view">
 				<div class="toolbar">
 					<h1>About</h1>
-					<a href="#" class="back">Back</a>
+					<a class="back">Back</a>
 				</div>
 				<!-- TODO: static content -->
 			</div>
@@ -256,10 +208,43 @@
 				<button class="checkout button">Checkout</button>
 			</div>
 		</div>
+		<script id="save-credit-card-template" type="text/html">
+		<div class="toolbar">
+			<h1>Save Credit Card</h1>
+		</div>
+		<form>
+			<button type="submit" class="grayButton">Save</button>
+		</form>
+		</script>
+		<script id="venues-template" type="text/html">
+		<div class="toolbar">
+			<h1>Venues</h1>
+		</div>
+		<div class="scroll">
+			<ul>
+				{% for venue in items %}
+				<li id="{{ venue.id }}" class="venue">{{ venue.fullName }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		</script>
+		<script id="categories-1-template" type="text/html">
+		<div class="toolbar">
+			<h1>Categories</h1>
+		</div>
+		<div class="scroll">
+			<ul>
+				{% for category in items %}
+				<li id="{{ category.id }}" class="category">{{ category.name }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		</script>
 		<script type="text/javascript" src="/script/Zepto.js"></script>
 		<script type="text/javascript" src="/script/Zepto.jQTouch.js"></script>
+		<script type="text/javascript" src="/script/lodash.js"></script>
+		<script type="text/javascript" src="/script/swig.js"></script>
 		<script type="text/javascript" src="/script/Swiper.js"></script>
-		<script type="text/javascript" src="/script/iScroll.js"></script>
 		<script type="text/javascript" src="/script/Stripe.js"></script>
 		<script type="text/javascript" src="/script/Flowtab.js"></script>
 		<script type="text/javascript" src="/script/Flowtab.framework.js"></script>
