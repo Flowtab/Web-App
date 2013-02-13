@@ -33,6 +33,8 @@ Flowtab.wallet = (function () {
                 viewStore[k].unbind();
     }
 
+    // I don't understand what this is doing KAH 2/12/13
+
     function buildMenu(data, parent) {
         var i = data.length - 1
           , o;
@@ -158,7 +160,7 @@ Flowtab.wallet = (function () {
             categories = {};
             products = {};
 
-            buildMenu(data.menu);
+            //buildMenu(data.menu);
             self.buildCategoriesView(menu, view.categories1, view.categories2);
 
             if (currentView.id.indexOf('categories') === 0)
@@ -538,11 +540,14 @@ Flowtab.wallet = (function () {
 
         initialize();
     });
+    
+    
 
     Zepto(function ($) {
         hasLoadedDocument = true;
 
-        showView(view.splash);
+        //showView(view.splash);
+        showSpinner();
         self.buildWelcomeView();
         self.buildSignUpView();
         self.buildSignInView();
