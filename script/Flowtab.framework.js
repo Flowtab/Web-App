@@ -81,328 +81,62 @@ Flowtab.framework = (function () {
             }, 1000);
         }
       , getVenues: function Flowtab_framework_service_getVenues(callback) {
+      
             var data = {
-                    error: null
-                  , venues: []
-                };
-
-            for (var i = 5; i >= 0; i--) {
-                data.venues[i] = {
-                    id: self.util.createUuid(),
-                    fullName: 'Full Bar Name ' + i,
-                    shortName: 'Bar ' + i,
-                    address: {
-                        streetNumber: (i * 100),
-                        streetName: 'Flowtab St.',
-                        cityName: 'San Francisco',
-                        hoodName: 'Mission',
-                        stateName: 'California',
-                        stateCode: 'CA',
-                        postalCode: '9410' + i
-                    }
-                };
-            };
-
-            setTimeout(function () {
-                if (callback)
-                    callback(data);
-            }, 1000);
+				  error: null
+              , venues: []
+            }    
+            
+	      	$.getJSON("/sdk/wallet.php?ajax=venues", function(venues){		      	
+		    	$.each(venues, function(i,value){
+	                data.venues[i] = {
+	                    id: value.id,
+	                    fullName: value.first,
+	                    shortName: value.short,
+	                    address: {
+	                        streetNumber: value.address,
+	                        streetName: value.street,
+	                        cityName: value.city,
+	                        hoodName: value.hood,
+	                        stateCode: value.state,
+	                        postalCode: value.zip
+	                    }
+	                };
+	                callback(data);
+	            });
+	         });
+	         
         }
       , getMenu: function Flowtab_framework_service_getMenus(venueId, callback) {
+
             var data = {
-                error: null
-              , menu: [
-                    {
-                        id: self.util.createUuid()
-                      , name: 'Catgegory 1'
-                      , kind: ''
-                      , description: ''
-                      , products: [
-                            {
-                                id: self.util.createUuid()
-                              , name: ''
-                              , price: 7.0
-                              , salePrice: 5.0
-                              , description: ''
-                            }
-                          , {
-                                id: self.util.createUuid()
-                              , name: ''
-                              , price: 7.0
-                              , salePrice: 5.0
-                              , description: ''
-                            }
-                        ]
-                    }
-                  , {
-                        id: self.util.createUuid()
-                      , name: 'Catgegory 2'
-                      , kind: ''
-                      , description: ''
-                      , products: [
-                            {
-                                id: self.util.createUuid()
-                              , name: ''
-                              , price: 7.0
-                              , salePrice: 5.0
-                              , description: ''
-                            }
-                          , {
-                                id: self.util.createUuid()
-                              , name: ''
-                              , price: 7.0
-                              , salePrice: 5.0
-                              , description: ''
-                            }
-                        ]
-                    }
-                  , {
-                        id: self.util.createUuid()
-                      , name: 'Catgegory 3'
-                      , kind: ''
-                      , description: ''
-                      , categories: [
-                            {
-                                id: self.util.createUuid()
-                              , name: 'Catgegory 3-1'
-                              , kind: ''
-                              , description: ''
-                              , categories: [
-                                    {
-                                        id: self.util.createUuid()
-                                      , name: 'Catgegory 3-1-1'
-                                      , kind: ''
-                                      , description: ''
-                                      , products: [
-                                            {
-                                                id: self.util.createUuid()
-                                              , name: ''
-                                              , price: 7.0
-                                              , salePrice: 5.0
-                                              , description: ''
-                                            }
-                                          , {
-                                                id: self.util.createUuid()
-                                              , name: ''
-                                              , price: 7.0
-                                              , salePrice: 5.0
-                                              , description: ''
-                                            }
-                                        ]
-                                    }
-                                  , {
-                                        id: self.util.createUuid()
-                                      , name: 'Catgegory 3-1-2'
-                                      , kind: ''
-                                      , description: ''
-                                      , products: [
-                                            {
-                                                id: self.util.createUuid()
-                                              , name: ''
-                                              , price: 7.0
-                                              , salePrice: 5.0
-                                              , description: ''
-                                            }
-                                          , {
-                                                id: self.util.createUuid()
-                                              , name: ''
-                                              , price: 7.0
-                                              , salePrice: 5.0
-                                              , description: ''
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                          , {
-                                id: self.util.createUuid()
-                              , name: 'Catgegory 3-2'
-                              , kind: ''
-                              , description: ''
-                              , categories: [
-                                    {
-                                        id: self.util.createUuid()
-                                      , name: 'Catgegory 3-2-1'
-                                      , kind: ''
-                                      , description: ''
-                                      , products: [
-                                            {
-                                                id: self.util.createUuid()
-                                              , name: ''
-                                              , price: 7.0
-                                              , salePrice: 5.0
-                                              , description: ''
-                                            }
-                                          , {
-                                                id: self.util.createUuid()
-                                              , name: ''
-                                              , price: 7.0
-                                              , salePrice: 5.0
-                                              , description: ''
-                                            }
-                                        ]
-                                    }
-                                  , {
-                                        id: self.util.createUuid()
-                                      , name: 'Catgegory 3-2-2'
-                                      , kind: ''
-                                      , description: ''
-                                      , products: [
-                                            {
-                                                id: self.util.createUuid()
-                                              , name: ''
-                                              , price: 7.0
-                                              , salePrice: 5.0
-                                              , description: ''
-                                            }
-                                          , {
-                                                id: self.util.createUuid()
-                                              , name: ''
-                                              , price: 7.0
-                                              , salePrice: 5.0
-                                              , description: ''
-                                            }
-                                        ]
-                                    }
-                                  , {
-                                        id: self.util.createUuid()
-                                      , name: 'Catgegory 3-2-3'
-                                      , kind: ''
-                                      , description: ''
-                                      , products: [
-                                            {
-                                                id: self.util.createUuid()
-                                              , name: ''
-                                              , price: 7.0
-                                              , salePrice: 5.0
-                                              , description: ''
-                                            }
-                                          , {
-                                                id: self.util.createUuid()
-                                              , name: ''
-                                              , price: 7.0
-                                              , salePrice: 5.0
-                                              , description: ''
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                  , {
-                        id: self.util.createUuid()
-                      , name: 'Catgegory 4'
-                      , kind: ''
-                      , description: ''
-                      , categories: [
-                            {
-                                id: self.util.createUuid()
-                              , name: 'Catgegory 4-1'
-                              , kind: ''
-                              , description: ''
-                              , products: [
-                                    {
-                                        id: self.util.createUuid()
-                                      , name: ''
-                                      , price: 7.0
-                                      , salePrice: 5.0
-                                      , description: ''
-                                    }
-                                  , {
-                                        id: self.util.createUuid()
-                                      , name: ''
-                                      , price: 7.0
-                                      , salePrice: 5.0
-                                      , description: ''
-                                    }
-                                ]
-                            }
-                          , {
-                                id: self.util.createUuid()
-                              , name: 'Catgegory 4-2'
-                              , kind: ''
-                              , description: ''
-                              , products: [
-                                    {
-                                        id: self.util.createUuid()
-                                      , name: ''
-                                      , price: 7.0
-                                      , salePrice: 5.0
-                                      , description: ''
-                                    }
-                                  , {
-                                        id: self.util.createUuid()
-                                      , name: ''
-                                      , price: 7.0
-                                      , salePrice: 5.0
-                                      , description: ''
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                  , {
-                        id: self.util.createUuid()
-                      , name: 'Catgegory 5'
-                      , kind: ''
-                      , description: ''
-                      , categories: [
-                            {
-                                id: self.util.createUuid()
-                              , name: 'Catgegory 5-1'
-                              , kind: ''
-                              , description: ''
-                              , products: [
-                                    {
-                                        id: self.util.createUuid()
-                                      , name: ''
-                                      , price: 7.0
-                                      , salePrice: 5.0
-                                      , description: ''
-                                    }
-                                  , {
-                                        id: self.util.createUuid()
-                                      , name: ''
-                                      , price: 7.0
-                                      , salePrice: 5.0
-                                      , description: ''
-                                    }
-                                ]
-                            }
-                          , {
-                                id: self.util.createUuid()
-                              , name: 'Catgegory 5-2'
-                              , kind: ''
-                              , description: ''
-                              , products: [
-                                    {
-                                        id: self.util.createUuid()
-                                      , name: ''
-                                      , price: 7.0
-                                      , salePrice: 5.0
-                                      , description: ''
-                                    }
-                                  , {
-                                        id: self.util.createUuid()
-                                      , name: ''
-                                      , price: 7.0
-                                      , salePrice: 5.0
-                                      , description: ''
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            };
+				  error: null
+              , menus: []
+            }    
 
-            setTimeout(function () {
-                if (callback)
-                    callback(data);
-            }, 1000);   
-        }
+	      	$.getJSON("/sdk/wallet.php?ajax=menus&id="+venueId, function(menus){
+		    	$.each(menus, function(i,value){
+	                data.menus[i] = {
+    	                id: self.util.createUuid()
+    	              , category: value.category
+    	              , subCategory: value.subCategory
+    	              , type: value.type
+    	              , products: [
+    	                   {
+    	                       id: self.util.createUuid()
+    	                     , name: value.products.name
+    	                     , description: value.products.description
+    	                     , price: value.products.price
+    	                     , salePrice: value.products.salePrice
+    	                   }
+    	               ]
+    	            }
+    	            callback(data);
+	            });
+	         });
+
+	   }
+	       
     };
-
     return self;
 })();
