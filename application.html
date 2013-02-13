@@ -92,9 +92,6 @@
 			</div>
 		</div>
 		<div id="jqt" class="touchscroll">
-			<div id="splash" class="view current">
-				<!-- TODO: static content -->
-			</div>
 			<div id="welcome" class="view">
 				<h1>Welcome</h1>
 				<ul class="individual">
@@ -199,7 +196,6 @@
 				<button class="checkout button">Checkout</button>
 			</div>
 		</div>
-<<<<<<< HEAD
 		<script id="save-credit-card-template" type="text/html">
 		<div class="toolbar">
 			<h1>Save Credit Card</h1>
@@ -215,7 +211,10 @@
 		<div class="scroll">
 			<ul>
 				{% for venue in items %}
-				<li id="{{ venue.id }}" class="venue">{{ venue.fullName }}</li>
+				<li id="{{ venue.id }}" class="venue">
+					<div class="venue-title">{{ venue.fullName }}</div>
+					<div class="venue-address">{{ venue.address.streetNumber }} {{ venue.address.streetName }} ({{ venue.address.hoodName }})</div>
+				</li>
 				{% endfor %}
 			</ul>
 		</div>
@@ -249,11 +248,6 @@
 		<script type="text/javascript" src="/script/$.jQTouch.js"></script>
 		<script type="text/javascript" src="/script/_.js"></script>
 		<script type="text/javascript" src="/script/swig.js"></script>
-=======
-		<script type="text/javascript" src="/script/Zepto.js"></script>
-		<script type="text/javascript" src="/script/Zepto.jQTouch.js"></script>
-		<script type="text/javascript" src="/script/Swig.js"></script>
->>>>>>> Added Swig
 		<script type="text/javascript" src="/script/Swiper.js"></script>
 		<script type="text/javascript" src="/script/Stripe.js"></script>
 		<script type="text/javascript" src="/script/Flowtab.js"></script>
