@@ -33,7 +33,7 @@
             orientation='portrait',
             touchSelectors=[],
             publicObj={},
-            tapBuffer=100, // High click delay = ~350, quickest animation (slide) = 250
+            tapBuffer=0, // High click delay = ~350, quickest animation (slide) = 250
             extensions=jQTouchCore.prototype.extensions,
             animations=[],
             hairExtensions='',
