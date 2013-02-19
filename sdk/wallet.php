@@ -39,38 +39,83 @@ function get_venues() {
 
 function get_menus() {
 	$id = $_GET['id'];
-	$categories = mysql_query("select distinct type, category, sub_category from products where bar='$id'");
+	$categories = mysql_query("select distinct category from products where bar='$id'");
 	$i = 0;
 	echo '[';	
 		while($category = mysql_fetch_row($categories)) {
-			$products = mysql_query("select ID,name,description,price,sale from products where type='$category[0]' and bar='$id'");
 
-			// Get products
+			// Get sub-categories
 
-			while($prod = mysql_fetch_row($products)) {
-				$product = array(
-                    'id' => $prod[0],
-                    'name' => $prod[1],
-                    'description' => $prod[2],
-                    'price' => $prod[3],
-                    'salePrice' => $prod[4]			
+    		$subcategories = mysql_query("select distinct sub_category,type from products where bar='$id' and category='$category[0]'");
+
+			while($subcategory = mysql_fetch_row($subcategories)) {
+
+    			// Get products
+
+    			$products = mysql_query("select ID,name,description,price,sale from products where category='$category[0]' and sub_category='$subcategory[0]' and bar='$id'");
+
+    			while($product = mysql_fetch_row($products)) {
+    				$product_array = array(
+    				    'id' => $product[0],
+                        'name' => $product[1],
+                        'description' => $product[2],
+                        'price' => $product[3],
+                        'salePrice' => $product[4]		
+    				);
+    				$product_list[] = $product_array;
+    			};
+
+				$subcategory_array = array(
+				    'id' => rand(),
+                    'name' => $subcategory[0],
+                    'type' => $subcategory[1],
+                    'products' => $product_list
 				);
-				$product_list[] = $product;
-			};
-	
-			// Get categories
-			
-			$i++;
-			$menu = array(
-				'bar' => $id,
-				'category' => $category[1],
-				'subCategory' => $category[2],
-				'type' => $category[0],
-				'products' => $product_list
-			);
+				unset($product_list);
+				$subcategory_list[] = $subcategory_array;
+
+            }
+            
+            // Get categories
+            
+            $i++;
+            if (mysql_num_rows($subcategories)==1) {
+
+                $products = mysql_query("select ID,name,description,price,sale from products where category='$category[0]' and bar='$id'");
+
+    			while($product = mysql_fetch_row($products)) {
+    				$product_array = array(
+    				    'id' => $product[0],
+                        'name' => $product[1],
+                        'description' => $product[2],
+                        'price' => $product[3],
+                        'salePrice' => $product[4]		
+    				);
+    				$product_list[] = $product_array;
+    			};
+
+    			$menu = array(
+    			    'id' => rand(),
+    				'name' => $category[0],
+    				'type' => $category[1],
+    				'products' => $product_list
+    			);
+    			unset($product_list);
+
+            } else {
+
+    			$menu = array(
+    			    'id' => rand(),
+    				'name' => $category[0],
+    				'type' => $category[1],
+    				'categories' => $subcategory_list
+    			);
+    			unset($subcategory_list);
+          
+            }
+
 			if ($i > 1) echo ',';
 			echo json_encode($menu);
-			unset($product_list);
 			
 		}
 	echo ']';
