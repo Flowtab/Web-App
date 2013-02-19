@@ -109,32 +109,25 @@ Flowtab.framework = (function () {
         }
       , getMenu: function Flowtab_framework_service_getMenus(venueId, callback) {
 
-            var data = {
+            var response = {
 				  error: null
-              , menus: []
+              , menu: []
             }    
 
-	      	$.getJSON("/sdk/wallet.php?ajax=menus&id="+venueId, function(menus){
-		    	$.each(menus, function(i,value){
-	                data.menus[i] = {
-    	                id: self.util.createUuid()
-    	              , category: value.category
-    	              , subCategory: value.subCategory
-    	              , type: value.type
-    	              , products: [
-    	                   {
-    	                       id: self.util.createUuid()
-    	                     , name: value.products.name
-    	                     , description: value.products.description
-    	                     , price: value.products.price
-    	                     , salePrice: value.products.salePrice
-    	                   }
-    	               ]
-    	            }
-    	            callback(data);
-	            });
-	         });
+	      	$.getJSON("/sdk/wallet.php?ajax=menus&id="+venueId, function(data){
+		      		response.menu = data;
 
+	                (function walk (data) {
+			      		for (var i = data.length - 1; i !== -1; --i) {
+				      		//data[i].id = self.util.createUuid();
+			      			for (var k in data[i])
+				      			if (data[i][k] !== null && typeof data[i][k] === 'object')
+				      				walk(data[i][k]);
+			      		}
+		      		})(data);
+    	            //console.log(JSON.stringify(data));
+    	            callback(response);
+	         });
 	   }
 	       
     };
