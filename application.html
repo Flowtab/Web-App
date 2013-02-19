@@ -3,74 +3,7 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=UTF-8">
 		<title>Flowtab</title>
-		<style>
-			/* Spinner */
-
-			#spinner-wrap {
-				width: 100%;
-				height: 100%;
-				z-index: 9999;
-				position: fixed;
-				text-align: center;
-				left: 0; top: 0;
-				background: rgba(0,0,0,0.25);
-				display: none;
-			}
-			
-			#spinner-box {
-				position: relative;
-				top: 38%;
-				z-index: 99999;
-				background: rgba(0, 0, 0, 0.75);
-				height: 100px;
-				width: 100px;
-				margin: 0 auto;
-				padding: 10px;
-				border-radius: 15px;
-				display: inline-block;
-			}
-			
-			.spinner {
-				position: relative;
-				width: 75px;
-				height: 75px;
-				z-index: 999999;
-				margin-top: 12.5px;
-				display: inline-block;
-			}
-			
-			.spin-bars {
-				width: 12%;
-				height: 26%;
-				background: white;
-				position: absolute;
-				left: 44.5%;
-				top: 37%;
-				opacity: 0;
-				-webkit-animation: fade 1s linear infinite;
-				-webkit-border-radius: 50px;
-				-webkit-box-shadow: 0 0 3px rgba(0,0,0,0.2);
-			}
-			
-			div.spinner div.bar1 {-webkit-transform:rotate(0deg) translate(0, -142%); -webkit-animation-delay: 0s;}    
-			div.spinner div.bar2 {-webkit-transform:rotate(30deg) translate(0, -142%); -webkit-animation-delay: -0.9167s;}
-			div.spinner div.bar3 {-webkit-transform:rotate(60deg) translate(0, -142%); -webkit-animation-delay: -0.833s;}
-			div.spinner div.bar4 {-webkit-transform:rotate(90deg) translate(0, -142%); -webkit-animation-delay: -0.75s;}
-			div.spinner div.bar5 {-webkit-transform:rotate(120deg) translate(0, -142%); -webkit-animation-delay: -0.667s;}
-			div.spinner div.bar6 {-webkit-transform:rotate(150deg) translate(0, -142%); -webkit-animation-delay: -0.5833s;}
-			div.spinner div.bar7 {-webkit-transform:rotate(180deg) translate(0, -142%); -webkit-animation-delay: -0.5s;}
-			div.spinner div.bar8 {-webkit-transform:rotate(210deg) translate(0, -142%); -webkit-animation-delay: -0.41667s;}
-			div.spinner div.bar9 {-webkit-transform:rotate(240deg) translate(0, -142%); -webkit-animation-delay: -0.333s;}
-			div.spinner div.bar10 {-webkit-transform:rotate(270deg) translate(0, -142%); -webkit-animation-delay: -0.25s;}
-			div.spinner div.bar11 {-webkit-transform:rotate(300deg) translate(0, -142%); -webkit-animation-delay: -0.1667s;}
-			div.spinner div.bar12 {-webkit-transform:rotate(330deg) translate(0, -142%); -webkit-animation-delay: -0.0833s;}
-			
-			@-webkit-keyframes fade {
-				from {opacity: 1;}
-				to {opacity: 0.25;}
-			}
-		</style>
-		<link type="text/css" rel="stylesheet" href="/stylesheet/jqtouch.css">
+		<link type="text/css" rel="stylesheet" href="/stylesheet/style.css">
 	</head>
 	<body>
 		<div id="spinner-wrap">
@@ -91,56 +24,56 @@
 				</div>
 			</div>
 		</div>
+		<div id="topbar" class="black">
+    		<div id="topbar-left-nav" class="black"></div>
+    		<h1 id="topbar-title" class="black"></h1>
+    		<div id="topbar-right-nav" class="black"></div>
+		</div>
+		<div class="bottombar"><div class="checkout-btn">Checkout</div></div>
 		<div id="jqt" class="touchscroll">
 			<div id="welcome" class="view">
-				<h1>Welcome</h1>
-				<ul class="individual">
-                    <li>
-                    	<a class="sign-up-button">Sign Up</a>
-                    </li>
-                    <li>
-                    	<a class="sign-in-button">Sign In</a>
-                    </li>
-                </ul>
+				<div id="welcome-text"></div>
+				<div id="welcome-shade"></div>
+				<div id="welcome-bar"></div>
+            	<div id="signin-btn"></div>
+                <div id="signup-btn"></div>
 			</div>
 			<div id="sign-up" class="view">
-				<div class="toolbar">
-					<h1>Sign Up</h1>
-					<a class="right button close-button">Cancel</a>
-				</div>
-				<form>
-					<button type="submit" class="grayButton">Sign Up</button>
-				</form>
+        		<div class="scroll">
+            		<div id="sign-up-wrap">
+        				<form id="sign-up-form">
+            				<div id="sign-up-photo"></div>
+            				<div id="sign-up-disclaimer">Your cell number will only be used to send you order status notifications.</div>
+            				<input id="sign-up-first-name" class="sign-up-input" placeholder="First name">
+            				<input id="sign-up-last-name" class="sign-up-input" placeholder="Last name">
+            				<input id="sign-up-cell" class="sign-up-input numeric" placeholder="Cell number" maxlength="10">
+            				<input id="sign-up-email" class="sign-up-input" placeholder="Email address">
+            				<input id="sign-up-password" class="sign-up-input numeric" type="tel" placeholder="Create 4-digit PIN" maxlength="4">
+            				<input id="sign-up-submit" class="sign-up-input" type="submit" value="Sign Up">
+        				</form>
+            		</div>
+        		</div>
 			</div>
 			<div id="sign-in" class="view">
-				<div class="toolbar">
-					<h1>Sign In</h1>
-					<a class="right button close-button">Cancel</a>
-				</div>
-				<form>
-					<button type="submit" class="grayButton">Sign In</button>
-				</form>
+    			<div class="scroll">
+            		<div id="sign-in-wrap">
+        				<form id="sign-in-form">
+            				<div id="sign-in-info">To reset your PIN enter your cell number only and hit <em>Forgot Password</em>.</div>
+            				<input id="sign-in-cell" name="name" class="sign-in-input numeric" placeholder="Cell number" maxlength="10">
+            				<input id="sign-in-password" name="password" class="sign-in-input numeric" type="tel" placeholder="Enter PIN" maxlength="4">
+            				<input id="sign-in-submit" type="submit" value="Sign In">
+            				<input id="forgot-password" type="submit" value="Forgot Password">
+        				</form>
+            		</div>
+        		</div>
 			</div>
-			<div id="save-credit-card" class="view">
-				<!-- TODO: add spinner -->
-			</div>
-			<div id="venues" class="view">
-				<!-- TODO: add spinner -->
-			</div>
-			<div id="categories-1" class="view">
-				<!-- TODO: add spinner -->
-			</div>
-			<div id="categories-2" class="view">
-				<!-- TODO: add spinner -->
-			</div>
-			<div id="products" class="view">
-				<!-- TODO: add spinner -->
-			</div>
+			<div id="save-credit-card" class="view"></div>
+			<div id="venues" class="view"></div>
+			<div id="categories-1" class="view"></div>
+			<div id="categories-2" class="view"></div>
+			<div id="products" class="view"></div>
+			<div id="product" class="view"></div>
 			<div id="checkout" class="view">
-				<div class="toolbar">
-					<h1>Checkout</h1>
-					<a class="back">Back</a>
-				</div>
 				<button class="purchase-button greenButton">Place Order</button>
 			</div>
 			<div id="confirmation" class="view">
@@ -191,65 +124,93 @@
 				</div>
 				<!-- TODO: static content -->
 			</div>
-			<div id="bottombar">
-				<button class="settings button">Settings</button>
-				<button class="checkout button">Checkout</button>
-			</div>
 		</div>
 		<script id="save-credit-card-template" type="text/html">
-		<div class="toolbar">
-			<h1>Save Credit Card</h1>
-		</div>
-		<form>
-			<button type="submit" class="grayButton">Save</button>
-		</form>
+    		<div class="scroll">
+                <div id="stripe-wrap">
+                    <div class="card-brands"></div>
+                    <div class="stored-card"></div>
+                    <form id="stripe-checkout-form">
+                        <input type="tel" class="cc-number" placeholder="Card number" maxlength="16">
+                        <input type="tel" class="cc-exp" placeholder="MM/YYYY" maxlength="9">
+                        <input type="submit" id="stripe-save" value="Save Card">
+                    </form>
+        			<div class="ssl-text"><span class="ssl-icon"></span>Your connection to Flowtab is secured with a 128-bit encryption (AES-256).</div>
+        			<div class="powered"></div>
+        			<div class="store-later">I will enter it later...</div>
+                </div>
+    		</div>
 		</script>
 		<script id="venues-template" type="text/html">
-		<div class="toolbar">
-			<h1>Venues</h1>
-		</div>
-		<div class="scroll">
-			<ul>
-				{% for venue in items %}
-				<li id="{{ venue.id }}" class="venue">
-					<div class="venue-title">{{ venue.fullName }}</div>
-					<div class="venue-address">{{ venue.address.streetNumber }} {{ venue.address.streetName }} ({{ venue.address.hoodName }})</div>
-				</li>
-				{% endfor %}
-			</ul>
-		</div>
+    		<div class="scroll">
+    			<ul class="page-wrapper">
+    				{% for venue in items %}
+        				<li id="{{ venue.id }}" class="venue">
+            				<div class="venue-thumb"></div>
+        					<div class="venue-title">{{ venue.fullName }}</div>
+        					<div class="venue-address">{{ venue.address.streetNumber }} {{ venue.address.streetName }} ({{ venue.address.hoodName }})</div>
+        					<div class="venue-arrow"></div>
+        				</li>
+    				{% endfor %}
+    			</ul>
+    		</div>
 		</script>
 		<script id="categories-1-template" type="text/html">
-		<div class="toolbar">
-			<h1>Categories</h1>
-		</div>
-		<div class="scroll">
-			<ul>
-				{% for category in items %}
-				<li id="{{ category.id }}" class="category">{{ category.name }}</li>
-				{% endfor %}
-			</ul>
-		</div>
+    		<div class="scroll">
+        		<div class="venue-header">
+            		<div class="venue-header-bar"></div>
+            		<div class="venue-header-text">14 Country Club Ln | New Albany, OH</div>
+        		</div>
+    			<ul class="page-wrapper">
+    				{% for category in items %}
+        				<li id="{{ category.id }}" class="category">
+            				<div class="category-icon {{ category.name }}"></div>
+            				<div class="category-title">{{ category.name }}</div>
+            				<div class="category-arrow"></div>
+                        </li>
+    				{% endfor %}
+    			</ul>
+    		</div>
 		</script>
 		<script id="products-template" type="text/html">
-		<div class="toolbar">
-			<h1>Products</h1>
-			<a class="back">Back</a>
-		</div>
-		<div class="scroll">
-			<ul>
-				{% for product in items %}
-				<li id="{{ product.id }}">{{ product.name }}</li>
-				{% endfor %}
-			</ul>
-		</div>
+    		<div class="scroll">
+    			<ul class="page-wrapper">
+    				{% for products in items %}
+        				<li id="{{ products.id }}" class="product">
+            				<div class="product-title">{{ products.name }}</div>
+            				<div class="product-price">{{ products.price }}</div>
+            				<div class="product-description">{{ products.description }}</div>
+        				</li>
+    				{% endfor %}
+    			</ul>
+    		</div>
 		</script>
-		<script type="text/javascript" src="/script/$.js"></script>
-		<script type="text/javascript" src="/script/$.jQTouch.js"></script>
-		<script type="text/javascript" src="/script/_.js"></script>
-		<script type="text/javascript" src="/script/swig.js"></script>
+		<script id="product-template" type="text/html">
+    		<!-- TODO: Make Swig template for this... -->
+    		<div class="scroll">
+        		<div class="product-wrap">
+    				<div class="product-title">Lamb Special</div>
+    				<div class="product-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</div>
+    				<div class="product-price-wrap">
+        				<div class="product-price">
+                    </div>
+    				<form class="add-to-cart-form">
+        				<textarea class="special-requests" placeholder="Do you have any special requests?" rows="3" autocomplete="off"></textarea>
+        				<div class="counter-minus"></div>
+        				<input class="counter-num" value="0">
+        				<div class="counter-plus"></div>
+        				<button class="add-to-cart">Add to Cart</button>
+    				</form>
+        		</div>
+    		</div>
+		</script>
+		<script type="text/javascript" src="/script/Zepto.js"></script>
+		<script type="text/javascript" src="/script/Zepto.jQTouch.js"></script>
+		<script type="text/javascript" src="/script/Lodash.js"></script>
+		<script type="text/javascript" src="/script/Swig.js"></script>
 		<script type="text/javascript" src="/script/Swiper.js"></script>
 		<script type="text/javascript" src="/script/Stripe.js"></script>
+		<!-- <script type="text/javascript" src="/script/jquery.payment.js"></script> -->
 		<script type="text/javascript" src="/script/Flowtab.js"></script>
 		<script type="text/javascript" src="/script/Flowtab.framework.js"></script>
 		<script type="text/javascript" src="/script/Flowtab.wallet.js"></script>
