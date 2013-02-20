@@ -1,4 +1,7 @@
 Flowtab.wallet = (function () {
+
+    // Define variables
+
     var STRIPE_PUBLISHABLE_KEY = 'pk_0DqYGS5XKylBAqcUtb5PetXFkvKQk'
       , self = { view: {} }
       , view = self.view
@@ -18,30 +21,32 @@ Flowtab.wallet = (function () {
       , hasLoadedMenu = false
       , jQT = new Zepto.jQTouch({});
 
+    // Check if DOM loaded and if user is logged-in
+
     function initialize() {
-        if (!hasLoadedDocument || !hasLoadedUser)
+        if (!hasLoadedDocument || !hasLoadedUser) {
             return;
-
+        }
         hideSpinner();
-
-        showView(view.welcome, 'slidedown');
-
-/*
         if (currentUser === null) {
             showView(view.welcome, 'slidedown');
         } else {
-            showVenuesView();
-            showTopbar();
+            self.showVenuesView("slideleft");
         }
-*/
-
     }
 
     function removeViewBindings(viewStore) {
+
         for (var k in viewStore)
             if (k.charAt(0) === '$')
                 viewStore[k].unbind();
     }
+
+    function removeTopbarBindings() {
+        $("#topbar-left-nav,#topbar-right-nav").unbind();
+    }
+
+    // Check if product list or category list
 
     function buildMenu(data, parent) {
         if (!data)
@@ -66,38 +71,15 @@ Flowtab.wallet = (function () {
     }
 
     function showView(view, method) {
+/*
         if (currentView === view) {
             console.warn('Flowtab.wallet.showView::view_already_shown_warning (view.id:' + view.id + ', ...)');
-
             return;
         }
-
+*/
         currentView = view;
-        
         console.info('Flowtab.wallet.showView::showView (view.id:' + view.id + ', ...)');
         jQT.goTo(view.$container, method);
-    }
-
-    function showVenuesView() {
-        showView(view.venues, 'slideleft');
-
-        if (!hasLoadedVenues)
-            showSpinner();
-        else if (venues === null)
-            showError();
-    }
-
-    function showCategoriesView(id) {
-        showView(view['categories' + id], 'slideleft');
-
-        if (!hasLoadedMenu)
-            showSpinner();
-        else if (menu === null)
-            showError();
-    }
-
-    function goBackView() {
-        $.goBack('slidedown');
     }
 
     function showSignUpFailureMessage(error) {
@@ -132,6 +114,8 @@ Flowtab.wallet = (function () {
         // body...
     }
 
+    // Spinner functions
+
     function showSpinner() {
         $("#spinner-wrap").show();
     }
@@ -139,6 +123,8 @@ Flowtab.wallet = (function () {
     function hideSpinner() {
         $("#spinner-wrap").hide();
     }
+
+    // Topbar functions
 
     function showTopbar() {
         $("#topbar").addClass("topbar-visible");
@@ -158,9 +144,10 @@ Flowtab.wallet = (function () {
 
     function showError() {
         hideSpinner();
-
         //write error message to currentView
     }
+
+    // Detect height to fix scrolling errors
 
     function detectHeight() {
         pageHeight = $(".current").height();
@@ -171,6 +158,8 @@ Flowtab.wallet = (function () {
             alert("Not Scroll");
         }
     }
+
+    // Prevent non-numeric values on certain fields
 
     function numericOnly() {
         $(".numeric").keydown(function(event) {
@@ -193,16 +182,17 @@ Flowtab.wallet = (function () {
         });
     }
 
-    function buildTopBar(title, nav1, nav2) {
-        // Define nav1 and nav2 in Tob Bar section of CSS
+    // Build title and buttons of topbar
 
+    function buildTopBar(title, nav1, nav2) {
         $("#topbar-title").html(title);
         $("#topbar-left-nav,#topbar-right-nav").removeClass();
         $("#topbar-left-nav").addClass(nav1);
         $("#topbar-right-nav").addClass(nav2);
-
         showTopbar();
     }
+
+    // Load data for views
 
     self.loadVenues = function Flowtab_wallet_loadVenues() {
         if (currentView === view.venues)
@@ -241,6 +231,8 @@ Flowtab.wallet = (function () {
         });
     };
 
+    // Build views using Swig
+
     self.buildWelcomeView = function Flowtab_wallet_buildWelcomeView() {
         var $container = view.welcome.$container
           , $signUpButton = $container.find('#signup-btn')
@@ -260,17 +252,16 @@ Flowtab.wallet = (function () {
         });
 
         $signInButton.bind('click', function () {
-            buildTopBar('Sign In','welcome','');
+            buildTopBar('Login','welcome','');
             showView(view.signIn, 'slideup');
             numericOnly();
         });
-
     };
 
     self.buildSignUpView = function Flowtab_wallet_buildSignUpView() {
         var $container = view.signUp.$container
           , $template = view.signUp.$template
-          , $closeButton = $('#topbar-left-nav')
+          , $closeButton = $("#topbar .welcome")
           , $form = $container.find('form')
           , $signUpButton = $form.find('button[type="submit"]');
 
@@ -288,13 +279,11 @@ Flowtab.wallet = (function () {
             var formEntries = $form.serializeArray()
               , i = formEntries.length
               , data = {};
-
 /*
             if (i > 0)
                 for (; i !== -1; --i)
                     data[formEntries[i].name] = formEntries[i].value;
 */
-
             framework.service.createUser(data.firstName, data.lastName, data.phoneNumber, data.password, data.emailAddress, function (data) {
                 hideSpinner();
 
@@ -319,6 +308,7 @@ Flowtab.wallet = (function () {
         });
 
         $closeButton.bind('click', function () {
+            $("#topbar-left-nav,#topbar-right-nav").removeClass();
             showView(view.welcome, 'slidedown');
             hideTopbar();
             return false;
@@ -327,7 +317,7 @@ Flowtab.wallet = (function () {
 
     self.buildSignInView = function Flowtab_wallet_buildSignInView() {
         var $container = view.signIn.$container
-          , $closeButton = $('#topbar-left-nav')
+          , $closeButton = $("#topbar .welcome")
           , $form = $container.find('form')
           , $submitButton = $form.find('button[type="submit"]')
           , $passwordResetButton = $form.find('.password-reset-button');
@@ -347,13 +337,11 @@ Flowtab.wallet = (function () {
             var formEntries = $form.serializeArray()
               , i = formEntries.length
               , data = {};
-
 /*
             if (i > 0)
                 for (; i !== -1; --i)
                     data[formEntries[i].name] = formEntries[i].value;
 */
-
             framework.service.authenticateUser(data.phoneNumber, data.password, function (data) {
                 hideSpinner();
 
@@ -367,17 +355,16 @@ Flowtab.wallet = (function () {
 
                 if (currentUser.creditCard === null) {
                     buildTopBar('Save Card','','');
-                    showView(view.saveCreditCard, 'slideleft');
+                    showView(view.Venues, 'slideleft');
                 } else {
-                    showVenuesView();
-                }
-                    
+                    self.showVenuesView();
+                }     
             });
-
             return false;
         });
 
         $closeButton.bind('click', function () {
+            $("#topbar-left-nav,#topbar-right-nav").removeClass();
             showView(view.welcome, 'slidedown');
             hideTopbar();
             return false;
@@ -385,7 +372,6 @@ Flowtab.wallet = (function () {
 
         $passwordResetButton.bind('click', function () {
             showView(view.passwordReset, 'slideleft');
-
             return false;
         });
     };
@@ -450,8 +436,7 @@ Flowtab.wallet = (function () {
                         currentUser.creditCard = data.creditCard;
 
                         $form.get(0).reset();
-                        buildTopBar('Locations','settings','');
-                        showVenuesView();
+                        self.showVenuesView();
                     });
                 }
             );
@@ -475,7 +460,7 @@ Flowtab.wallet = (function () {
 
         $items.bind('click', function () {
             buildTopBar('Venue Name','back','');
-            showCategoriesView(1);
+            self.showCategoriesView(1, 'slideleft');
             self.loadMenu(this.id);
             showCheckout();
         });
@@ -585,33 +570,158 @@ Flowtab.wallet = (function () {
         // body...
     };
 
-    self.showPasswordResetView = function Flowtab_wallet_showPasswordResetView() {
-        showView(view.passwordReset, 'slideleft');
+    self.buildSettingsView = function Flowtab_wallet_buildSettingsView() {
+        var $container = view.settings.$container;
+
+        removeViewBindings(view.settings);
+
+        $("#settings-cards").bind('click', function () {
+            self.showSaveCreditCardView("slideleft");
+        });
+
+        $("#settings-account").bind('click', function () {
+            self.showAccountView("slideleft");
+        });
+
+        $("#settings-rewards").bind('click', function () {
+            self.showRewardsView("slideleft");
+        });
+
+        $("#settings-works").bind('click', function () {
+            self.showWorksView("slideleft");
+        });
+
+        $("#settings-security").bind('click', function () {
+            self.showSecurityView("slideleft");
+        });
+
+        $("#settings-share").bind('click', function () {
+            self.showShareView("slideleft");
+        });
+
+        $("#settings-help").bind('click', function () {
+            self.showHelpView("slideleft");
+        });
+
     };
 
-    self.showCheckoutView = function Flowtab_wallet_showCheckoutView() {
-        showView(view.checkout, 'slideleft');
+    // Show views after they're built
+
+    self.showVenuesView = function Flowtab_wallet_showVenuesView(transition) {  
+        buildTopBar("Locations", "settings", "");
+        showView(view.venues, transition);
+
+        $("#topbar-left-nav").unbind();
+        $("#topbar-left-nav").bind("click", function () {
+            self.buildSettingsView();
+            self.showSettingsView("flipleft");
+        });
+
+        if (!hasLoadedVenues)
+            showSpinner();
+        else if (venues === null)
+            showError();
+    }
+
+    self.showSettingsView = function Flowtab_wallet_showSettingsView(transition) {
+        buildTopBar("Settings", "x-arrow", "");
+        showView(view.settings, transition);
+
+        $("#topbar-left-nav").unbind();
+        $("#topbar-left-nav").bind("click", function () {
+            self.showVenuesView("flipleft");
+        });
+
+        if (!hasLoadedVenues)
+            showSpinner();
+        else if (venues === null)
+            showError();
+    }
+
+    self.showCategoriesView = function Flowtab_wallet_showCategoriesView(id, transition) {
+        buildTopBar("New Albany", "back", "");
+        showView(view['categories' + id], transition);
+
+        $("#topbar-left-nav").unbind();
+        if (id === 1) {
+            $("#topbar-left-nav").bind("click", function () {
+                self.showVenuesView("slideright");
+            });
+        } else {
+            $("#topbar-left-nav").bind("click", function () {
+                self.showCategoriesView("slideright");
+            });
+        }
+        if (!hasLoadedMenu)
+            showSpinner();
+        else if (menu === null)
+            showError();
+    }
+
+    self.showSaveCreditCardView = function Flowtab_wallet_showSaveCreditCardView(transition) {
+        buildTopBar("Cards", "back", "");
+        showView(view.saveCreditCard, transition);
+        removeTopbarBindings();
+        $("#topbar-left-nav").bind("click", function () {
+            self.showSettingsView("slideright");
+        });
     };
 
-    self.showConfirmationView = function Flowtab_wallet_showConfirmationView() {
-        showView(view.confirmation, 'slideleft');
+    self.showAccountView = function Flowtab_wallet_showAccountView(transition) {
+        buildTopBar("Account", "back", "");
+        showView(view.account, transition);
+        removeTopbarBindings();
+        $("#topbar-left-nav").bind("click", function () {
+            self.showSettingsView("slideright");
+        });
     };
 
-    self.showConfigurationView = function Flowtab_wallet_showConfigurationView() {
-        showView(view.configuration, 'slideleft');
+    self.showRewardsView = function Flowtab_wallet_showRewardsView(transition) {
+        buildTopBar("Rewards", "back", "");
+        showView(view.rewards, transition);
+        removeTopbarBindings();
+        $("#topbar-left-nav").bind("click", function () {
+            self.showSettingsView("slideright");
+        });
     };
 
-    self.showAboutHowItWorksView = function Flowtab_wallet_showAboutHowItWorksView() {
-        showView(view.aboutHowItWorks, 'slideleft');
+    self.showWorksView = function Flowtab_wallet_showWorksView(transition) {
+        buildTopBar("Works", "back", "");
+        showView(view.works, transition);
+        removeTopbarBindings();
+        $("#topbar-left-nav").bind("click", function () {
+            self.showSettingsView("slideright");
+        });
     };
 
-    self.showAboutSecurityView = function Flowtab_wallet_showAboutSecurityView() {
-        showView(view.aboutSecurity, 'slideleft');
+    self.showSecurityView = function Flowtab_wallet_showSecurityView(transition) {
+        buildTopBar("Security", "back", "");
+        showView(view.security, transition);
+        removeTopbarBindings();
+        $("#topbar-left-nav").bind("click", function () {
+            self.showSettingsView("slideright");
+        });
     };
 
-    self.showShareView = function Flowtab_wallet_showShareView() {
-        showView(view.share, 'slideleft');
+    self.showShareView = function Flowtab_wallet_showShareView(transition) {
+        buildTopBar("Share", "back", "");
+        showView(view.share, transition);
+        removeTopbarBindings();
+        $("#topbar-left-nav").bind("click", function () {
+            self.showSettingsView("slideright");
+        });
     };
+
+    self.showHelpView = function Flowtab_wallet_showHelpView(transition) {
+        buildTopBar("Help", "back", "");
+        showView(view.help, transition);
+        removeTopbarBindings();
+        $("#topbar-left-nav").bind("click", function () {
+            self.showSettingsView("slideright");
+        });
+    };
+
+    // Not sure what this is doing
 
     $('.view').each(function () {
         var id = this.id
@@ -620,37 +730,36 @@ Flowtab.wallet = (function () {
           , n = t.length - 1
           , tn
           , templateElement = document.getElementById(id + '-template');
-
         if (n > 0) {
             for (; n !== 0; --n) {
                 tn = t[n];
                 t[n] = tn.charAt(0).toUpperCase() + tn.substring(1);
             }
-
             id = t.join(s);
         }
-
         view[id] = {
             id: id
           , render: templateElement === null ? null : swig.compile(templateElement.innerHTML, { filename: id })
           , $container: $(this)
         };
     });
+
+    // Set Stripe and disable touchstart on toolbar
     
     Stripe.setPublishableKey(STRIPE_PUBLISHABLE_KEY);
     $(".toolbar").bind('touchstart', function() { return false; });
     self.loadVenues();
 
+    // Get current user information
+
     framework.service.getCurrentUser(function (data) {
         currentUser = data.user;
         hasLoadedUser = true;
-
         initialize();
     });
     
     Zepto(function ($) {
         hasLoadedDocument = true;
-
         //showView(view.splash);
         showSpinner();
         self.buildWelcomeView();
