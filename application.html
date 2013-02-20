@@ -24,10 +24,10 @@
 				</div>
 			</div>
 		</div>
-		<div id="topbar" class="black">
-    		<div id="topbar-left-nav" class="black"></div>
-    		<h1 id="topbar-title" class="black"></h1>
-    		<div id="topbar-right-nav" class="black"></div>
+		<div id="topbar">
+    		<div id="topbar-left-nav"></div>
+    		<h1 id="topbar-title"></h1>
+    		<div id="topbar-right-nav"></div>
 		</div>
 		<div class="bottombar"><div class="checkout-btn">Checkout</div></div>
 		<div id="jqt" class="touchscroll">
@@ -46,9 +46,9 @@
             				<div id="sign-up-disclaimer">Your cell number will only be used to send you order status notifications.</div>
             				<input id="sign-up-first-name" class="sign-up-input" placeholder="First name">
             				<input id="sign-up-last-name" class="sign-up-input" placeholder="Last name">
-            				<input id="sign-up-cell" class="sign-up-input numeric" placeholder="Cell number" maxlength="10">
-            				<input id="sign-up-email" class="sign-up-input" placeholder="Email address">
-            				<input id="sign-up-password" class="sign-up-input numeric" type="tel" placeholder="Create 4-digit PIN" maxlength="4">
+            				<input type="tel" id="sign-up-cell" class="sign-up-input numeric" placeholder="Cell number" maxlength="10">
+            				<input type="email" id="sign-up-email" class="sign-up-input" placeholder="Email address">
+            				<input type="tel" id="sign-up-password" class="sign-up-input numeric" placeholder="Create 4-digit PIN" maxlength="4">
             				<input id="sign-up-submit" class="sign-up-input" type="submit" value="Sign Up">
         				</form>
             		</div>
@@ -59,8 +59,8 @@
             		<div id="sign-in-wrap">
         				<form id="sign-in-form">
             				<div id="sign-in-info">To reset your PIN enter your cell number only and hit <em>Forgot Password</em>.</div>
-            				<input id="sign-in-cell" name="name" class="sign-in-input numeric" placeholder="Cell number" maxlength="10">
-            				<input id="sign-in-password" name="password" class="sign-in-input numeric" type="tel" placeholder="Enter PIN" maxlength="4">
+            				<input type="tel" id="sign-in-cell" name="name" class="sign-in-input numeric" placeholder="Cell number" maxlength="10">
+            				<input type="tel" id="sign-in-password" name="password" class="sign-in-input numeric" placeholder="Enter PIN" maxlength="4">
             				<input id="sign-in-submit" type="submit" value="Sign In">
             				<input id="forgot-password" type="submit" value="Forgot Password">
         				</form>
@@ -79,51 +79,25 @@
 			<div id="confirmation" class="view">
 				<button class="categories grayButton">Done</button>
 			</div>
-			<div id="configuration" class="view">
-				<div class="toolbar">
-					<h1>Configuration</h1>
-					<a class="back">Back</a>
-				</div>
+			<div id="settings" class="view">
 				<div class="scroll">
-					<ul>
-						<li>Cards</li>
-						<li>Account Settings</li>
-						<li>How it Works</li>
-						<li>Security Information</li>
-						<li>Share this Shit</li>
-					</ul>
+    				<ul class="page-wrapper">
+						<li class="settings-item" id="settings-cards">Cards<div class="settings-arrow"></div></li>
+						<li class="settings-item" id="settings-account">Account Settings<div class="settings-arrow"></div></li>
+						<li class="settings-item big-gap" id="settings-rewards">Rewards<div class="settings-arrow"></div></li>
+						<li class="settings-item" id="settings-works">How it Works<div class="settings-arrow"></div></li>
+						<li class="settings-item" id="settings-security">Security Information<div class="settings-arrow"></div></li>
+						<li class="settings-item big-gap" id="settings-share">Share the Love<div class="settings-arrow"></div></li>
+						<li class="settings-item" id="settings-help">Help & Feedback<div class="settings-arrow"></div></li>
+    				</ul>
 				</div>
 			</div>
-			<div id="account" class="view">
-				<div class="toolbar">
-					<h1>Account</h1>
-					<a class="back">Back</a>
-				</div>
-				<form>
-					<button type="submit" class="greenButton">Update</button>
-				</form>
-			</div>
-			<div id="about-how-it-works" class="view">
-				<div class="toolbar">
-					<h1>About</h1>
-					<a class="back">Back</a>
-				</div>
-				<!-- TODO: static content -->
-			</div>
-			<div id="about-security" class="view">
-				<div class="toolbar">
-					<h1>About</h1>
-					<a class="back">Back</a>
-				</div>
-				<!-- TODO: static content -->
-			</div>
-			<div id="share" class="view">
-				<div class="toolbar">
-					<h1>About</h1>
-					<a class="back">Back</a>
-				</div>
-				<!-- TODO: static content -->
-			</div>
+			<div id="account" class="view"></div>
+			<div id="rewards" class="view"></div>
+			<div id="works" class="view"></div>
+			<div id="security" class="view"></div>
+			<div id="share" class="view"></div>
+			<div id="help" class="view"></div>
 		</div>
 		<script id="save-credit-card-template" type="text/html">
     		<div class="scroll">
