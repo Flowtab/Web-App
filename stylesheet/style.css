@@ -1120,7 +1120,6 @@ body {
     height: 285px;
 }
 
-
 .card-brands {
     background: url("/images/card-brands.png") no-repeat;
     background-size: 100% auto;
@@ -1206,3 +1205,40 @@ body {
     width: 90%;
     text-decoration: underline;
 }
+
+/* Settings */
+
+.settings-item {
+    background: url("/images/white-bg.jpg") repeat;
+    width: 86%;
+    margin: 2px 5%;
+    border-radius: 2px;
+    box-shadow: 1px 1px 1px #AAA;
+    list-style-type: none;
+    font-family: 'Open Sans';
+    color: #555;
+    font-weight: 400;
+    line-height: 32px;
+    font-size: 17px;
+    padding: 5px 0 5px 4%;
+}
+
+.big-gap {
+    margin-bottom: 20px;
+}
+
+.settings-arrow {
+    background: url("/images/gray-arrow.png") no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 7%;
+    margin-top: -25px;
+    background-size: 100% auto;
+    opacity: .8;
+}
+
+
+
+
+
