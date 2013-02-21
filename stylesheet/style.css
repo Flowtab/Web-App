@@ -484,15 +484,15 @@ body {
 @font-face {
 	font-family: 'Open Sans';
 	font-style: normal;
-	font-weight: 700;
-	src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/k3k702ZOKiLJc3WVjuplzKRDOzjiPcYnFooOUGCOsRk.woff) format('woff');
+	font-weight: 400;
+	src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
 }
 
 @font-face {
 	font-family: 'Open Sans';
 	font-style: normal;
-	font-weight: 400;
-	src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+	font-weight: 700;
+	src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/k3k702ZOKiLJc3WVjuplzKRDOzjiPcYnFooOUGCOsRk.woff) format('woff');
 }
 
 /* Body */
@@ -512,7 +512,7 @@ body {
     max-height: 568px !important;
 }
 
-.page-wrapper {
+.empty-wrap {
     margin: 20px 0 40px;
 }
 
@@ -865,7 +865,7 @@ body {
 .product-price {
     position: absolute;
     right: 10%;
-    color: #00CC00;
+    color: #009933;
     font-weight: 700;
     margin-top: -16px;
 }
@@ -965,9 +965,9 @@ body {
     left: 160px;
 }
 
-/* Sign Up / Sign In */
+/* Sign Up / Sign In / Account and other wrappers */
 
-#sign-up-wrap, #sign-in-wrap {
+#sign-up-wrap, #sign-in-wrap, #account-wrap, #works-wrap, #feedback-wrap, #share-wrap {
     background: url("/images/white-bg.jpg") repeat;
     width: 90%;
     margin: 20px 5%;
@@ -980,12 +980,12 @@ body {
     height: 205px;
 }
 
-#sign-up-form, #sign-in-form {
+#sign-up-form, #sign-in-form, #account-form {
     width: 90%;
     margin: 10px 5%;
 }
 
-#sign-up-photo {
+.bio-photo {
     background: url("/images/sign-up-image.png") no-repeat;
     background-size: 100% auto;
     width: 22%;
@@ -994,7 +994,7 @@ body {
     position: absolute;
 }
 
-#sign-up-disclaimer, #sign-in-info {
+#sign-up-disclaimer, #sign-in-info, #account-msg {
     font-family: 'Open Sans';
     font-size: 11px;
     position: absolute;
@@ -1005,7 +1005,7 @@ body {
     color: #AAA;
 }
 
-#sign-in-info {
+#sign-in-info, #account-info {
     width: 78%;
     margin-top: 105px;
     text-align: center;
@@ -1013,7 +1013,7 @@ body {
     line-height: 16px;
 }
 
-.sign-up-input, .sign-in-input {
+.sign-up-input, .sign-in-input, .account-input {
     color: #777;
     font-family: 'Open Sans';
     font-weight: 400;
@@ -1029,19 +1029,19 @@ body {
     background: none;
 }
 
-#sign-up-first-name {
+#sign-up-first-name, #account-first-name {
     margin-left: 30%;
     margin-top: 20px;
     width: 50%;
 }
 
-#sign-up-last-name {
+#sign-up-last-name, #account-last-name {
     margin-left: 30%;
     margin-top: 60px;
     width: 50%;
 }
 
-#sign-up-cell {
+#sign-up-cell, #account-cell {
     margin-left: 2%;
     margin-top: 100px;
     width: 78%;
@@ -1053,13 +1053,13 @@ body {
     width: 78%;
 }
 
-#sign-up-email {
+#sign-up-email, #account-email {
     margin-left: 2%;
     margin-top: 140px;
     width: 78%;
 }
 
-#sign-up-password {
+#sign-up-password, #account-password {
     margin-left: 2%;
     margin-top: 180px;
     width: 78%;
@@ -1071,7 +1071,7 @@ body {
     width: 78%;
 }
 
-#sign-up-submit, #sign-in-submit, #forgot-password, #stripe-save {
+#sign-up-submit, #sign-in-submit, #forgot-password, #stripe-save, #account-submit {
     box-shadow: inset 0px 1px 0px 0px #BBDAF7;
     background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79BBFF), color-stop(1, #378DE5) );
     background-color: #79BBFF;
@@ -1213,11 +1213,11 @@ body {
     width: 86%;
     margin: 2px 5%;
     border-radius: 2px;
-    box-shadow: 1px 1px 1px #AAA;
+    box-shadow: 1px 1px 1px #EEE;
     list-style-type: none;
     font-family: 'Open Sans';
     color: #555;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 32px;
     font-size: 17px;
     padding: 5px 0 5px 4%;
@@ -1237,6 +1237,100 @@ body {
     background-size: 100% auto;
     opacity: .8;
 }
+
+/* Works */
+
+#works-wrap {
+    height: auto;
+}
+
+.static-text {
+    padding-bottom: 20px;
+}
+
+.static-text h2 {
+    font-family: 'Open Sans';
+    color: #555;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 20px 5%;
+    text-shadow: 1px 1px 1px #EEE;
+}
+
+.static-text p {
+    font-family: 'Open Sans';
+    color: #555;
+    font-weight: 400;
+    line-height: 24px;
+    font-size: 14px;
+    padding: 0 15px;
+    text-shadow: 1px 1px 1px #EEE;
+}
+
+/* Share */
+
+#share-wrap {
+    height: auto;
+}
+
+#share-link {
+    color: #378DE5;
+    text-align: center;
+    font-size: 18px;
+    padding: 13px;
+    text-shadow: 1px 1px 1px #DDD;
+}
+
+#share-submit, #feedback-submit {
+    box-shadow: inset 0px 1px 0px 0px #BBDAF7;
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79BBFF), color-stop(1, #378DE5) );
+    background-color: #79BBFF;
+    border-radius: 6px;
+    border: 1px solid #84BBF3;
+    display: inline-block;
+    color: white;
+    font-weight: 700;
+    font-family: 'Open Sans';
+    font-size: 14px;
+    line-height: 14px;
+    width: 90%;
+    height: 42px;
+    padding: 8px 0;
+    text-decoration: none;
+    text-align: center;
+    margin: 10px 5% 0;
+}
+
+/* Feedback */
+
+#feedback-wrap {
+    height: auto;
+}
+
+#feedback-area {
+    font-family: 'Open Sans';
+    font-weight: 400;
+    margin-top: 58px;
+    width: 85%;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #555;
+    padding: 2%;
+    border: 1px solid #888;
+    margin: 20px 5% 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

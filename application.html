@@ -42,7 +42,7 @@
         		<div class="scroll">
             		<div id="sign-up-wrap">
         				<form id="sign-up-form">
-            				<div id="sign-up-photo"></div>
+            				<div class="bio-photo"></div>
             				<div id="sign-up-disclaimer">Your cell number will only be used to send you order status notifications.</div>
             				<input id="sign-up-first-name" class="sign-up-input" placeholder="First name">
             				<input id="sign-up-last-name" class="sign-up-input" placeholder="Last name">
@@ -81,23 +81,76 @@
 			</div>
 			<div id="settings" class="view">
 				<div class="scroll">
-    				<ul class="page-wrapper">
-						<li class="settings-item" id="settings-cards">Cards<div class="settings-arrow"></div></li>
-						<li class="settings-item" id="settings-account">Account Settings<div class="settings-arrow"></div></li>
+    				<ul class="empty-wrap">
+						<li class="settings-item" id="settings-cards">Saved Cards<div class="settings-arrow"></div></li>
+						<li class="settings-item big-gap" id="settings-account">Account Settings<div class="settings-arrow"></div></li>
+						<li class="settings-item" id="settings-share">Share the Love<div class="settings-arrow"></div></li>
 						<li class="settings-item big-gap" id="settings-rewards">Rewards<div class="settings-arrow"></div></li>
 						<li class="settings-item" id="settings-works">How it Works<div class="settings-arrow"></div></li>
 						<li class="settings-item" id="settings-security">Security Information<div class="settings-arrow"></div></li>
-						<li class="settings-item big-gap" id="settings-share">Share the Love<div class="settings-arrow"></div></li>
-						<li class="settings-item" id="settings-help">Help & Feedback<div class="settings-arrow"></div></li>
+						<li class="settings-item" id="settings-feedback">Help & Feedback<div class="settings-arrow"></div></li>
     				</ul>
 				</div>
 			</div>
-			<div id="account" class="view"></div>
+			<div id="account" class="view">
+        		<div class="scroll">
+            		<div id="account-wrap">
+        				<form id="account-form">
+            				<div class="bio-photo"></div>
+            				<div id="sign-up-disclaimer">Your cell number will only be used to send you order status notifications.</div>
+            				<input id="account-first-name" class="account-input" placeholder="First name">
+            				<input id="account-last-name" class="account-input" placeholder="Last name">
+            				<input type="tel" id="account-cell" class="account-input numeric" placeholder="Cell number" maxlength="10">
+            				<input type="email" id="account-email" class="account-input" placeholder="Email address">
+            				<input type="tel" id="account-password" class="account-input numeric" placeholder="New 4-digit PIN" maxlength="4">
+            				<input id="account-submit" class="account-input" type="submit" value="Update">
+        				</form>
+            		</div>
+        		</div>
+			</div>
 			<div id="rewards" class="view"></div>
-			<div id="works" class="view"></div>
-			<div id="security" class="view"></div>
-			<div id="share" class="view"></div>
-			<div id="help" class="view"></div>
+			<div id="works" class="view">
+        		<div class="scroll">
+            		<div id="works-wrap" class="static-text">
+                		<h2>Laboris Nisi Aliquip</h2>
+                		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                		<h2>Dignissimos Ducimus</h2>
+                		<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+            		</div>
+        		</div>
+			</div>
+			<div id="security" class="view">
+        		<div class="scroll">
+            		<div id="works-wrap" class="static-text">
+                		<h2>Laboris Nisi Aliquip</h2>
+                		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                		<h2>Dignissimos Ducimus</h2>
+                		<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+            		</div>
+        		</div>
+			</div>
+			<div id="share" class="view">
+        		<div class="scroll">
+            		<div id="share-wrap" class="static-text">
+                		<h2>Laboris Nisi Aliquip</h2>
+                		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                		<p id="share-link">http://flwtb.co/4H8uiS</p>
+                		<button id="share-submit">Copy to Clipboard</button>
+            		</div>
+        		</div>
+			</div>
+			<div id="feedback" class="view">
+        		<div class="scroll">
+            		<div id="feedback-wrap" class="static-text">
+                		<h2>Laboris Nisi Aliquip</h2>
+                		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                		<form id="feedback-form">
+                    		<textarea id="feedback-area" placeholder="Remember, be nice..." rows="3" autocomplete="off"></textarea>
+                    		<button id="feedback-submit">Send Feedback</button>
+                		</form>
+            		</div>
+        		</div>
+			</div>
 		</div>
 		<script id="save-credit-card-template" type="text/html">
     		<div class="scroll">

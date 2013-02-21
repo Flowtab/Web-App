@@ -599,8 +599,8 @@ Flowtab.wallet = (function () {
             self.showShareView("slideleft");
         });
 
-        $("#settings-help").bind('click', function () {
-            self.showHelpView("slideleft");
+        $("#settings-feedback").bind('click', function () {
+            self.showFeedbackView("slideleft");
         });
 
     };
@@ -712,9 +712,9 @@ Flowtab.wallet = (function () {
         });
     };
 
-    self.showHelpView = function Flowtab_wallet_showHelpView(transition) {
-        buildTopBar("Help", "back", "");
-        showView(view.help, transition);
+    self.showFeedbackView = function Flowtab_wallet_showFeedbackView(transition) {
+        buildTopBar("Feedback", "back", "");
+        showView(view.feedback, transition);
         removeTopbarBindings();
         $("#topbar-left-nav").bind("click", function () {
             self.showSettingsView("slideright");
