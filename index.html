@@ -29,7 +29,10 @@
     		<h1 id="topbar-title"></h1>
     		<div id="topbar-right-nav"></div>
 		</div>
-		<div class="bottombar"><div class="checkout-btn">Checkout</div></div>
+		<div class="bottombar">
+			<div class="checkout-btn">Checkout</div>
+			<p>Cart: <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)<br/><a href="javascript:;" class="simpleCart_empty">Empty</a></p>
+		</div>
 		<div id="jqt" class="touchscroll">
 			<div id="welcome" class="view">
 				<div id="welcome-text"></div>
@@ -151,6 +154,26 @@
             		</div>
         		</div>
 			</div>
+			<div id="product" class="view">
+	    		<div class="scroll">
+	        		<div class="product-wrap">
+	    				<div class="product-title"></div>
+	    				<div class="product-description"></div>
+	    				<div class="product-price-wrap">
+	        				<div class="product-price"></div>
+	                    </div>
+	    				<form class="add-to-cart-form">
+	        				<textarea class="special-requests" placeholder="Do you have any special requests?" rows="3" autocomplete="off"></textarea>
+	        				<div class="counter-block">
+		        				<div class="counter-minus"></div>
+		        				<input class="counter-num" value="0">
+		        				<div class="counter-plus"></div>
+	        					<button class="add-to-cart">Add to Cart</button>
+	        				</div>
+	    				</form>
+	        		</div>
+	    		</div>
+			</div>
 		</div>
 		<script id="save-credit-card-template" type="text/html">
     		<div class="scroll">
@@ -203,7 +226,7 @@
     		<div class="scroll">
     			<ul class="page-wrapper">
     				{% for products in items %}
-        				<li id="{{ products.id }}" class="product">
+        				<li id="{{ products.id }}" class="product" title="{{ products.name }}" price="{{ products.price }}" description="{{ products.description }}">
             				<div class="product-title">{{ products.name }}</div>
             				<div class="product-price">{{ products.price }}</div>
             				<div class="product-description">{{ products.description }}</div>
@@ -212,31 +235,13 @@
     			</ul>
     		</div>
 		</script>
-		<script id="product-template" type="text/html">
-    		<!-- TODO: Make Swig template for this... -->
-    		<div class="scroll">
-        		<div class="product-wrap">
-    				<div class="product-title">Lamb Special</div>
-    				<div class="product-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</div>
-    				<div class="product-price-wrap">
-        				<div class="product-price">
-                    </div>
-    				<form class="add-to-cart-form">
-        				<textarea class="special-requests" placeholder="Do you have any special requests?" rows="3" autocomplete="off"></textarea>
-        				<div class="counter-minus"></div>
-        				<input class="counter-num" value="0">
-        				<div class="counter-plus"></div>
-        				<button class="add-to-cart">Add to Cart</button>
-    				</form>
-        		</div>
-    		</div>
-		</script>
 		<script type="text/javascript" src="/script/Zepto.js"></script>
 		<script type="text/javascript" src="/script/Zepto.jQTouch.js"></script>
 		<script type="text/javascript" src="/script/Lodash.js"></script>
 		<script type="text/javascript" src="/script/Swig.js"></script>
 		<script type="text/javascript" src="/script/Swiper.js"></script>
 		<script type="text/javascript" src="/script/Stripe.js"></script>
+		<!-- <script type="text/javascript" src="/script/SimpleCart.js"></script> -->
 		<!-- <script type="text/javascript" src="/script/jquery.payment.js"></script> -->
 		<script type="text/javascript" src="/script/Flowtab.js"></script>
 		<script type="text/javascript" src="/script/Flowtab.framework.js"></script>
