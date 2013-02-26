@@ -221,7 +221,7 @@ Flowtab.wallet = (function () {
             hasLoadedMenu = true;
             menu = data.menu;
             categories = {};
-            //products = {};
+            products = {};
 
             buildMenu(data.menu);
             self.buildCategoriesView(menu, view.categories1, view.categories2);
@@ -505,17 +505,24 @@ Flowtab.wallet = (function () {
         var $items = $container.find('.product');
 
         $items.bind('click', function () {
-            self.buildProductView(this.id);
+        	id = this.id;
+        	title = $(this).attr("title");
+        	price = $(this).attr("price");
+        	description = $(this).attr("description");
+            self.buildProductView(id,title,price,description);
             showView(view.product, 'slideleft');
         });
-
     };
 
-    self.buildProductView = function Flowtab_wallet_buildProductView(product) {
-        var $container = view.product.$container;
-
-        removeViewBindings(view.product);
-        $container.html(view.product.render({ items: product }));
+    self.buildProductView = function Flowtab_wallet_buildProductView(id,title,price,description) {
+        buildTopBar("Details", "back", "");
+        $("#product .product-title").html(title);
+        $("#product .product-description").html(description+" ($"+price+")");
+        showView(view.product,"slideleft");
+        removeTopbarBindings();
+        $("#topbar-left-nav").bind("click", function () {
+            self.showLocationsView("slideright");
+        });
     };
 
     self.buildCheckoutView = function Flowtab_wallet_buildCheckoutView() {
