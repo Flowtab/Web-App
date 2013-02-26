@@ -595,6 +595,12 @@ body {
     right: -19px;
 }
 
+.bottombar p {
+top: -100px;
+position: absolute;
+right: 100px;
+}
+
 .checkout-btn {
     box-shadow: 1px 1px 1px #598d11;
     background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #b8e356), color-stop(1, #8fc14b) );
@@ -888,13 +894,13 @@ body {
     margin: 16px 5%;
     border-radius: 2px;
     box-shadow: 1px 1px 1px #AAA;
-    height: 250px;
+    height: auto;
 }
 
 .add-to-cart-form {
     width: 90%;
     margin: 10px 5%;
-    height: 42px;
+    height: auto;
 }
 
 .special-requests {
@@ -908,6 +914,12 @@ body {
     color: #555;
     padding: 1%;
     border: 1px solid #888;
+}
+
+.counter-block {
+	display: block;
+	height: 40px;
+	padding-bottom: 15px;
 }
 
 .counter-minus {
@@ -945,24 +957,24 @@ body {
 }
 
 .add-to-cart {
-    box-shadow: inset 0px 1px 0px 0px #BBDAF7;
-    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79BBFF), color-stop(1, #378DE5) );
-    background-color: #79BBFF;
-    border-radius: 6px;
-    border: 1px solid #84BBF3;
-    display: inline-block;
-    color: white;
-    font-weight: 700;
-    font-family: 'Open Sans';
-    font-size: 14px;
-    line-height: 14px;
-    width: 100px;
-    height: 42px;
-    padding: 8px 0;
-    text-decoration: none;
-    position: absolute;
-    text-align: center;
-    left: 160px;
+	box-shadow: inset 0px 1px 0px 0px #BBDAF7;
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79BBFF), color-stop(1, #378DE5) );
+	background-color: #79BBFF;
+	border-radius: 6px;
+	border: 1px solid #84BBF3;
+	display: inline-block;
+	color: white;
+	font-weight: 700;
+	font-family: 'Open Sans';
+	font-size: 14px;
+	line-height: 14px;
+	width: 115px;
+	height: 42px;
+	padding: 8px 0;
+	text-decoration: none;
+	position: absolute;
+	text-align: center;
+	right: 9%;
 }
 
 /* Sign Up / Sign In / Account and other wrappers */
