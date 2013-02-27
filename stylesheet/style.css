@@ -507,7 +507,7 @@ body {
 }
 
 .view {
-    background: url("/images/bg.jpg") no-repeat;
+    background: url(/image/bg.jpg) no-repeat;
     background-size: 100% auto;
     max-height: 568px !important;
 }
@@ -519,7 +519,7 @@ body {
 /* Top Bar */
 
 #topbar {
-    background: url("/images/topbar.jpg") repeat-x;
+    background: url(/image/topbar.jpg) repeat-x;
     width: 100%;
     height: 44px;
     position: fixed;
@@ -561,17 +561,17 @@ body {
 }
 
 #topbar .back {
-    background: url("/images/back-arrow.png") no-repeat;
+    background: url(/image/back-arrow.png) no-repeat;
     background-size: 82% auto;
 }
 
 #topbar .settings {
-    background: url("/images/settings.png") no-repeat;
+    background: url(/image/settings.png) no-repeat;
     background-size: 90% auto;
 }
 
 #topbar .x-arrow, #topbar .welcome {
-    background: url("/images/x-arrow.png") no-repeat;
+    background: url(/image/x-arrow.png) no-repeat;
     background-size: 82% auto;
 }
 
@@ -625,7 +625,7 @@ right: 100px;
 /* Welcome Page */
 
 #welcome-shade {
-    background: url("/images/shade.png") no-repeat;
+    background: url(/image/shade.png) no-repeat;
     position: absolute;
     width: 100%;
     height: 250px;
@@ -635,7 +635,7 @@ right: 100px;
 }
 
 #welcome-text {
-    background: url("/images/welcome-text.png") no-repeat;
+    background: url(/image/welcome-text.png) no-repeat;
     background-size: 100% auto;
     height: 105px;
     width: 80%;
@@ -652,7 +652,7 @@ right: 100px;
 }
 
 #welcome-bar {
-    background: url("/images/welcome-bar.jpg") no-repeat;
+    background: url(/image/welcome-bar.jpg) no-repeat;
     background-size: 100% auto;
     position: absolute;
     width: 100%;
@@ -661,7 +661,7 @@ right: 100px;
 }
 
 #signin-btn {
-    background: url("/images/login-btn.png") no-repeat;
+    background: url(/image/login-btn.png) no-repeat;
     background-size: 100% auto;
     position: absolute;
     width: 60px;
@@ -671,7 +671,7 @@ right: 100px;
 }
 
 #signup-btn {
-    background: url("/images/signup-btn.png") no-repeat;
+    background: url(/image/signup-btn.png) no-repeat;
     background-size: 100% auto;
     position: absolute;
     width: 68px;
@@ -683,7 +683,7 @@ right: 100px;
 /* Locations Page */
 
 .venue {
-    background: url("/images/white-bg.jpg") repeat;
+    background: url(/image/white-bg.jpg) repeat;
     width: 90%;
     margin: 16px 5%;
     border-radius: 2px;
@@ -693,7 +693,7 @@ right: 100px;
 }
 
 .venue-thumb {
-    background: url("/images/venue-thumb.jpg") no-repeat;
+    background: url(/image/venue-thumb.jpg) no-repeat;
     width: 60px;
     height: 52px;
     border-radius: 2px;
@@ -719,7 +719,7 @@ right: 100px;
 }
 
 .venue-arrow {
-    background: url("/images/green-arrow.png") no-repeat;
+    background: url(/image/green-arrow.png) no-repeat;
     width: 20px;
     height: 20px;
     position: absolute;
@@ -731,7 +731,7 @@ right: 100px;
 /* Categories Page */
 
 .venue-header {
-    background: url("/images/venue-photo.jpg") no-repeat;
+    background: url(/image/venue-photo.jpg) no-repeat;
     background-size: 100% auto;
     width: 100%;
     height: 155px;
@@ -763,7 +763,7 @@ right: 100px;
 }
 
 .category {
-    background: url("/images/white-bg.jpg") repeat;
+    background: url(/image/white-bg.jpg) repeat;
     width: 90%;
     margin: 5px 5%;
     border-radius: 2px;
@@ -773,7 +773,7 @@ right: 100px;
 }
 
 .venue-icon {
-    background: url("/images/venue-thumb.jpg") no-repeat;
+    background: url(/image/venue-thumb.jpg) no-repeat;
     width: 60px;
     height: 52px;
     border-radius: 2px;
@@ -784,7 +784,7 @@ right: 100px;
 }
 
 .category-icon {
-    background: url("/images/category-icons.png") no-repeat;
+    background: url(/image/category-icons.png) no-repeat;
     background-size: 85% auto;
     width: 30px;
     height: 30px;
@@ -828,7 +828,7 @@ right: 100px;
 }
 
 .category-arrow {
-    background: url("/images/green-arrow.png") no-repeat;
+    background: url(/image/green-arrow.png) no-repeat;
     width: 20px;
     height: 20px;
     position: absolute;
@@ -840,7 +840,7 @@ right: 100px;
 /* Products Page */
 
 .product {
-    background: url("/images/white-bg.jpg") repeat;
+    background: url(/image/white-bg.jpg) repeat;
     width: 90%;
     margin: 5px 5%;
     border-radius: 2px;
@@ -877,7 +877,7 @@ right: 100px;
 }
 
 .product-arrow {
-    background: url("/images/green-arrow.png") no-repeat;
+    background: url(/image/green-arrow.png) no-repeat;
     width: 20px;
     height: 20px;
     position: absolute;
@@ -889,7 +889,7 @@ right: 100px;
 /* Product Page */
 
 .product-wrap {
-    background: url("/images/white-bg.jpg") repeat;
+    background: url(/image/white-bg.jpg) repeat;
     width: 90%;
     margin: 16px 5%;
     border-radius: 2px;
@@ -923,7 +923,7 @@ right: 100px;
 }
 
 .counter-minus {
-    background: url("/images/counter-minus.png") no-repeat;
+    background: url(/image/counter-minus.png) no-repeat;
     background-size: 100% auto;
     width: 40px;
     height: 42px;
@@ -932,7 +932,7 @@ right: 100px;
 }
 
 .counter-plus {
-    background: url("/images/counter-plus.png") no-repeat;
+    background: url(/image/counter-plus.png) no-repeat;
     background-size: 100% auto;
     width: 40px;
     height: 42px;
@@ -980,7 +980,7 @@ right: 100px;
 /* Sign Up / Sign In / Account and other wrappers */
 
 #sign-up-wrap, #sign-in-wrap, #account-wrap, #works-wrap, #feedback-wrap, #share-wrap {
-    background: url("/images/white-bg.jpg") repeat;
+    background: url(/image/white-bg.jpg) repeat;
     width: 90%;
     margin: 20px 5%;
     border-radius: 2px;
@@ -998,7 +998,7 @@ right: 100px;
 }
 
 .bio-photo {
-    background: url("/images/sign-up-image.png") no-repeat;
+    background: url(/image/sign-up-image.png) no-repeat;
     background-size: 100% auto;
     width: 22%;
     height: 75px;
@@ -1124,7 +1124,7 @@ right: 100px;
 /* Save Card */
 
 #stripe-wrap {
-    background: url("/images/white-bg.jpg") repeat;
+    background: url(/image/white-bg.jpg) repeat;
     width: 90%;
     margin: 20px 5%;
     border-radius: 2px;
@@ -1133,7 +1133,7 @@ right: 100px;
 }
 
 .card-brands {
-    background: url("/images/card-brands.png") no-repeat;
+    background: url(/image/card-brands.png) no-repeat;
     background-size: 100% auto;
     width: 70%;
     margin: 20px 10% 0;
@@ -1169,7 +1169,7 @@ right: 100px;
 }
 
 .powered {
-    background: url("/images/stripe-power.png") no-repeat;
+    background: url(/image/stripe-power.png) no-repeat;
     background-size: 100% auto;
     width: 38%;
     height: 34px;
@@ -1192,7 +1192,7 @@ right: 100px;
 }
 
 .ssl-icon {
-    background: url("/images/ssl-lock.png") no-repeat;
+    background: url(/image/ssl-lock.png) no-repeat;
     background-size: 100% auto;
     height: 18px;
     width: 17px;
@@ -1221,7 +1221,7 @@ right: 100px;
 /* Settings */
 
 .settings-item {
-    background: url("/images/white-bg.jpg") repeat;
+    background: url(/image/white-bg.jpg) repeat;
     width: 86%;
     margin: 2px 5%;
     border-radius: 2px;
@@ -1240,7 +1240,7 @@ right: 100px;
 }
 
 .settings-arrow {
-    background: url("/images/gray-arrow.png") no-repeat;
+    background: url(/image/gray-arrow.png) no-repeat;
     width: 20px;
     height: 20px;
     position: absolute;
@@ -1331,20 +1331,3 @@ right: 100px;
     border: 1px solid #888;
     margin: 20px 5% 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
