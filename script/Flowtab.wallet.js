@@ -57,11 +57,14 @@ Flowtab.wallet = (function () {
 
         for (; i !== -1; --i) {
             o = data[i];
+            o.parent = parent || null;
 
-            if (!parent || parent.categories || parent.products)
+            if (!parent || o.categories || o.products) {
                 categories[o.id] = o;
-            else
+            }
+            else {
                 products[o.id] = o;
+            }
 
             if (o.categories)
                 buildMenu(o.categories, o);
