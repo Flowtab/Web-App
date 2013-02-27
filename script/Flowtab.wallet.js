@@ -671,8 +671,9 @@ Flowtab.wallet = (function () {
     self.showSaveCreditCardView = function Flowtab_wallet_showSaveCreditCardView(transition) {
         buildTopBar("Cards", "back", "");
         showView(view.saveCreditCard, transition);
-        removeTopbarBindings();
-        $("#topbar-left-nav").bind("click", function () {
+        $("#topbar-left-nav")
+        .unbind()
+        .bind("click", function () {
             self.showSettingsView("slideright");
         });
     };
