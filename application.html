@@ -204,11 +204,11 @@
 		<script id="products-template" type="text/html">
     		<div class="scroll">
     			<ul class="page-wrapper">
-    				{% for products in items %}
-        				<li id="{{ products.id }}" class="product" title="{{ products.name }}" price="{{ products.price }}" description="{{ products.description }}">
-            				<div class="product-title">{{ products.name }}</div>
-            				<div class="product-price">{{ products.price }}</div>
-            				<div class="product-description">{{ products.description }}</div>
+    				{% for product in items %}
+        				<li class="product" id="P{{ product.id }}" >
+            				<div class="product-title">{{ product.name }}</div>
+            				<div class="product-price">{{ product.price }}</div>
+            				<div class="product-description">{{ product.description }}</div>
         				</li>
     				{% endfor %}
     			</ul>
@@ -216,11 +216,11 @@
 		</script>
 		<script id="product-template" type="text/html">
     		<div class="scroll">
-        		<div class="product-wrap">
-    				<div class="product-title"></div>
-    				<div class="product-description"></div>
+        		<div class="product-wrap" id="P{{ product.id }}">
+    				<div class="product-title">{{ product.name }}</div>
+    				<div class="product-description">{{ product.description }}</div>
     				<div class="product-price-wrap">
-        				<div class="product-price"></div>
+        				<div class="product-price">{{ product.price }}</div>
                     </div>
     				<form class="add-to-cart-form">
         				<textarea class="special-requests" placeholder="Do you have any special requests?" rows="3" autocomplete="off"></textarea>
