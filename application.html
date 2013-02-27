@@ -153,26 +153,6 @@
             		</div>
         		</div>
 			</div>
-			<div id="product" class="view">
-	    		<div class="scroll">
-	        		<div class="product-wrap">
-	    				<div class="product-title"></div>
-	    				<div class="product-description"></div>
-	    				<div class="product-price-wrap">
-	        				<div class="product-price"></div>
-	                    </div>
-	    				<form class="add-to-cart-form">
-	        				<textarea class="special-requests" placeholder="Do you have any special requests?" rows="3" autocomplete="off"></textarea>
-	        				<div class="counter-block">
-		        				<div class="counter-minus"></div>
-		        				<input class="counter-num" value="0">
-		        				<div class="counter-plus"></div>
-	        					<button class="add-to-cart">Add to Cart</button>
-	        				</div>
-	    				</form>
-	        		</div>
-	    		</div>
-			</div>
 		</div>
 		<script id="save-credit-card-template" type="text/html">
     		<div class="scroll">
@@ -232,6 +212,26 @@
         				</li>
     				{% endfor %}
     			</ul>
+    		</div>
+		</script>
+		<script id="product-template" type="text/html">
+    		<div class="scroll">
+        		<div class="product-wrap">
+    				<div class="product-title"></div>
+    				<div class="product-description"></div>
+    				<div class="product-price-wrap">
+        				<div class="product-price"></div>
+                    </div>
+    				<form class="add-to-cart-form">
+        				<textarea class="special-requests" placeholder="Do you have any special requests?" rows="3" autocomplete="off"></textarea>
+        				<div class="counter-block">
+	        				<div class="counter-minus"></div>
+	        				<input class="counter-num" value="0">
+	        				<div class="counter-plus"></div>
+        					<button class="add-to-cart">Add to Cart</button>
+        				</div>
+    				</form>
+        		</div>
     		</div>
 		</script>
 		<script type="text/javascript" src="/script/Zepto.js"></script>
