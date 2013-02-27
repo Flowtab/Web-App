@@ -508,21 +508,16 @@ Flowtab.wallet = (function () {
         var $items = $container.find('.product');
 
         $items.bind('click', function () {
-        	id = this.id;
-        	title = $(this).attr("title");
-        	price = $(this).attr("price");
-        	description = $(this).attr("description");
-            self.buildProductView(id,title,price,description);
-            showView(view.product, 'slideleft');
+            self.buildProductView(this.id.substr(1));
+            self.showProductView();
         });
     };
 
-    self.buildProductView = function Flowtab_wallet_buildProductView(id,title,price,description) {
-        buildTopBar("Details", "back", "");
-        $("#product .product-title").html(title);
-        $("#product .product-description").html(description+" ($"+price+")");
-        showView(view.product,"slideleft");
-        removeTopbarBindings();
+    self.buildProductView = function Flowtab_wallet_buildProductView(id) {
+        var $container = view.product.$container;
+        
+        $container.html(view.product.render({ product: products[id] }));
+        
         $("#topbar-left-nav").bind("click", function () {
             self.showLocationsView("slideright");
         });
@@ -666,6 +661,11 @@ Flowtab.wallet = (function () {
             showSpinner();
         else if (menu === null)
             showError();
+    }
+
+    self.showProductView = function Flowtab_wallet_showProductView() {
+        showView(view.product, 'slideleft');
+        removeTopbarBindings();
     }
 
     self.showSaveCreditCardView = function Flowtab_wallet_showSaveCreditCardView(transition) {
