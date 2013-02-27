@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <title>Flowtab</title>
-        <link type="text/css" rel="stylesheet" href="/stylesheet/style.css">
+        <link type="text/css" rel="stylesheet" href="/stylesheet/style.css" />
     </head>
     <body>
-        <div id="spinner-wrap">
+        <div id="spinner">
             <div id="spinner-box">
                 <div class="spinner">
                     <div class="bar1 spin-bars"></div>
@@ -24,94 +24,82 @@
                 </div>
             </div>
         </div>
-        <div id="topbar">
-            <div id="topbar-left-nav"></div>
-            <h1 id="topbar-title"></h1>
-            <div id="topbar-right-nav"></div>
+        <div id="navigation">
+            <button class="left navigation"></button>
+            <h1 class="title"></h1>
+            <button class="right navigation"></button>
         </div>
-        <div class="bottombar">
-            <div class="checkout-btn">Checkout</div>
+        <div id="checkout">
+            <button class="checkout">Checkout</button>
         </div>
         <div id="jqt" class="touchscroll">
             <div id="welcome" class="view">
-                <div id="welcome-text"></div>
-                <div id="welcome-shade"></div>
-                <div id="welcome-bar"></div>
-                <div id="signin-btn"></div>
-                <div id="signup-btn"></div>
+                <div class="text"></div>
+                <div class="shade"></div>
+                <div class="bar"></div>
+                <button class="sign-in">Sign In</button>
+                <button class="sign-up">Sign Up</button>
             </div>
             <div id="sign-up" class="view">
                 <div class="scroll">
-                    <div id="sign-up-wrap">
-                        <form id="sign-up-form">
-                            <div class="bio-photo"></div>
-                            <div id="sign-up-disclaimer">Your cell number will only be used to send you order status notifications.</div>
-                            <input id="sign-up-first-name" class="sign-up-input" placeholder="First name">
-                            <input id="sign-up-last-name" class="sign-up-input" placeholder="Last name">
-                            <input type="tel" id="sign-up-cell" class="sign-up-input numeric" placeholder="Cell number" maxlength="10">
-                            <input type="email" id="sign-up-email" class="sign-up-input" placeholder="Email address">
-                            <input type="tel" id="sign-up-password" class="sign-up-input numeric" placeholder="Create 4-digit PIN" maxlength="4">
-                            <input id="sign-up-submit" class="sign-up-input" type="submit" value="Sign Up">
+                    <div class="wrapper">
+                        <form>
+                            <div class="image"></div>
+                            <p class="message">Your cell number will only be used to send you order status notifications.</p>
+                            <input name="first-name" placeholder="First name" />
+                            <input name="last-name" placeholder="Last name" />
+                            <input name="phone" type="tel"  placeholder="Cell number" maxlength="10" />
+                            <input name="email" type="email" placeholder="Email address" />
+                            <input name="pin" type="tel" placeholder="Create 4-digit PIN" maxlength="4" />
+                            <button type="submit">Sign Up</button>
                         </form>
                     </div>
                 </div>
             </div>
             <div id="sign-in" class="view">
                 <div class="scroll">
-                    <div id="sign-in-wrap">
-                        <form id="sign-in-form">
-                            <div id="sign-in-info">To reset your PIN enter your cell number only and hit <em>Forgot Password</em>.</div>
-                            <input type="tel" id="sign-in-cell" name="name" class="sign-in-input numeric" placeholder="Cell number" maxlength="10">
-                            <input type="tel" id="sign-in-password" name="password" class="sign-in-input numeric" placeholder="Enter PIN" maxlength="4">
-                            <input id="sign-in-submit" type="submit" value="Sign In">
-                            <input id="forgot-password" type="submit" value="Forgot Password">
+                    <div class="wrapper">
+                        <form>
+                            <p class="message">To reset your PIN enter your cell number only and hit <em>Forgot Password</em>.</p>
+                            <input name="phone" type="tel" placeholder="Cell number" maxlength="10" />
+                            <input name="pin" type="tel" placeholder="Enter PIN" maxlength="4" />
+                            <button type="submit">Sign In</button>
+                            <button class="forgot-password">Forgot Password</button>
                         </form>
                     </div>
                 </div>
             </div>
-            <div id="save-credit-card" class="view"></div>
-            <div id="venues" class="view"></div>
-            <div id="categories-1" class="view"></div>
-            <div id="categories-2" class="view"></div>
-            <div id="products" class="view"></div>
-            <div id="product" class="view"></div>
-            <div id="checkout" class="view"></div>
-            <div id="confirmation" class="view">
-                <button class="categories grayButton">Done</button>
-            </div>
             <div id="settings" class="view">
                 <div class="scroll">
-                    <ul class="empty-wrap">
-                        <li class="settings-item" id="settings-cards">Saved Cards<div class="settings-arrow"></div></li>
-                        <li class="settings-item big-gap" id="settings-account">Account Settings<div class="settings-arrow"></div></li>
-                        <li class="settings-item" id="settings-share">Share the Love<div class="settings-arrow"></div></li>
-                        <li class="settings-item big-gap" id="settings-rewards">Rewards<div class="settings-arrow"></div></li>
-                        <li class="settings-item" id="settings-works">How it Works<div class="settings-arrow"></div></li>
-                        <li class="settings-item" id="settings-security">Security Information<div class="settings-arrow"></div></li>
-                        <li class="settings-item" id="settings-feedback">Help & Feedback<div class="settings-arrow"></div></li>
+                    <ul class="wrapper">
+                        <li class="cards">Saved Cards<span class="arrow"></span></li>
+                        <li class="account" class="big-gap">Account Settings<span class="arrow"></span></li>
+                        <li class="share">Share the Love<span class="arrow"></span></li>
+                        <li class="works">How it Works<span class="arrow"></span></li>
+                        <li class="security">Security Information<span class="arrow"></span></li>
+                        <li class="feedback">Help &amp; Feedback<span class="arrow"></span></li>
                     </ul>
                 </div>
             </div>
             <div id="account" class="view">
                 <div class="scroll">
-                    <div id="account-wrap">
-                        <form id="account-form">
-                            <div class="bio-photo"></div>
-                            <div id="sign-up-disclaimer">Your cell number will only be used to send you order status notifications.</div>
-                            <input id="account-first-name" class="account-input" placeholder="First name">
-                            <input id="account-last-name" class="account-input" placeholder="Last name">
-                            <input type="tel" id="account-cell" class="account-input numeric" placeholder="Cell number" maxlength="10">
-                            <input type="email" id="account-email" class="account-input" placeholder="Email address">
-                            <input type="tel" id="account-password" class="account-input numeric" placeholder="New 4-digit PIN" maxlength="4">
-                            <input id="account-submit" class="account-input" type="submit" value="Update">
+                    <div class="wrapper">
+                        <form>
+                            <div class="image"></div>
+                            <p class="message">Your cell number will only be used to send you order status notifications.</p>
+                            <input name="first-name" placeholder="First name" />
+                            <input name="last-name" placeholder="Last name" />
+                            <input name="phone" type="tel" placeholder="Cell number" maxlength="10" />
+                            <input name="email" type="email" placeholder="Email address" />
+                            <input name="pin" type="tel" placeholder="New 4-digit PIN" maxlength="4" />
+                            <button type="submit">Update</button>
                         </form>
                     </div>
                 </div>
             </div>
-            <div id="rewards" class="view"></div>
             <div id="works" class="view">
                 <div class="scroll">
-                    <div id="works-wrap" class="static-text">
+                    <div class="wrapper message">
                         <h2>Laboris Nisi Aliquip</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                         <h2>Dignissimos Ducimus</h2>
@@ -121,7 +109,7 @@
             </div>
             <div id="security" class="view">
                 <div class="scroll">
-                    <div id="works-wrap" class="static-text">
+                    <div class="wrapper message">
                         <h2>Laboris Nisi Aliquip</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                         <h2>Dignissimos Ducimus</h2>
@@ -131,36 +119,46 @@
             </div>
             <div id="share" class="view">
                 <div class="scroll">
-                    <div id="share-wrap" class="static-text">
+                    <div class="wrapper message">
                         <h2>Laboris Nisi Aliquip</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <p id="share-link">http://flwtb.co/4H8uiS</p>
-                        <button id="share-submit">Copy to Clipboard</button>
+                        <p>http://flwtb.co/4H8uiS</p>
+                        <button>Copy to Clipboard</button>
                     </div>
                 </div>
             </div>
             <div id="feedback" class="view">
                 <div class="scroll">
-                    <div id="feedback-wrap" class="static-text">
+                    <div class="wrapper message">
                         <h2>Laboris Nisi Aliquip</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <form id="feedback-form">
-                            <textarea id="feedback-area" placeholder="Remember, be nice..." rows="3" autocomplete="off"></textarea>
-                            <button id="feedback-submit">Send Feedback</button>
+                        <form>
+                            <textarea placeholder="Don't be nice&hellip;" rows="3" autocomplete="off"></textarea>
+                            <button type="submit">Send Feedback</button>
                         </form>
                     </div>
                 </div>
             </div>
+            <div id="confirmation" class="view">
+                <button class="done">Done</button>
+            </div>
+            <div id="save-credit-card" class="view"></div>
+            <div id="venues" class="view"></div>
+            <div id="categories-1" class="view"></div>
+            <div id="categories-2" class="view"></div>
+            <div id="products" class="view"></div>
+            <div id="product" class="view"></div>
+            <div id="checkout" class="view"></div>
         </div>
         <script id="save-credit-card-template" type="text/html">
             <div class="scroll">
-                <div id="stripe-wrap">
+                <div class="wrapper">
                     <div class="card-brands"></div>
                     <div class="stored-card"></div>
-                    <form id="stripe-checkout-form">
-                        <input type="tel" class="cc-number" placeholder="Card number" maxlength="16">
-                        <input type="tel" class="cc-exp" placeholder="MM/YYYY" maxlength="9">
-                        <input type="submit" id="stripe-save" value="Save Card">
+                    <form>
+                        <input type="tel" name="number" placeholder="Card number" maxlength="16" />
+                        <input type="tel" name="expiration" placeholder="MM/YYYY" maxlength="9" />
+                        <button type="submit">Save Card</button>
                     </form>
                     <div class="ssl-text"><span class="ssl-icon"></span>Your connection to Flowtab is secured with a 128-bit encryption (AES-256).</div>
                     <div class="powered"></div>
@@ -170,82 +168,82 @@
         </script>
         <script id="venues-template" type="text/html">
             <div class="scroll">
-                <ul class="page-wrapper">
+                <div class="wrapper">
                     {% for venue in items %}
-                        <li id="{{ venue.id }}" class="venue">
-                            <div class="venue-thumb"></div>
-                            <div class="venue-title">{{ venue.fullName }}</div>
-                            <div class="venue-address">{{ venue.address.streetNumber }} {{ venue.address.streetName }} ({{ venue.address.hoodName }})</div>
-                            <div class="venue-arrow"></div>
-                        </li>
+                    <div id="{{ venue.id }}" class="venue">
+                        <div class="image"></div>
+                        <div class="title">{{ venue.fullName }}</div>
+                        <div class="address">{{ venue.address.streetNumber }} {{ venue.address.streetName }} ({{ venue.address.hoodName }})</span>
+                        <div class="arrow"></div>
+                    </div>
                     {% endfor %}
-                </ul>
+                </div>
             </div>
         </script>
         <script id="categories-1-template" type="text/html">
             <div class="scroll">
-                <div class="venue-header">
-                    <div class="venue-header-bar"></div>
-                    <div class="venue-header-text">14 Country Club Ln | New Albany, OH</div>
+                <div class="header">
+                    <div class="bar"></div>
+                    <div class="text">14 Country Club Ln | New Albany, OH</div>
                 </div>
-                <ul class="page-wrapper">
+                <div class="wrapper">
                     {% for category in items %}
-                        <li id="{{ category.id }}" class="category">
-                            <div class="category-icon {{ category.name }}"></div>
-                            <div class="category-title">{{ category.name }}</div>
-                            <div class="category-arrow"></div>
-                        </li>
+                    <div id="{{ category.uuid }}" class="category">
+                        <div class="icon {{ category.name }}"></div>
+                        <div class="title">{{ category.name }}</div>
+                        <div class="arrow"></div>
+                    </div>
                     {% endfor %}
-                </ul>
+                </div>
             </div>
         </script>
         <script id="products-template" type="text/html">
             <div class="scroll">
-                <ul class="page-wrapper">
+                <div class="wrapper">
                     {% for product in items %}
-                        <li class="product" id="P{{ product.id }}" >
-                            <div class="product-title">{{ product.name }}</div>
-                            <div class="product-price">{{ product.price }}</div>
-                            <div class="product-description">{{ product.description }}</div>
-                        </li>
+                    <div class="product" id="{{ product.uuid }}">
+                        <div class="title">{{ product.name }}</div>
+                        <div class="price">{{ product.price }}</div>
+                        <div class="description">{{ product.description }}</div>
+                    </div>
                     {% endfor %}
-                </ul>
+                </div>
             </div>
         </script>
         <script id="product-template" type="text/html">
             <div class="scroll">
-                <div class="product-wrap" id="P{{ product.id }}">
-                    <div class="product-title">{{ product.name }}</div>
-                    <div class="product-description">{{ product.description }}</div>
-                    <div class="product-price-wrap">
-                        <div class="product-price">{{ product.price }}</div>
+                <div class="product" id="{{ product.uuid }}">
+                    <div class="title">{{ product.name }}</div>
+                    <div class="description">{{ product.description }}</div>
+                    <div class="price">
+                        <div class="value">{{ product.price }}</div>
                     </div>
-                    <form class="add-to-cart-form">
-                        <textarea class="special-requests" placeholder="Do you have any special requests?" rows="3" autocomplete="off"></textarea>
-                        <div class="counter-block">
-                            <div class="counter-minus"></div>
-                            <input class="counter-num" value="0">
-                            <div class="counter-plus"></div>
-                            <button class="add-to-cart">Add to Cart</button>
+                    <form>
+                        <textarea name="message" placeholder="Do you have any special requests?" rows="3" autocomplete="off"></textarea>
+                        <div class="counter">
+                            <button class="add"></button>
+                            <span class="value"></span>
+                            <button class="subtract"></button>
                         </div>
+                        <button type="submit">Add to Cart</button>
                     </form>
                 </div>
             </div>
         </script>
         <script id="checkout-template" type="text/html">
             <div class="scroll">
-                <ul class="page-wrapper">
+                <div class="wrapper">
                     {% for product in items %}
-                        <li class="checkout" id="P{{ products.id }}" >
-                            <div class="checkout-title">{{ product.name }}</div>
-                            <div class="checkout-price">{{ product.price }}</div>
-                        </li>
+                    <div class="product" id="{{ product.uuid }}">
+                        <div class="title">{{ product.name }}</div>
+                        <div class="price">{{ product.price }}</div>
+                    </div>
                     {% endfor %}
-                </ul>
-                <div class="checkout-subtotal">{{ subtotal }}</div>
-                <div class="checkout-gratuity">{{ gratuity }}</div>
-                <div class="checkout-total">{{ total }}</div>
-                <button class="process-order">Process Order</button>
+                </div>
+                <div class="subtotal">{{ subtotal }}</div>
+                <div class="gratuity">{{ gratuity }}</div>
+                <div class="total">{{ total }}</div>
+                <button type="submit">Process Order</button>
             </div>
         </script>
         <script type="text/javascript" src="/script/Zepto.js"></script>
@@ -254,8 +252,6 @@
         <script type="text/javascript" src="/script/Swig.js"></script>
         <script type="text/javascript" src="/script/Swiper.js"></script>
         <script type="text/javascript" src="/script/Stripe.js"></script>
-        <!-- <script type="text/javascript" src="/script/SimpleCart.js"></script> -->
-        <!-- <script type="text/javascript" src="/script/jquery.payment.js"></script> -->
         <script type="text/javascript" src="/script/Flowtab.js"></script>
         <script type="text/javascript" src="/script/Flowtab.framework.js"></script>
         <script type="text/javascript" src="/script/Flowtab.wallet.js"></script>
