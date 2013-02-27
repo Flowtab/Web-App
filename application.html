@@ -234,6 +234,22 @@
         		</div>
     		</div>
 		</script>
+		<script id="checkout-template" type="text/html">
+    		<div class="scroll">
+    			<ul class="page-wrapper">
+    				{% for product in items %}
+        				<li class="checkout" id="P{{ products.id }}" >
+            				<div class="checkout-title">{{ product.name }}</div>
+            				<div class="checkout-price">{{ product.price }}</div>
+        				</li>
+    				{% endfor %}
+    			</ul>
+    			<div class="checkout-subtotal">{{ subtotal }}</div>
+    			<div class="checkout-gratuity">{{ gratuity }}</div>
+    			<div class="checkout-total">{{ total }}</div>
+    			<button class="process-order">Process Order</button>
+    		</div>
+		</script>
 		<script type="text/javascript" src="/script/Zepto.js"></script>
 		<script type="text/javascript" src="/script/Zepto.jQTouch.js"></script>
 		<script type="text/javascript" src="/script/Lodash.js"></script>
