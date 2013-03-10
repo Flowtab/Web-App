@@ -72,7 +72,7 @@
             </div>
             <div id="settings" class="view">
                 <div class="scroll">
-                    <ul>
+                    <ul class="wrapper">
                         <li class="cards">Saved Cards<span class="arrow"></span></li>
                         <li class="account gap">Account Settings<span class="arrow"></span></li>
                         <li class="share">Share the Love<span class="arrow"></span></li>
@@ -207,16 +207,33 @@
         <script id="products-template" type="text/html">
             <div class="scroll">
                 {% for product in items %}
-                <div class="product" id="{{ product.id }}">
-                    <form>
-                        <button class="subtract"></button>
-                        <span class="value">0</span>
-                        <button class="add"></button>
-                    </form>
+                <div class="products" id="{{ product.uuid }}">
+                    <span class="arrow"></span>
                     <div class="title">{{ product.name }}</div>
                     <div class="price">${{ product.price }}</div>
                 </div>
                 {% endfor %}
+            </div>
+        </script>
+        <script id="product-template" type="text/html">
+            <div class="scroll">
+                <div class="wrapper">
+                    <div class="product" id="{{ product.uuid }}">
+                        <div class="title">{{ product.name }}</div>
+                        <div class="description">{{ product.description }}</div>
+                        <div class="price">
+                            <div class="value">{{ product.price }}</div>
+                        </div>
+                        <form>
+                            <textarea name="message" placeholder="Do you have any special requests?" rows="3" autocomplete="off"></textarea>
+                            <button class="subtract"></button>
+                            <span class="value">0</span>
+                            <button class="add"></button>
+                        </form>
+                        <div class="title">{{ product.name }}</div>
+                        <div class="price">${{ product.price }}</div>
+                    </div>
+                </div>
             </div>
         </script>
         <script id="checkout-template" type="text/html">
