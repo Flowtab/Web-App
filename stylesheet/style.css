@@ -780,6 +780,14 @@ textarea {
 
 /* Settings View */
 
+#settings .wrapper {
+    background: none;
+    width: 100%;
+    margin: 20px 0;
+    box-shadow: none;
+    border: none;
+}
+
 #settings ul li {
     background: url(/image/white-bg.jpg) repeat;
     width: 86%;
