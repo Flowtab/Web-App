@@ -259,27 +259,21 @@ textarea {
 
 /* Bottom Bar */
 
-.bottombar {
+#checkout {
     position: fixed;
     bottom: 30px;
-    right: -92px;
+    right: 0;
     z-index: 100000;
     height: 12px;
     width: 92px;
 	-webkit-transition: all .25s linear;
 }
 
-.bottombar-visible {
+.visible {
     right: -19px;
 }
 
-.bottombar p {
-    top: -100px;
-    position: absolute;
-    right: 100px;
-}
-
-.checkout-btn {
+#checkout button {
     box-shadow: 1px 1px 1px #598d11;
     background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #b8e356), color-stop(1, #8fc14b) );
     background-color: #b8e356;
@@ -292,7 +286,7 @@ textarea {
     font-size: 13px;
     line-height: 13px;
     width: 75px;
-    height: 16px;
+    height: 30px;
     padding: 8px 0;
     text-decoration: none;
     position: absolute;
@@ -761,7 +755,7 @@ textarea {
 
 }
 
-.products form .value {
+.product form .value {
     background: none;
     color: #555;
     font-family: 'Open Sans';
@@ -776,7 +770,7 @@ textarea {
     text-align: center;
 }
 
-.products form .add  {
+.product form .add  {
     background: url(/image/counter-plus.png) no-repeat;
     background-size: 100% auto;
     width: 25px;
@@ -785,27 +779,6 @@ textarea {
     margin-left: 50px;
     border: 1px solid #AAA;
     box-shadow: inset 0px 1px 0px 0px #EFEFEF;
-}
-
-.products .arrow {
-    background: url(/image/gray-arrow.png) no-repeat;
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    right: 7%;
-    margin-top: 12px;
-    background-size: 100% auto;
-    opacity: .8;
-}
-
-/* Product View */
-
-.product form {
-    padding: 10px 3%;
-    position: absolute;
-    width: 75px;
-    height: 25px;
-    right: 0;
 }
 
 /* Checkout View */
