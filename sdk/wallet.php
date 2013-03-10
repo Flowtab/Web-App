@@ -3,7 +3,7 @@
 // Connect to database
 
 $ajax = $_GET['ajax'];
-$sql = mysql_connect("localhost","kaleazy","password");
+$sql = mysql_connect("localhost","root","password");
 $db = mysql_select_db("flowtab_test",$sql);
 if (!$sql) {
 	die('Could not connect: ' . mysql_error());
