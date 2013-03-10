@@ -1,6 +1,6 @@
 /* Spinner */
 
-#spinner-wrap {
+#spinner {
 	width: 100%;
 	height: 100%;
 	z-index: 9999;
@@ -79,6 +79,8 @@ div.spinner div.bar12 {-webkit-transform:rotate(330deg) translate(0, -142%); -we
 
 body {
     background: #E8E8E8;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-touch-callout: none;
 }
 
 #jqt {
@@ -169,9 +171,34 @@ textarea {
     color: #AAA;
 }
 
-/* Top Bar */
+/* Static Views */
 
-#topbar {
+.text {
+    padding-bottom: 20px;
+}
+
+.text h2 {
+    font-family: 'Open Sans';
+    color: #555;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 20px 5%;
+    text-shadow: 1px 1px 1px #EEE;
+}
+
+.text p {
+    font-family: 'Open Sans';
+    color: #555;
+    font-weight: 400;
+    line-height: 24px;
+    font-size: 14px;
+    padding: 0 15px;
+    text-shadow: 1px 1px 1px #EEE;
+}
+
+/* Navigation */
+
+#navigation {
     background: url(/image/topbar.jpg) repeat-x;
     width: 100%;
     height: 44px;
@@ -183,11 +210,11 @@ textarea {
 	-webkit-transition: all .25s linear;
 }
 
-.topbar-visible {
+.visible {
     top: 0 !important;
 }
 
-#topbar h1 {
+#navigation h1 {
     text-align: center;
     color: #FFFFFF;
     font-family: 'Open Sans';
@@ -199,40 +226,38 @@ textarea {
     text-shadow: 1px 1px 1px black;
 }
 
-#topbar-left-nav, #topbar-right-nav {
+#navigation .navigation {
+    background: none;
     position: absolute;
     width: 30px;
     left: 10px;
     right: auto;
     height: 25px;
+    border: none;
     top: 10px;
 }
 
-#topbar-right-nav {
+#navigation .right {
     right: 10px;
     left: auto;
 }
 
-#topbar .back {
+#navigation .back {
     background: url(/image/back-arrow.png) no-repeat;
     background-size: 82% auto;
 }
 
-#topbar .settings {
+#navigation .settings {
     background: url(/image/settings.png) no-repeat;
     background-size: 90% auto;
 }
 
-#topbar .x-arrow, #topbar .welcome {
+#navigation .x-arrow, #navigation .welcome {
     background: url(/image/x-arrow.png) no-repeat;
     background-size: 82% auto;
 }
 
-.scroll {
-    margin-top: 47px;
-}
-
-/* Bottom Bar */
+/* Checkout Button */
 
 .bottombar {
     position: fixed;
@@ -249,9 +274,9 @@ textarea {
 }
 
 .bottombar p {
-top: -100px;
-position: absolute;
-right: 100px;
+    top: -100px;
+    position: absolute;
+    right: 100px;
 }
 
 .checkout-btn {
