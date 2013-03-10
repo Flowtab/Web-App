@@ -935,4 +935,15 @@ textarea {
     padding: 2%;
     border: 1px solid #888;
     margin: 20px 5% 0;
+}/* Success */
+/* Success */
+
+#success .green {
+    text-align: center;
+    color: #009933;
+    font-size: 27px;
 }
+
+
+
+
