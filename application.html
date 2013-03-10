@@ -120,17 +120,19 @@
             </div>
             <div id="share" class="view">
                 <div class="scroll">
-                    <div class="wrapper message">
+                    <div class="wrapper text">
                         <h2>Laboris Nisi Aliquip</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <p>http://flwtb.co/4H8uiS</p>
-                        <button>Copy to Clipboard</button>
+                        <p class="link">http://flwtb.co/4H8uiS</p>
+                        <form>
+                            <button>Copy to Clipboard</button>
+                        </form>
                     </div>
                 </div>
             </div>
             <div id="feedback" class="view">
                 <div class="scroll">
-                    <div class="wrapper message">
+                    <div class="wrapper text">
                         <h2>Laboris Nisi Aliquip</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                         <form>
@@ -185,28 +187,24 @@
                     <div class="bar"></div>
                     <div class="text">14 Country Club Ln | New Albany, OH</div>
                 </div>
-                <div class="wrapper">
-                    {% for category in items %}
-                    <div id="{{ category.uuid }}" class="category">
-                        <div class="icon {{ category.name }}"></div>
-                        <div class="title">{{ category.name }}</div>
-                        <div class="arrow"></div>
-                    </div>
-                    {% endfor %}
+                {% for category in items %}
+                <div id="{{ category.uuid }}" class="category">
+                    <div class="icon {{ category.name }}"></div>
+                    <div class="title">{{ category.name }}</div>
+                    <div class="arrow"></div>
                 </div>
+                {% endfor %}
             </div>
         </script>
         <script id="products-template" type="text/html">
             <div class="scroll">
-                <div class="wrapper">
-                    {% for product in items %}
-                    <div class="product" id="{{ product.uuid }}">
-                        <div class="title">{{ product.name }}</div>
-                        <div class="price">{{ product.price }}</div>
-                        <div class="description">{{ product.description }}</div>
-                    </div>
-                    {% endfor %}
+                {% for product in items %}
+                <div class="product" id="{{ product.uuid }}">
+                    <div class="title">{{ product.name }}</div>
+                    <div class="price">{{ product.price }}</div>
+                    <div class="description">{{ product.description }}</div>
                 </div>
+                {% endfor %}
             </div>
         </script>
         <script id="product-template" type="text/html">
