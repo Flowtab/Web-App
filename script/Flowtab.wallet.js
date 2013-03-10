@@ -127,7 +127,7 @@ Flowtab.wallet = (function () {
         $("#spinner").hide();
     }
 
-    // Topbar functions
+    // Navigation functions
 
     function showTopbar() {
         $("#navigation").addClass("visible");
