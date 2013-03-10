@@ -535,6 +535,9 @@ textarea {
     width: 90%;
     text-decoration: underline;
 }
+
+/* Venues View */
+
 .venue {
     background: url(/image/white-bg.jpg) repeat;
     width: 90%;
@@ -545,7 +548,7 @@ textarea {
     list-style-type: none;
 }
 
-.venue-thumb {
+.venue .image {
     background: url(/image/venue-thumb.jpg) no-repeat;
     width: 60px;
     height: 52px;
@@ -556,7 +559,7 @@ textarea {
     margin-top: -7px;
 }
 
-.venue-title {
+.venue .title {
     font-family: 'Open Sans';
     color: #444;
     font-size: 19px;
@@ -564,14 +567,14 @@ textarea {
     font-weight: 700;
 }
 
-.venue-address {
+.venue .address {
     font-family: 'Open Sans';
     color: #777;
     font-size: 13px;
     margin-left: 80px;
 }
 
-.venue-arrow {
+.venue .arrow {
     background: url(/image/green-arrow.png) no-repeat;
     width: 20px;
     height: 20px;
