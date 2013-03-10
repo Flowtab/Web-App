@@ -257,7 +257,7 @@ textarea {
     background-size: 82% auto;
 }
 
-/* Checkout Button */
+/* Bottom Bar */
 
 .bottombar {
     position: fixed;
@@ -464,7 +464,7 @@ textarea {
     color: #777;
 }
 
-/* Save Card */
+/* Save Card View */
 
 #save-credit-card .card-brands {
     background: url(/image/card-brands.png) no-repeat;
@@ -683,7 +683,7 @@ textarea {
     background-size: 100% auto;
 }
 
-/* Products Page */
+/* Products View */
 
 .product {
     background: url(/image/white-bg.jpg) repeat;
@@ -847,7 +847,7 @@ textarea {
     opacity: .8;
 }
 
-/* Share */
+/* Share View */
 
 #share .link {
     color: #378DE5;
@@ -863,7 +863,7 @@ textarea {
     position: relative;
 }
 
-/* Feedback */
+/* Feedback View */
 
 #feedback button {
     width: 100%;
