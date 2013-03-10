@@ -505,11 +505,11 @@ Flowtab.wallet = (function () {
         removeViewBindings(view.products);
         $container.html(view.products.render({ items: products }));
 
-        var $items = $container.find('.product');
+        var $items = $container.find('.products');
 
         $items.bind('click', function () {
-            //self.buildProductView(this.id.substr(1));
-            //self.showProductView();
+            self.buildProductView(this.id.substr(1));
+            self.showProductView();
         });
     };
 
@@ -517,7 +517,7 @@ Flowtab.wallet = (function () {
         var $container = view.product.$container;
         
         $container.html(view.product.render({ product: products[id] }));
-        
+
         $("#topbar-left-nav").bind("click", function () {
             self.showLocationsView("slideright");
         });
