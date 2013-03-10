@@ -28,11 +28,14 @@ Flowtab.wallet = (function () {
             return;
         }
         hideSpinner();
+        showView(view.welcome, 'slidedown');
+/*
         if (currentUser === null) {
             showView(view.welcome, 'slidedown');
         } else {
             self.showVenuesView("slideleft");
         }
+*/
     }
 
     function removeViewBindings(viewStore) {
@@ -120,29 +123,29 @@ Flowtab.wallet = (function () {
     // Spinner functions
 
     function showSpinner() {
-        $("#spinner-wrap").show();
+        $("#spinner").show();
     }
 
     function hideSpinner() {
-        $("#spinner-wrap").hide();
+        $("#spinner").hide();
     }
 
     // Topbar functions
 
     function showTopbar() {
-        $("#topbar").addClass("topbar-visible");
+        $("#navigation").addClass("visible");
     }
 
     function hideTopbar() {
-        $("#topbar").removeClass("topbar-visible");
+        $("#navigation").removeClass("visible");
     }
 
     function showCheckout() {
-        $(".bottombar").addClass("bottombar-visible");
+        $(".bottombar").addClass("visible");
     }
 
     function hideCheckout() {
-        $(".bottombar").removeClass("bottombar-visible");
+        $(".bottombar").removeClass("visible");
     }
 
     function showError() {
