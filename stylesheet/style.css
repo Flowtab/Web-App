@@ -350,9 +350,119 @@ textarea {
     height: 32px;
     right: 8px;
     bottom: 5px;
+    border: none;
 }
 
-/* Locations Page */
+/* Sign Up View */
+
+#sign-up .wrapper {
+    height: 285px;
+}
+
+#sign-up .image {
+    background: url(/image/sign-up-image.png) no-repeat;
+    background-size: 100% auto;
+    width: 22%;
+    height: 75px;
+    margin: 25px 0 0 2%;
+    position: absolute;
+}
+
+#sign-up .message {
+    margin-top: 230px;
+    width: 45%;
+    margin-left: 2%;
+}
+
+#sign-up .first-name {
+    margin-left: 30%;
+    margin-top: 20px;
+    width: 50%;
+}
+
+#sign-up .last-name {
+    margin-left: 30%;
+    margin-top: 60px;
+    width: 50%;
+}
+
+#sign-up .email {
+    margin-left: 2%;
+    margin-top: 140px;
+    width: 78%;
+}
+
+#sign-up .pin {
+    margin-left: 2%;
+    margin-top: 180px;
+    width: 78%;
+}
+
+#sign-up .phone {
+    margin-left: 2%;
+    margin-top: 100px;
+    width: 78%;
+}
+
+#sign-up button {
+    width: 28%;
+    margin-top: 230px;
+    margin-left: 166px;
+}
+
+/* Sign In View */
+
+
+#sign-in .wrapper {
+    height: 200px;
+}
+
+#sign-in .message {
+    margin-top: 110px;
+    width: 78%;
+}
+
+#sign-in .first-name {
+    margin-left: 30%;
+    margin-top: 20px;
+    width: 50%;
+}
+
+#sign-up .last-name {
+    margin-left: 30%;
+    margin-top: 60px;
+    width: 50%;
+}
+
+#sign-in .phone {
+    margin-left: 2%;
+    margin-top: 20px;
+    width: 78%;
+}
+
+#sign-in .pin {
+    margin-left: 2%;
+    margin-top: 60px;
+    width: 78%;
+}
+
+#sign-in button {
+    width: 28%;
+    margin-top: 149px;
+    margin-left: 166px;
+}
+
+#sign-in .forgot-password {
+    box-shadow: inset 0px 1px 0px 0px #ffffff;
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9) );
+    background-color: #f9f9f9;
+    border: 1px solid #dcdcdc;
+    margin-top: 148px;
+    margin-left: 2%;
+    width: 44%;
+    line-height: 24px;
+    color: #777;
+}
 
 .venue {
     background: url(/image/white-bg.jpg) repeat;
