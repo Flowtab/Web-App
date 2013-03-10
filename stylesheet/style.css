@@ -584,20 +584,30 @@ textarea {
     background-size: 100% auto;
 }
 
-/* Categories Page */
+/* Categories View */
 
-.venue-header {
+.header {
     background: url(/image/venue-photo.jpg) no-repeat;
     background-size: 100% auto;
+    margin-bottom: 15px;
     width: 100%;
     height: 155px;
 }
 
-#categories-2 .venue-header {
+#categories-2 .header {
     display: none;
 }
 
-.venue-header-text {
+.header .bar {
+    width: 100%;
+    height: 25px;
+    background: black;
+    opacity: 0.35;
+    position: absolute;
+    top: 130px;
+}
+
+.header .text {
     font-family: 'Open Sans';
     color: #FFFFFF;
     font-size: 12px;
@@ -607,15 +617,6 @@ textarea {
     width: 100%;
     z-index: 10;
     text-shadow: 1px 1px 1px black;
-}
-
-.venue-header-bar {
-    width: 100%;
-    height: 25px;
-    background: black;
-    opacity: 0.25;
-    position: absolute;
-    top: 130px;
 }
 
 .category {
@@ -628,18 +629,7 @@ textarea {
     list-style-type: none;
 }
 
-.venue-icon {
-    background: url(/image/venue-thumb.jpg) no-repeat;
-    width: 60px;
-    height: 52px;
-    border-radius: 2px;
-    box-shadow: 2px 1px 1px #444;
-    border: 5px solid white;
-    position: absolute;
-    margin-top: -7px;
-}
-
-.category-icon {
+.category .icon {
     background: url(/image/category-icons.png) no-repeat;
     background-size: 85% auto;
     width: 30px;
@@ -649,31 +639,31 @@ textarea {
     margin-left: 5px;
 }
 
-.category-icon.beer {
+.category .icon.beer {
     background-position: 0 0;
 }
 
-.category-icon.wine {
+.category .icon.wine {
     background-position: 0 -43px;
 }
 
-.category-icon.cocktails {
+.category .icon.cocktails {
     background-position: 0 -82px;
 }
 
-.category-icon.shots {
+.category .icon.shots {
     background-position: 0 -124px;
 }
 
-.category-icon.soft-drinks {
+.category .icon.soft-drinks {
     background-position: 0 -165px;
 }
 
-.category-icon.food {
+.category .icon.food {
     background-position: 0 -202px;
 }
 
-.category-title {
+.category .title {
     font-family: 'Open Sans';
     color: #444;
     font-size: 18px;
@@ -683,7 +673,7 @@ textarea {
     position: absolute;
 }
 
-.category-arrow {
+.category .arrow {
     background: url(/image/green-arrow.png) no-repeat;
     width: 20px;
     height: 20px;
