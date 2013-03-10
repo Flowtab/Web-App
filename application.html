@@ -196,7 +196,7 @@
                     <div class="text">14 Country Club Ln | New Albany, OH</div>
                 </div>
                 {% for category in items %}
-                <div id="{{ category.uuid }}" class="category">
+                <div id="{{ category.id }}" class="category">
                     <div class="icon {{ category.name }}"></div>
                     <div class="title">{{ category.name }}</div>
                     <div class="arrow"></div>
@@ -207,32 +207,16 @@
         <script id="products-template" type="text/html">
             <div class="scroll">
                 {% for product in items %}
-                <div class="product" id="{{ product.uuid }}">
+                <div class="product" id="{{ product.id }}">
+                    <form>
+                        <button class="subtract"></button>
+                        <span class="value">0</span>
+                        <button class="add"></button>
+                    </form>
                     <div class="title">{{ product.name }}</div>
-                    <div class="price">{{ product.price }}</div>
-                    <div class="description">{{ product.description }}</div>
+                    <div class="price">${{ product.price }}</div>
                 </div>
                 {% endfor %}
-            </div>
-        </script>
-        <script id="product-template" type="text/html">
-            <div class="scroll">
-                <div class="product" id="{{ product.uuid }}">
-                    <div class="title">{{ product.name }}</div>
-                    <div class="description">{{ product.description }}</div>
-                    <div class="price">
-                        <div class="value">{{ product.price }}</div>
-                    </div>
-                    <form>
-                        <textarea name="message" placeholder="Do you have any special requests?" rows="3" autocomplete="off"></textarea>
-                        <div class="counter">
-                            <button class="add"></button>
-                            <span class="value"></span>
-                            <button class="subtract"></button>
-                        </div>
-                        <button type="submit">Add to Cart</button>
-                    </form>
-                </div>
             </div>
         </script>
         <script id="checkout-template" type="text/html">
