@@ -840,57 +840,24 @@ textarea {
     padding: 5px 0 5px 4%;
 }
 
-.big-gap {
+#settings ul li.gap {
     margin-bottom: 20px;
 }
 
-.settings-arrow {
+#settings ul li .arrow {
     background: url(/image/gray-arrow.png) no-repeat;
     width: 20px;
     height: 20px;
     position: absolute;
     right: 7%;
-    margin-top: -25px;
+    margin-top: 6px;
     background-size: 100% auto;
     opacity: .8;
 }
 
-/* Works */
-
-#works-wrap {
-    height: auto;
-}
-
-.static-text {
-    padding-bottom: 20px;
-}
-
-.static-text h2 {
-    font-family: 'Open Sans';
-    color: #555;
-    font-weight: 700;
-    font-size: 18px;
-    padding: 20px 5%;
-    text-shadow: 1px 1px 1px #EEE;
-}
-
-.static-text p {
-    font-family: 'Open Sans';
-    color: #555;
-    font-weight: 400;
-    line-height: 24px;
-    font-size: 14px;
-    padding: 0 15px;
-    text-shadow: 1px 1px 1px #EEE;
-}
-
 /* Share */
 
-#share-wrap {
-    height: auto;
-}
-
-#share-link {
+#share .link {
     color: #378DE5;
     text-align: center;
     font-size: 18px;
@@ -898,44 +865,20 @@ textarea {
     text-shadow: 1px 1px 1px #DDD;
 }
 
-#share-submit, #feedback-submit {
-    box-shadow: inset 0px 1px 0px 0px #BBDAF7;
-    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79BBFF), color-stop(1, #378DE5) );
-    background-color: #79BBFF;
-    border-radius: 6px;
-    border: 1px solid #84BBF3;
-    display: inline-block;
-    color: white;
-    font-weight: 700;
-    font-family: 'Open Sans';
-    font-size: 14px;
-    line-height: 14px;
-    width: 90%;
-    height: 42px;
-    padding: 8px 0;
-    text-decoration: none;
-    text-align: center;
-    margin: 10px 5% 0;
+#share button {
+    width: 100%;
+    margin: 10px 0 0;
+    position: relative;
 }
 
 /* Feedback */
 
-#feedback-wrap {
-    height: auto;
+#feedback button {
+    width: 100%;
+    margin: 10px 0 0;
+    position: relative;
 }
 
-#feedback-area {
-    font-family: 'Open Sans';
-    font-weight: 400;
-    margin-top: 58px;
-    width: 85%;
-    border-radius: 3px;
-    font-size: 14px;
-    color: #555;
-    padding: 2%;
-    border: 1px solid #888;
-    margin: 20px 5% 0;
-}/* Success */
 /* Success */
 
 #success .green {
