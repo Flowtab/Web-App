@@ -728,7 +728,28 @@ textarea {
     right: 0;
 }
 
-.products form .subtract {
+.products .arrow {
+    background: url(/image/gray-arrow.png) no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 7%;
+    margin-top: 12px;
+    background-size: 100% auto;
+    opacity: .8;
+}
+
+/* Product View */
+
+.product form {
+    padding: 10px 3%;
+    position: absolute;
+    width: 75px;
+    height: 25px;
+    right: 0;
+}
+
+.product form .subtract {
     background: url(/image/counter-minus.png) no-repeat;
     background-size: 100% auto;
     width: 25px;
