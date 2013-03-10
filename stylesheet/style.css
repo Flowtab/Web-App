@@ -714,15 +714,7 @@ textarea {
     width: 85%;
 }
 
-.product-price {
-    position: absolute;
-    right: 10%;
-    color: #009933;
-    font-weight: 700;
-    margin-top: -16px;
-}
-
-.product-arrow {
+.product .arrow {
     background: url(/image/green-arrow.png) no-repeat;
     width: 20px;
     height: 20px;
