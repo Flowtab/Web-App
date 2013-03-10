@@ -300,19 +300,9 @@ textarea {
     font-weight: 700;
 }
 
-/* Welcome Page */
+/* Welcome View */
 
-#welcome-shade {
-    background: url(/image/shade.png) no-repeat;
-    position: absolute;
-    width: 100%;
-    height: 250px;
-    bottom: -10px;
-    background-size: 100% auto;
-    z-index: -1;
-}
-
-#welcome-text {
+#welcome .text {
     background: url(/image/welcome-text.png) no-repeat;
     background-size: 100% auto;
     height: 105px;
@@ -322,14 +312,17 @@ textarea {
     bottom: 60px;
 }
 
-#welcome-box {
+#welcome .shade {
+    background: url(/image/shade.png) no-repeat;
     position: absolute;
     width: 100%;
-    height: 100px;
-    bottom: 0;
+    height: 250px;
+    bottom: -10px;
+    background-size: 100% auto;
+    z-index: -1;
 }
 
-#welcome-bar {
+#welcome .bar {
     background: url(/image/welcome-bar.jpg) no-repeat;
     background-size: 100% auto;
     position: absolute;
@@ -338,7 +331,7 @@ textarea {
     bottom: 0;
 }
 
-#signin-btn {
+#welcome .sign-in {
     background: url(/image/login-btn.png) no-repeat;
     background-size: 100% auto;
     position: absolute;
@@ -346,9 +339,10 @@ textarea {
     height: 32px;
     right: 85px;
     bottom: 5px;
+    border: none;
 }
 
-#signup-btn {
+#welcome .sign-up {
     background: url(/image/signup-btn.png) no-repeat;
     background-size: 100% auto;
     position: absolute;
