@@ -188,10 +188,10 @@ Flowtab.wallet = (function () {
     // Build title and buttons of topbar
 
     function buildTopBar(title, nav1, nav2) {
-        $("#topbar-title").html(title);
-        $("#topbar-left-nav,#topbar-right-nav").removeClass();
-        $("#topbar-left-nav").addClass(nav1);
-        $("#topbar-right-nav").addClass(nav2);
+        $("#navigation .title").html(title);
+        $("#navigation").removeClass();
+        $("#navigation .left").addClass(nav1);
+        $("#navigation .right").addClass(nav2);
         showTopbar();
     }
 
