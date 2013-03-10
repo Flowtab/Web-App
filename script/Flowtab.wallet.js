@@ -28,14 +28,11 @@ Flowtab.wallet = (function () {
             return;
         }
         hideSpinner();
-        showView(view.welcome, 'slidedown');
-/*
         if (currentUser === null) {
             showView(view.welcome, 'slidedown');
         } else {
             self.showVenuesView("slideleft");
         }
-*/
     }
 
     function removeViewBindings(viewStore) {
@@ -511,8 +508,8 @@ Flowtab.wallet = (function () {
         var $items = $container.find('.product');
 
         $items.bind('click', function () {
-            self.buildProductView(this.id.substr(1));
-            self.showProductView();
+            //self.buildProductView(this.id.substr(1));
+            //self.showProductView();
         });
     };
 
