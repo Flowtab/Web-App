@@ -238,8 +238,8 @@ Flowtab.wallet = (function () {
 
     self.buildWelcomeView = function Flowtab_wallet_buildWelcomeView() {
         var $container = view.welcome.$container
-          , $signUpButton = $container.find('#signup-btn')
-          , $signInButton = $container.find('#signin-btn')
+          , $signUpButton = $container.find('.sign-up')
+          , $signInButton = $container.find('.sign-in')
 
         removeViewBindings(view.welcome);
 
