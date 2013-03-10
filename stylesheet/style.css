@@ -464,6 +464,77 @@ textarea {
     color: #777;
 }
 
+/* Save Card */
+
+#save-credit-card .card-brands {
+    background: url(/image/card-brands.png) no-repeat;
+    background-size: 100% auto;
+    width: 70%;
+    margin: 20px 10% 0;
+    height: 36px;
+    opacity: 0.4;
+    position: absolute;
+}
+
+#save-credit-card .number {
+    width: 50%;
+    margin: 70px 0;
+}
+
+#save-credit-card .expiration {
+    width: 25%;
+    margin: 70px 0 0 55%;
+}
+
+#save-credit-card .powered {
+    background: url(/image/stripe-power.png) no-repeat;
+    background-size: 100% auto;
+    width: 38%;
+    height: 34px;
+    position: absolute;
+    opacity: .5;
+    margin-top: 102px;
+    margin-left: 41%;
+    display: none;
+}
+
+#save-credit-card .ssl-text {
+    font-size: 12px;
+    color: green;
+    text-align: center;
+    width: 78%;
+    opacity: .60;
+    position: absolute;
+    margin: 120px 5% 0;
+    font-family: 'Open Sans';
+}
+
+#save-credit-card .ssl-icon {
+    background: url(/image/ssl-lock.png) no-repeat;
+    background-size: 100% auto;
+    height: 18px;
+    width: 17px;
+    display: inline-block;
+    margin-bottom: -4px;
+    margin-right: 2px;
+}
+
+#save-credit-card button {
+    position: relative;
+    margin-top: 170px;
+    width: 100%;
+}
+
+#save-credit-card .store-later {
+    font-family: 'Open Sans';
+    font-size: 15px;
+    color: #378DE5;
+    text-align: center;
+    position: absolute;
+    margin-top: 23px;
+    width: 90%;
+    text-decoration: underline;
+}
 .venue {
     background: url(/image/white-bg.jpg) repeat;
     width: 90%;
