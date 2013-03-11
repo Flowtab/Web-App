@@ -120,6 +120,8 @@ Flowtab.wallet = (function () {
         $spinner.hide();
     }
 
+    // Navigation functions
+
     function showNavigationView() {
         $navigation.addClass('visible');
     }
@@ -129,11 +131,11 @@ Flowtab.wallet = (function () {
     }
 
     function showCheckout() {
-        $(".bottombar").addClass("bottombar-visible");
+        $(".bottombar").addClass("visible");
     }
 
     function hideCheckout() {
-        $(".bottombar").removeClass("bottombar-visible");
+        $(".bottombar").removeClass("visible");
     }
 
     function showError() {
@@ -467,7 +469,7 @@ Flowtab.wallet = (function () {
         removeViewBindings(view.products);
         $container.html(view.products.render({ items: products }));
 
-        var $items = $container.find('.product');
+        var $items = $container.find('.products');
 
         $items.bind('click', function () {
             self.buildProductView(this.id.substr(1));
@@ -592,7 +594,8 @@ Flowtab.wallet = (function () {
                 className: 'x-arrow'
               , handler: function () {
                     // body...
-              }
+                }
+            }
         });
         showNavigationView();
         showView(view.settings, transition);
@@ -625,7 +628,7 @@ Flowtab.wallet = (function () {
     self.showProductView = function Flowtab_wallet_showProductView() {
         buildNavigationView({
             title: 'Product'
-            left: {
+          , left: {
                 className: 'back'
               , handler : function () {
                     // body...

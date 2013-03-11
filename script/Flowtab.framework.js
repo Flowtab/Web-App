@@ -87,9 +87,10 @@ Flowtab.framework = (function () {
               , venues: []
             }    
             
-	      	$.getJSON("/sdk/wallet.php?ajax=venues", function(venues){		      	
+	      	$.getJSON("/venues.json", function(venues){		      	
 		    	$.each(venues, function(i,value){
 	                data.venues[i] = {
+                        uuid: self.util.createUuid(),
 	                    id: value.id,
 	                    fullName: value.first,
 	                    shortName: value.short,
@@ -102,8 +103,9 @@ Flowtab.framework = (function () {
 	                        postalCode: value.zip
 	                    }
 	                };
-	                callback(data);
 	            });
+
+                callback(data);
 	         });
 	         
         }
@@ -114,18 +116,19 @@ Flowtab.framework = (function () {
               , menu: []
             }    
 
-	      	$.getJSON("/sdk/wallet.php?ajax=menus&id="+venueId, function(data){
+	      	$.getJSON("/menu.json", function(data){
 		      		response.menu = data;
 
 	                (function walk (data) {
 			      		for (var i = data.length - 1; i !== -1; --i) {
-				      		//data[i].id = self.util.createUuid();
+				      		data[i].uuid = self.util.createUuid();
+
 			      			for (var k in data[i])
 				      			if (data[i][k] !== null && typeof data[i][k] === 'object')
 				      				walk(data[i][k]);
 			      		}
 		      		})(data);
-    	            //console.log(JSON.stringify(data));
+    	            
     	            callback(response);
 	         });
 	   }

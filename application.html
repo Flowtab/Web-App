@@ -3,6 +3,7 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <title>Flowtab</title>
+        <link type="text/css" rel="stylesheet" href="/stylesheet/jqtouch.css" />
         <link type="text/css" rel="stylesheet" href="/stylesheet/style.css" />
     </head>
     <body>
@@ -37,8 +38,8 @@
                 <div class="text"></div>
                 <div class="shade"></div>
                 <div class="bar"></div>
-                <button class="sign-in">Sign In</button>
-                <button class="sign-up">Sign Up</button>
+                <button class="sign-in"></button>
+                <button class="sign-up"></button>
             </div>
             <div id="sign-up" class="view">
                 <div class="scroll">
@@ -46,11 +47,11 @@
                         <form>
                             <div class="image"></div>
                             <p class="message">Your cell number will only be used to send you order status notifications.</p>
-                            <input name="first-name" placeholder="First name" />
-                            <input name="last-name" placeholder="Last name" />
-                            <input name="phone" type="tel"  placeholder="Cell number" maxlength="10" />
-                            <input name="email" type="email" placeholder="Email address" />
-                            <input name="pin" type="tel" placeholder="Create 4-digit PIN" maxlength="4" />
+                            <input name="first-name" class="first-name" placeholder="First name" />
+                            <input name="last-name" class="last-name" placeholder="Last name" />
+                            <input name="phone" type="tel" class="phone" placeholder="Cell number" maxlength="10" />
+                            <input name="email" type="email" class="email" placeholder="Email address" />
+                            <input name="pin" type="tel" class="pin" placeholder="Create 4-digit PIN" maxlength="4" />
                             <button type="submit">Sign Up</button>
                         </form>
                     </div>
@@ -61,8 +62,8 @@
                     <div class="wrapper">
                         <form>
                             <p class="message">To reset your PIN enter your cell number only and hit <em>Forgot Password</em>.</p>
-                            <input name="phone" type="tel" placeholder="Cell number" maxlength="10" />
-                            <input name="pin" type="tel" placeholder="Enter PIN" maxlength="4" />
+                            <input name="phone" type="tel" class="phone" placeholder="Cell number" maxlength="10" />
+                            <input name="pin" type="tel" class="pin" placeholder="Enter PIN" maxlength="4" />
                             <button type="submit">Sign In</button>
                             <button class="forgot-password">Forgot Password</button>
                         </form>
@@ -73,7 +74,7 @@
                 <div class="scroll">
                     <ul class="wrapper">
                         <li class="cards">Saved Cards<span class="arrow"></span></li>
-                        <li class="account" class="big-gap">Account Settings<span class="arrow"></span></li>
+                        <li class="account gap">Account Settings<span class="arrow"></span></li>
                         <li class="share">Share the Love<span class="arrow"></span></li>
                         <li class="works">How it Works<span class="arrow"></span></li>
                         <li class="security">Security Information<span class="arrow"></span></li>
@@ -97,9 +98,17 @@
                     </div>
                 </div>
             </div>
+            <div id="success" class="view">
+                <div class="scroll">
+                    <div class="wrapper text">
+                        <h2 class="green">Order Sent!</h2>
+                        <p>We will text you once a runner accepts your order. Please stay in your seat.</p>
+                    </div>
+                </div>
+            </div>
             <div id="works" class="view">
                 <div class="scroll">
-                    <div class="wrapper message">
+                    <div class="wrapper text">
                         <h2>Laboris Nisi Aliquip</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                         <h2>Dignissimos Ducimus</h2>
@@ -109,7 +118,7 @@
             </div>
             <div id="security" class="view">
                 <div class="scroll">
-                    <div class="wrapper message">
+                    <div class="wrapper text">
                         <h2>Laboris Nisi Aliquip</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                         <h2>Dignissimos Ducimus</h2>
@@ -119,17 +128,19 @@
             </div>
             <div id="share" class="view">
                 <div class="scroll">
-                    <div class="wrapper message">
+                    <div class="wrapper text">
                         <h2>Laboris Nisi Aliquip</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <p>http://flwtb.co/4H8uiS</p>
-                        <button>Copy to Clipboard</button>
+                        <p class="link">http://flwtb.co/4H8uiS</p>
+                        <form>
+                            <button>Copy to Clipboard</button>
+                        </form>
                     </div>
                 </div>
             </div>
             <div id="feedback" class="view">
                 <div class="scroll">
-                    <div class="wrapper message">
+                    <div class="wrapper text">
                         <h2>Laboris Nisi Aliquip</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                         <form>
@@ -150,34 +161,33 @@
             <div id="product" class="view"></div>
             <div id="checkout" class="view"></div>
         </div>
+        {% raw %}
         <script id="save-credit-card-template" type="text/html">
             <div class="scroll">
                 <div class="wrapper">
                     <div class="card-brands"></div>
                     <div class="stored-card"></div>
-                    <form>
-                        <input type="tel" name="number" placeholder="Card number" maxlength="16" />
-                        <input type="tel" name="expiration" placeholder="MM/YYYY" maxlength="9" />
-                        <button type="submit">Save Card</button>
-                    </form>
                     <div class="ssl-text"><span class="ssl-icon"></span>Your connection to Flowtab is secured with a 128-bit encryption (AES-256).</div>
                     <div class="powered"></div>
+                    <form>
+                        <input type="tel" name="number" class="number" placeholder="Card number" maxlength="16" />
+                        <input type="tel" name="expiration" class="expiration" placeholder="MM/YYYY" maxlength="9" />
+                        <button type="submit">Save Card</button>
+                    </form>
                     <div class="store-later">I will enter it later...</div>
                 </div>
             </div>
         </script>
         <script id="venues-template" type="text/html">
             <div class="scroll">
-                <div class="wrapper">
-                    {% for venue in items %}
-                    <div id="{{ venue.id }}" class="venue">
-                        <div class="image"></div>
-                        <div class="title">{{ venue.fullName }}</div>
-                        <div class="address">{{ venue.address.streetNumber }} {{ venue.address.streetName }} ({{ venue.address.hoodName }})</span>
-                        <div class="arrow"></div>
-                    </div>
-                    {% endfor %}
+                {% for venue in items %}
+                <div id="{{ venue.id }}" class="venue">
+                    <div class="image"></div>
+                    <div class="title">{{ venue.fullName }}</div>
+                    <div class="address">{{ venue.address.streetNumber }} {{ venue.address.streetName }} ({{ venue.address.hoodName }})</div>
+                    <div class="arrow"></div>
                 </div>
+                {% endfor %}
             </div>
         </script>
         <script id="categories-1-template" type="text/html">
@@ -186,47 +196,42 @@
                     <div class="bar"></div>
                     <div class="text">14 Country Club Ln | New Albany, OH</div>
                 </div>
-                <div class="wrapper">
-                    {% for category in items %}
-                    <div id="{{ category.uuid }}" class="category">
-                        <div class="icon {{ category.name }}"></div>
-                        <div class="title">{{ category.name }}</div>
-                        <div class="arrow"></div>
-                    </div>
-                    {% endfor %}
+                {% for category in items %}
+                <div id="{{ category.id }}" class="category">
+                    <div class="icon {{ category.name }}"></div>
+                    <div class="title">{{ category.name }}</div>
+                    <div class="arrow"></div>
                 </div>
+                {% endfor %}
             </div>
         </script>
         <script id="products-template" type="text/html">
             <div class="scroll">
-                <div class="wrapper">
-                    {% for product in items %}
-                    <div class="product" id="{{ product.uuid }}">
-                        <div class="title">{{ product.name }}</div>
-                        <div class="price">{{ product.price }}</div>
-                        <div class="description">{{ product.description }}</div>
-                    </div>
-                    {% endfor %}
+                {% for product in items %}
+                <div class="products" id="{{ product.uuid }}">
+                    <span class="arrow"></span>
+                    <div class="title">{{ product.name }}</div>
+                    <div class="price">${{ product.price }}</div>
                 </div>
+                {% endfor %}
             </div>
         </script>
         <script id="product-template" type="text/html">
             <div class="scroll">
-                <div class="product" id="{{ product.uuid }}">
-                    <div class="title">{{ product.name }}</div>
-                    <div class="description">{{ product.description }}</div>
-                    <div class="price">
-                        <div class="value">{{ product.price }}</div>
-                    </div>
-                    <form>
-                        <textarea name="message" placeholder="Do you have any special requests?" rows="3" autocomplete="off"></textarea>
-                        <div class="counter">
-                            <button class="add"></button>
-                            <span class="value"></span>
-                            <button class="subtract"></button>
+                <div class="wrapper">
+                    <div class="product" id="{{ product.uuid }}">
+                        <div class="title">{{ product.name }}</div>
+                        <div class="description">{{ product.description }}</div>
+                        <div class="price">
+                            <div class="value">{{ product.price }}</div>
                         </div>
-                        <button type="submit">Add to Cart</button>
-                    </form>
+                        <form>
+                            <textarea name="message" placeholder="Do you have any special requests?" rows="3" autocomplete="off"></textarea>
+                            <button class="subtract"></button>
+                            <span class="value">0</span>
+                            <button class="add"></button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </script>
@@ -246,6 +251,7 @@
                 <button type="submit">Process Order</button>
             </div>
         </script>
+        {% endraw %}
         <script type="text/javascript" src="/script/Zepto.js"></script>
         <script type="text/javascript" src="/script/Zepto.jQTouch.js"></script>
         <script type="text/javascript" src="/script/Lodash.js"></script>
