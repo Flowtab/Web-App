@@ -56,10 +56,10 @@ Flowtab.wallet = (function () {
             o.parent = parent || null;
 
             if (!parent || o.categories || o.products) {
-                categories[o.id] = o;
+                categories[o.uuid] = o;
             }
             else {
-                products[o.id] = o;
+                products[o.uuid] = o;
             }
 
             if (o.categories)
@@ -472,7 +472,7 @@ Flowtab.wallet = (function () {
         var $items = $container.find('.products');
 
         $items.bind('click', function () {
-            self.buildProductView(this.id.substr(1));
+            self.buildProductView(this.id);
             self.showProductView();
         });
     };

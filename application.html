@@ -181,7 +181,7 @@
         <script id="venues-template" type="text/html">
             <div class="scroll">
                 {% for venue in items %}
-                <div id="{{ venue.id }}" class="venue">
+                <div id="{{ venue.uuid }}" class="venue">
                     <div class="image"></div>
                     <div class="title">{{ venue.fullName }}</div>
                     <div class="address">{{ venue.address.streetNumber }} {{ venue.address.streetName }} ({{ venue.address.hoodName }})</div>
@@ -197,7 +197,7 @@
                     <div class="text">14 Country Club Ln | New Albany, OH</div>
                 </div>
                 {% for category in items %}
-                <div id="{{ category.id }}" class="category">
+                <div id="{{ category.uuid }}" class="category">
                     <div class="icon {{ category.name }}"></div>
                     <div class="title">{{ category.name }}</div>
                     <div class="arrow"></div>
