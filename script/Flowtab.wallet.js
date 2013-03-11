@@ -669,49 +669,59 @@ Flowtab.wallet = (function () {
 
     self.showWorksView = function Flowtab_wallet_showWorksView(transition) {
         buildNavigationView({
-            title: 'Works'
+            title: 'How It Works'
           , left: {
                 className: 'settings'
               , handler: function () {
-                    self.showSettingsView("flipleft");
+                    self.showSettingsView('slideright');
                 }
             }
         });
         showView(view.works, transition);
         removeTopbarBindings();
-        $("#topbar-left-nav").bind("click", function () {
-            self.showSettingsView('slideright');
-        });
     };
 
     self.showSecurityView = function Flowtab_wallet_showSecurityView(transition) {
-        //buildNavigationView("Security", "back", "");
+        buildNavigationView({
+            title: 'Security'
+          , left: {
+                className: 'settings'
+              , handler: function () {
+                    self.showSettingsView('slideright');
+                }
+            }
+        });
         showView(view.security, transition);
         removeTopbarBindings();
-        $("#topbar-left-nav").bind("click", function () {
-            self.showSettingsView('slideright');
-        });
     };
 
     self.showShareView = function Flowtab_wallet_showShareView(transition) {
-        //buildNavigationView("Share", "back", "");
+        buildNavigationView({
+            title: 'Share'
+          , left: {
+                className: 'settings'
+              , handler: function () {
+                    self.showSettingsView('slideright');
+                }
+            }
+        });
         showView(view.share, transition);
         removeTopbarBindings();
-        $("#topbar-left-nav").bind("click", function () {
-            self.showSettingsView('slideright');
-        });
     };
 
     self.showFeedbackView = function Flowtab_wallet_showFeedbackView(transition) {
-        //buildNavigationView("Feedback", "back", "");
+        buildNavigationView({
+            title: 'Feedback'
+          , left: {
+                className: 'settings'
+              , handler: function () {
+                    self.showSettingsView('slideright');
+                }
+            }
+        });
         showView(view.feedback, transition);
         removeTopbarBindings();
-        $("#topbar-left-nav").bind("click", function () {
-            self.showSettingsView('slideright');
-        });
     };
-
-    // Not sure what this is doing
 
     $('.view').each(function () {
         var id = this.id
