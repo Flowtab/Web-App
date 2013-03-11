@@ -538,28 +538,28 @@ Flowtab.wallet = (function () {
     self.buildSettingsView = function Flowtab_wallet_buildSettingsView() {
         var $container = view.settings.$container;
 
-        $("#settings-cards").bind('click', function () {
-            self.showSaveCreditCardView("slideleft");
+        $container.find('.cards').bind('click', function () {
+            self.showSaveCreditCardView('slideleft');
         });
 
-        $("#settings-account").bind('click', function () {
-            self.showAccountView("slideleft");
+        $container.find('.account').bind('click', function () {
+            self.showAccountView('slideleft');
         });
 
-        $("#settings-works").bind('click', function () {
-            self.showWorksView("slideleft");
+        $container.find('.how-it-works').bind('click', function () {
+            self.showWorksView('slideleft');
         });
 
-        $("#settings-security").bind('click', function () {
-            self.showSecurityView("slideleft");
+        $container.find('.security').bind('click', function () {
+            self.showSecurityView('slideleft');
         });
 
-        $("#settings-share").bind('click', function () {
-            self.showShareView("slideleft");
+        $container.find('.share').bind('click', function () {
+            self.showShareView('slideleft');
         });
 
-        $("#settings-feedback").bind('click', function () {
-            self.showFeedbackView("slideleft");
+        $container.find('.feedback').bind('click', function () {
+            self.showFeedbackView('slideleft');
         });
     };
 
@@ -668,7 +668,15 @@ Flowtab.wallet = (function () {
     };
 
     self.showWorksView = function Flowtab_wallet_showWorksView(transition) {
-        buildNavigationView("Works", "back", "");
+        buildNavigationView({
+            title: 'Works'
+          , left: {
+                className: 'settings'
+              , handler: function () {
+                    self.showSettingsView("flipleft");
+                }
+            }
+        });
         showView(view.works, transition);
         removeTopbarBindings();
         $("#topbar-left-nav").bind("click", function () {
@@ -677,7 +685,7 @@ Flowtab.wallet = (function () {
     };
 
     self.showSecurityView = function Flowtab_wallet_showSecurityView(transition) {
-        buildNavigationView("Security", "back", "");
+        //buildNavigationView("Security", "back", "");
         showView(view.security, transition);
         removeTopbarBindings();
         $("#topbar-left-nav").bind("click", function () {
@@ -686,7 +694,7 @@ Flowtab.wallet = (function () {
     };
 
     self.showShareView = function Flowtab_wallet_showShareView(transition) {
-        buildNavigationView("Share", "back", "");
+        //buildNavigationView("Share", "back", "");
         showView(view.share, transition);
         removeTopbarBindings();
         $("#topbar-left-nav").bind("click", function () {
@@ -695,7 +703,7 @@ Flowtab.wallet = (function () {
     };
 
     self.showFeedbackView = function Flowtab_wallet_showFeedbackView(transition) {
-        buildNavigationView("Feedback", "back", "");
+        //buildNavigationView("Feedback", "back", "");
         showView(view.feedback, transition);
         removeTopbarBindings();
         $("#topbar-left-nav").bind("click", function () {
@@ -726,13 +734,9 @@ Flowtab.wallet = (function () {
         };
     });
 
-    // Set Stripe and disable touchstart on toolbar
-    
     Stripe.setPublishableKey(STRIPE_PUBLISHABLE_KEY);
-    $(".toolbar").bind('touchstart', function() { return false; });
+    
     self.loadVenues();
-
-    // Get current user information
 
     framework.service.getCurrentUser(function (data) {
         currentUser = data.user;
