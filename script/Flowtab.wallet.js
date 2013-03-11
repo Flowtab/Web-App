@@ -189,7 +189,7 @@ Flowtab.wallet = (function () {
 
     function buildTopBar(title, nav1, nav2) {
         $("#navigation .title").html(title);
-        $("#navigation").removeClass();
+        $("#navigation .navigation").removeClass("settings x-arrow back");
         $("#navigation .left").addClass(nav1);
         $("#navigation .right").addClass(nav2);
         showTopbar();
@@ -610,14 +610,17 @@ Flowtab.wallet = (function () {
 
     };
 
-    // Show views after they're built
+    // Show Views
 
     self.showVenuesView = function Flowtab_wallet_showVenuesView(transition) {  
         buildTopBar("Locations", "settings", "");
         showView(view.venues, transition);
 
-        $("#topbar-left-nav").unbind();
-        $("#topbar-left-nav").bind("click", function () {
+        leftNavigation = $("#navigation .left");
+        rightNavigation = $("#navigation .right");
+        navigationTitle = $("#navigation .title");
+
+        $(leftNavigation).unbind().bind("click", function () {
             self.buildSettingsView();
             self.showSettingsView("flipleft");
         });
@@ -632,8 +635,7 @@ Flowtab.wallet = (function () {
         buildTopBar("Settings", "x-arrow", "");
         showView(view.settings, transition);
 
-        $("#topbar-left-nav").unbind();
-        $("#topbar-left-nav").bind("click", function () {
+        $(leftNavigation).unbind().bind("click", function () {
             self.showVenuesView("flipleft");
         });
 
@@ -647,13 +649,12 @@ Flowtab.wallet = (function () {
         buildTopBar("New Albany", "back", "");
         showView(view['categories' + id], transition);
 
-        $("#topbar-left-nav").unbind();
         if (id === 1) {
-            $("#topbar-left-nav").bind("click", function () {
+            $(leftNavigation).unbind().bind("click", function () {
                 self.showVenuesView("slideright");
             });
         } else {
-            $("#topbar-left-nav").bind("click", function () {
+            $(leftNavigation).unbind().bind("click", function () {
                 self.showCategoriesView("slideright");
             });
         }
@@ -671,9 +672,7 @@ Flowtab.wallet = (function () {
     self.showSaveCreditCardView = function Flowtab_wallet_showSaveCreditCardView(transition) {
         buildTopBar("Cards", "back", "");
         showView(view.saveCreditCard, transition);
-        $("#topbar-left-nav")
-        .unbind()
-        .bind("click", function () {
+        $(leftNavigation).unbind().bind("click", function () {
             self.showSettingsView("slideright");
         });
     };
