@@ -131,7 +131,6 @@ Flowtab.wallet = (function () {
         $navigation.removeClass('visible');
     }
 
-    function showCheckout() {
         $(".bottombar").addClass("visible");
     }
 
