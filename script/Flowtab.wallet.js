@@ -433,7 +433,6 @@ Flowtab.wallet = (function () {
             buildNavigationView('Venue Name','back','');
             self.showCategoriesView(1, 'slideleft');
             self.loadMenu(this.id);
-            showCheckout();
         });
     };
 
@@ -485,6 +484,31 @@ Flowtab.wallet = (function () {
         var $container = view.product.$container;
         
         $container.html(view.product.render({ product: products[id] }));
+
+        var $productAdd = $container.find('.add');
+        var $productSubtract = $container.find('.subtract');
+        var $productValue = $container.find('form .value');
+
+        $productAdd.bind('click', function () {
+            var itemCount = cart.addItem(id);
+            $checkoutValue.html(itemCount);
+            $productValue.html(itemCount);
+            console.log(itemCount);
+        });
+    
+        $productSubtract.bind('click', function () {
+            var itemCount = cart.subtractItem(id);
+            $checkoutValue.html(itemCount);
+            $productValue.html(itemCount);
+            console.log(itemCount);
+        });
+
+        $checkoutButton.bind('click', function () {
+            self.buildCheckoutView();
+            self.showCheckoutView();
+            $($checkoutButton).removeClass("visible");
+        });
+
     };
 
     self.buildCheckoutView = function Flowtab_wallet_buildCheckoutView() {
@@ -745,7 +769,6 @@ Flowtab.wallet = (function () {
         self.buildSignInView();
         self.buildSaveCreditCardView();
         self.buildSettingsView();
-        hideCheckout();
         hideNavigationView();
         initialize();
     });
