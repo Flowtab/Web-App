@@ -1,6 +1,7 @@
 Flowtab.wallet.Cart = function Flowtab_wallet_Cart(products) {
     this.products = products;
     this.items = {};
+    $checkoutButton = $('#checkout-button');
 };
 
 Flowtab.wallet.Cart.prototype = {
@@ -34,6 +35,9 @@ Flowtab.wallet.Cart.prototype = {
     }
 
   , addItem: function Flowtab_wallet_Cart_prototype_addItem(uuid, count) {
+
+        $($checkoutButton).addClass("visible");
+    
         if (!count)
             count = 1;
 
@@ -41,11 +45,15 @@ Flowtab.wallet.Cart.prototype = {
             return uuid in this.items
                 ? this.items[uuid].count += count
                 : (this.items[uuid] = { count: count }).count;
+                
+                
+        
         
         //TODO: handle error
     }
 
   , subtractItem: function Flowtab_wallet_Cart_prototype_subtractItem(uuid, count) {
+
         var item;
 
         if (uuid in this.items) {
@@ -56,9 +64,9 @@ Flowtab.wallet.Cart.prototype = {
 
             if (item.count > count)
                 return this.items[uuid].count -= count;
-            
-            delete this.items[uuid];
 
+            $($checkoutButton).removeClass("visible");
+            delete this.items[uuid];
             return 0;
         }
 
