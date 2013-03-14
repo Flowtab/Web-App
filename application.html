@@ -221,15 +221,16 @@
                 <div class="wrapper">
                     <div class="product" id="{{ product.uuid }}">
                         <div class="title">{{ product.name }}</div>
-                        <div class="description">{{ product.description }}</div>
+                        <div class="description">{{ product.description }} (${{ product.price }})</div>
                         <div class="price">
-                            <div class="value">{{ product.price }}</div>
+                            <div class="value"></div>
                         </div>
                         <form>
                             <textarea name="message" placeholder="Do you have any special requests?" rows="3" autocomplete="off"></textarea>
                             <button class="subtract"></button>
                             <span class="value">0</span>
                             <button class="add"></button>
+                            <span class="message">You must enter any text before adding item.</span>
                         </form>
                     </div>
                 </div>
