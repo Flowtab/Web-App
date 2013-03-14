@@ -26,7 +26,7 @@ Flowtab.wallet.Cart.prototype = {
 
   , getItemCount: function Flowtab_wallet_Cart_prototype_getItemCount(uuid) {
         if (uuid in this.products)
-            return return uuid in cart
+            return uuid in cart
                 ? cart[uuid].count
                 : 0;
 
