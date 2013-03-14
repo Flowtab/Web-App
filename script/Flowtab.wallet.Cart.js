@@ -42,6 +42,26 @@ Flowtab.wallet.Cart.prototype = {
         //TODO: handle error
     }
 
+  , subtractItem: function Flowtab_wallet_Cart_prototype_subtractItem(uuid, count) {
+        var item;
+
+        if (uuid in this.items) {
+            if (!count)
+                count = 1;
+
+            item = this.items[uuid];
+
+            if (item.count > count)
+                return this.items[uuid].count -= count;
+            
+            delete this.items[uuid];
+
+            return 0;
+        }
+
+        //TODO: handle error
+    }
+
   , addItemMetadata: function Flowtab_wallet_Cart_prototype_addItemMetadata(uuid, metadata) {
         if (uuid in this.products) {
             var item = this.items[uuid];
