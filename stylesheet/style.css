@@ -208,7 +208,7 @@ textarea {
 	-webkit-transition: all .25s linear;
 }
 
-.visible {
+#navigation.visible {
     top: 0 !important;
 }
 
@@ -224,7 +224,7 @@ textarea {
     text-shadow: 1px 1px 1px black;
 }
 
-#navigation .navigation {
+#navigation button {
     background: none;
     position: absolute;
     width: 30px;
