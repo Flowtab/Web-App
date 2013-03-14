@@ -65,6 +65,11 @@ Flowtab.wallet.Cart.prototype = {
         //TODO: handle error
     }
 
+  , empty: function Flowtab_wallet_Cart_prototype_empty() {
+        for (var k in this.items)
+            delete this.items[k];
+    }
+
   , addItemMetadata: function Flowtab_wallet_Cart_prototype_addItemMetadata(uuid, metadata) {
         if (uuid in this.products) {
             var item = this.items[uuid];
