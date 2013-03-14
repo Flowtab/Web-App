@@ -34,9 +34,12 @@ Flowtab.wallet.Cart.prototype = {
     }
 
   , addItem: function Flowtab_wallet_Cart_prototype_addItem(uuid, count) {
+        if (!count)
+            count = 1;
+
         if (uuid in this.products)
             return uuid in this.items
-                ? this.items[uuid].count += (count || 1)
+                ? this.items[uuid].count += count
                 : (this.items[uuid] = { count: count }).count;
         
         //TODO: handle error
