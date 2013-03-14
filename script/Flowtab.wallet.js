@@ -484,47 +484,11 @@ Flowtab.wallet = (function () {
     };
 
     self.buildCheckoutView = function Flowtab_wallet_buildCheckoutView() {
-        var cart = {
-            products: {
-                '90114057-09ff-4099-bdbd-a252af3ee6a1': {
-                    id: '90114057-09ff-4099-bdbd-a252af3ee6a1'
-                  , name: 'Stella Artois'
-                  , category: {
-                        id: 'f33627aa-5544-4e52-ba7f-dc8c2fa1a4d8'
-                      , name: 'Regular Beer'
-                      , kind: 'Beer'
-                      , description: '...'
-                    }
-                  , price: 7.0
-                  , description: 'psuedo-fancy'
-                }
-              , 'a449ad0b-8f00-4cee-b03c-762b3234ac56': {
-                    id: 'a449ad0b-8f00-4cee-b03c-762b3234ac56'
-                  , name: 'Crabbys'
-                  , category: {
-                        id: 'af3ac88e-c673-481e-8191-af3b3f15c0f8'
-                      , name: 'American Beer'
-                      , kind: 'Beer'
-                      , description: '...'
-                    }
-                  , price: 10.5
-                  , description: 'super-fancy'
-                }
-              , '83ebbec5-f6da-4549-924d-e81702e3a310': {
-                    id: '83ebbec5-f6da-4549-924d-e81702e3a310'
-                  , name: 'Crabbys'
-                  , category: {
-                        id: 'af3ac88e-c673-481e-8191-af3b3f15c0f8'
-                      , name: 'America Beer'
-                      , kind: 'Beer'
-                      , description: '...'
-                    }
-                  , price: 5.0
-                  , description: 'super-weak'
-                }
-            }
-          , total: 22.5
-        };
+        var $container = view.checkout.$container;
+
+        // This is not working... KAH 3/14/13
+        $container.html(view.checkout.render({ product: cart.items }));
+
     };
 
     self.buildConfirmationView = function Flowtab_wallet_buildConfirmationView() {
@@ -637,6 +601,20 @@ Flowtab.wallet = (function () {
         });
         showNavigationView();
         showView(view.product, 'slideleft');
+    }
+
+    self.showCheckoutView = function Flowtab_wallet_showCheckoutView() {
+        buildNavigationView({
+            title: 'Checkout'
+          , left: {
+                className: 'back'
+              , handler : function () {
+                    // body...
+                }
+            }
+        });
+        showNavigationView();
+        showView(view.checkout, 'slideleft');
     }
 
     self.showSaveCreditCardView = function Flowtab_wallet_showSaveCreditCardView(transition) {
