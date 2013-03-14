@@ -74,6 +74,6 @@ Flowtab.wallet.Cart.prototype = {
     }
 
   , serialize: function Flowtab_wallet_Cart_prototype_serialize() {
-        //TODO
+        return JSON.stringify(this.items);
     }
 };
