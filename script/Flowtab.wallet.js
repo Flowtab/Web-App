@@ -132,13 +132,6 @@ Flowtab.wallet = (function () {
         $navigation.removeClass('visible');
     }
 
-        $(".bottombar").addClass("visible");
-    }
-
-    function hideCheckout() {
-        $(".bottombar").removeClass("visible");
-    }
-
     function showError() {
         hideSpinner();
         
@@ -335,7 +328,6 @@ Flowtab.wallet = (function () {
         });
 
         $closeButton.bind('click', function () {
-            //$navigationButtons.removeClass();
             showView(view.welcome, 'slidedown');
             hideNavigationView();
             return false;
