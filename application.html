@@ -225,9 +225,6 @@
                     <div class="product" id="{{ product.uuid }}">
                         <div class="title">{{ product.name }}</div>
                         <div class="description">{{ product.description }} (${{ product.price }})</div>
-                        <div class="price">
-                            <div class="value"></div>
-                        </div>
                         <form>
                             <textarea name="message" placeholder="Do you have any special requests?" rows="3" autocomplete="off"></textarea>
                             <button class="subtract"></button>
@@ -242,17 +239,56 @@
         <script id="checkout-template" type="text/html">
             <div class="scroll">
                 <div class="wrapper">
-                    {% for product in items %}
-                    <div class="product" id="{{ product.uuid }}">
-                        <div class="title">{{ product.name }}</div>
-                        <div class="price">{{ product.price }}</div>
+                    <div class="cart row bold">
+                        <span class="title">Product (Qty)</span>
+                        <span class="value">Price</span>
+                    </div>
+
+                    <!--Just for testing purposes...-->
+                    <div class="cart row">
+                        <span class="title">Blueberries (1)</span>
+                        <span class="value">$0.00</span>
+                    </div>
+                    <div class="cart row">
+                        <span class="title">Strawberries (2)</span>
+                        <span class="value">$0.00</span>
+                    </div>
+                    <div class="cart row">
+                        <span class="title">Raspberries (5)</span>
+                        <span class="value">$0.00</span>
+                    </div>
+
+<!--
+                    {% for item in cart.items %}
+                    {% set product = cart.products[loop.key] %}
+                    <div class="cart row" id="{{ product.uuid }}">
+                        <span class="title">{{ product.name }} (x{{ product.quantity }})</span>
+                        <span class="value">{{ product.price }}</span>
                     </div>
                     {% endfor %}
+-->
+                    <div class="squiggle"></div>
+                    <div class="subtotal row">
+                        <span class="title">Subtotal:</span>
+                        <span class="value">$0.00</span>
+                    </div>
+                    <div class="discount row green">
+                        <span class="title">Discount:</span>
+                        <span class="value">$0.00</span>
+                    </div>
+                    <div class="gratuity row">
+                        <span class="title">Tip (20%)</span>
+                        <span class="value">$0.00</span>
+                    </div>
+                    <div class="total row">
+                        <span class="title">Total:</span>
+                        <span class="value">$0.00</span>
+                    </div>
+                    <div class="message">Please remember 100% of your tip goes to your Flowtab runner.</div>
+                    <form>
+                        <button type="submit">Place Order</button>
+                    </form>
                 </div>
-                <div class="subtotal">{{ subtotal }}</div>
-                <div class="gratuity">{{ gratuity }}</div>
-                <div class="total">{{ total }}</div>
-                <button type="submit">Process Order</button>
             </div>
         </script>
         {% endraw %}
