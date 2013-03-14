@@ -10,6 +10,7 @@ Flowtab.wallet = (function () {
       , categories = null
       , products = null
       , product = null
+      , cart = null
       , pageHeight = null
       , windowHeight = null
       , hasLoadedUser = false
@@ -196,6 +197,9 @@ Flowtab.wallet = (function () {
             products = {};
 
             buildMenu(data.menu);
+
+            cart = self.cart = new Flowtab.wallet.Cart(products);
+
             self.buildCategoriesView(menu, view.categories1, view.categories2);
 
             if (currentView.id.indexOf('categories') === 0)
