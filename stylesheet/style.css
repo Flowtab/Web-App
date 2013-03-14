@@ -255,23 +255,45 @@ textarea {
     background-size: 82% auto;
 }
 
-/* Bottom Bar */
+/* Checkout Button */
 
-#checkout {
+#checkout-button {
     position: fixed;
-    bottom: 30px;
-    right: 0;
+    top: 92%;
+    left: -130px;
     z-index: 100000;
     height: 12px;
     width: 92px;
 	-webkit-transition: all .25s linear;
 }
 
-.visible {
-    right: -19px;
+#checkout-button.visible {
+    left: -25px;
 }
 
-#checkout button {
+#checkout-button .counter {
+    background: url(/image/red-dot.png) no-repeat;
+    background-size: 100% auto;
+    position: absolute;
+    top: -9px;
+    left: 87px;
+    width: 25px;
+    height: 23px;
+    z-index: 1000;
+}
+
+#checkout-button .counter .value {
+    position: absolute;
+    color: white;
+    font-family: 'Open Sans';
+    font-size: 13px;
+    width: 24px;
+    text-align: center;
+    height: 21px;
+    line-height: 21px;
+}
+
+#checkout-button button {
     box-shadow: 1px 1px 1px #598d11;
     background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #b8e356), color-stop(1, #8fc14b) );
     background-color: #b8e356;
@@ -283,12 +305,12 @@ textarea {
     font-family: 'Open Sans';
     font-size: 13px;
     line-height: 13px;
-    width: 75px;
+    width: 105px;
     height: 30px;
-    padding: 8px 0;
+    padding: 8px 10px;
     text-decoration: none;
     position: absolute;
-    text-align: center;
+    text-align: right;
     font-weight: 700;
 }
 
