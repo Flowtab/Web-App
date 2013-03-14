@@ -1,6 +1,6 @@
 Flowtab.wallet.Cart = function Flowtab_wallet_Cart(products) {
     this.products = products;
-    this.items = [];
+    this.items = {};
 };
 
 Flowtab.wallet.Cart.prototype = {
@@ -26,8 +26,8 @@ Flowtab.wallet.Cart.prototype = {
 
   , getItemCount: function Flowtab_wallet_Cart_prototype_getItemCount(uuid) {
         if (uuid in this.products)
-            return uuid in cart
-                ? cart[uuid].count
+            return uuid in this.items
+                ? this.items[uuid].count
                 : 0;
 
         //TODO: handle error
@@ -35,9 +35,9 @@ Flowtab.wallet.Cart.prototype = {
 
   , addItem: function Flowtab_wallet_Cart_prototype_addItem(uuid, count) {
         if (uuid in this.products)
-            return uuid in cart
-                ? cart[uuid].count += (count || 1)
-                : (cart[uuid] = { count: count }).count;
+            return uuid in this.items
+                ? this.items[uuid].count += (count || 1)
+                : (this.items[uuid] = { count: count }).count;
         
         //TODO: handle error
     }
