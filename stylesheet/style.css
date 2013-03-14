@@ -835,7 +835,62 @@ textarea {
 
 /* Checkout View */
 
+#checkout button {
+    width: 100%;
+    margin: 15px 0;
+    position: relative;
+}
 
+#checkout .squiggle {
+    background: url(/image/squiggle.png) no-repeat 0 12px;
+    background-size: 100% auto;
+    width: 80%;
+    height: 25px;
+    padding: 8px 0;
+    display: block;
+    margin: 0 10%;
+    opacity: .5;
+}
+
+#checkout .row {
+    font-family: 'Open Sans';
+    width: 90%;
+    font-size: 14px;
+    padding: 3px 5%;
+    line-height: 15px;
+    color: #444;
+    height: 16px;
+}
+
+#checkout .row .title {
+    float: left;  
+}
+
+#checkout .row .value {
+    float: right;
+}
+
+#checkout .row.bold {
+    font-weight: 700;
+    padding-top: 15px;
+}
+
+#checkout .row.green {
+    color: #009933;
+}
+
+#checkout .message {
+    font-family: 'Open Sans';
+    text-shadow: 1px 1px 1px #F9F9F9;
+    position: relative;
+    font-size: 13px;
+    line-height: 17px;
+    text-align: center;
+    color: #AAA;
+    width: 80%;
+    height: 32px;
+    margin: 5px 10% 0;
+}
 
 /* Success View */
 
