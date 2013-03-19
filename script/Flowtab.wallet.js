@@ -8,6 +8,8 @@ Flowtab.wallet = (function () {
       , venues = null
       , menu = null
       , categories = null
+      , title = null
+      , category = null
       , products = null
       , product = null
       , cart = null
@@ -182,6 +184,7 @@ Flowtab.wallet = (function () {
             menu = null;
             categories = null;
             products = null;
+            name = null;
 
             self.buildVenuesView(venues);
 
@@ -433,18 +436,18 @@ Flowtab.wallet = (function () {
         });
 
         $items.bind('click', function () {
-            buildNavigationView('Venue Name','back','');
-            self.showCategoriesView(1, 'slideleft');
+            self.showCategoriesView(1, 'slideleft', this.title);
             self.loadMenu(this.id);
         });
     };
 
-    self.buildCategoriesView = function Flowtab_wallet_buildCategoriesView(items, targetView, nextView) {
+    self.buildCategoriesView = function Flowtab_wallet_buildCategoriesView(items, targetView, nextView, name) {
+    
         var $container = targetView.$container;
 
         removeViewBindings(targetView);
         $container.html(view.categories1.render({ items: items }));
-
+        
         var $items = $container.find('.category');
 
         $.extend(targetView, {
@@ -452,16 +455,28 @@ Flowtab.wallet = (function () {
         });
 
         $items.bind('click', function () {
+        
             var item = categories[this.id];
 
             if (item.categories) {
                 self.buildCategoriesView(item.categories, nextView, targetView);
-                showView(nextView, 'slideleft');
+                
+		        buildNavigationView({
+		            title: item.name
+		          , left: {
+		                className: 'back'
+		              , handler: function () {
+		                    self.showCategoriesView(1, 'slideright', $title);
+		                }
+		            }
+		        });
+		        showNavigationView();
+		        showView(nextView, 'slideleft');
+                                
             }
             else if (item.products) {
                 self.buildProductsView(item.products);
-                buildNavigationView(this.id,'back','');
-                showView(view.products, 'slideleft');
+                self.showProductsView('slideleft', item.name);
             }
             else {
                 console.error('Flowtab.wallet.buildCategoriesView::empty_category_error (item:' +  JSON.stringfy(item) + ')');
@@ -479,7 +494,7 @@ Flowtab.wallet = (function () {
 
         $items.bind('click', function () {
             self.buildProductView(this.id);
-            self.showProductView();
+            self.showProductView('slideleft');
         });
     };
 
@@ -558,6 +573,8 @@ Flowtab.wallet = (function () {
             self.showFeedbackView('slideleft');
         });
     };
+    
+    // Show views functions
 
     self.showWelcomeView = function Flowtab_wallet_showWelcomeView () {
         hideNavigationView();
@@ -589,7 +606,7 @@ Flowtab.wallet = (function () {
           , left: {
                 className: 'x-arrow'
               , handler: function () {
-                    // body...
+                    self.showVenuesView('flipleft');
                 }
             }
         });
@@ -602,13 +619,14 @@ Flowtab.wallet = (function () {
             showError();
     }
 
-    self.showCategoriesView = function Flowtab_wallet_showCategoriesView(id, transition) {
+    self.showCategoriesView = function Flowtab_wallet_showCategoriesView(id, transition, title) {
+    	$title = title;
         buildNavigationView({
-            title: 'Categories'
+            title: title
           , left: {
                 className: 'back'
               , handler: function () {
-                    // body...
+                    self.showVenuesView('slideright');
                 }
             }
         });
@@ -621,18 +639,33 @@ Flowtab.wallet = (function () {
             showError();
     }
 
-    self.showProductView = function Flowtab_wallet_showProductView() {
+    self.showProductsView = function Flowtab_wallet_showProductsView(transition, category) {
+    	$category = category;
         buildNavigationView({
-            title: 'Product'
+            title: $category
           , left: {
                 className: 'back'
               , handler : function () {
-                    // body...
+                    self.showCategoriesView(1, 'slideright', $title);
                 }
             }
         });
         showNavigationView();
-        showView(view.product, 'slideleft');
+        showView(view.products, transition);
+    }
+
+    self.showProductView = function Flowtab_wallet_showProductView(transition) {
+        buildNavigationView({
+            title: 'Add to Cart'
+          , left: {
+                className: 'back'
+              , handler : function () {
+                    self.showProductsView('slideright', $category);
+                }
+            }
+        });
+        showNavigationView();
+        showView(view.product, transition);
     }
 
     self.showCheckoutView = function Flowtab_wallet_showCheckoutView(transition) {
@@ -641,13 +674,28 @@ Flowtab.wallet = (function () {
           , left: {
                 className: 'back'
               , handler : function () {
-                    // body...
+                    self.showCategoriesView(1, 'slideright');
                     $($checkoutButton).addClass("visible");
                 }
             }
         });
         showNavigationView();
-        showView(view.checkout, 'slideleft');
+        showView(view.checkout, transition);
+    }
+
+    self.showSuccessView = function Flowtab_wallet_showSuccessView(transition) {
+        buildNavigationView({
+            title: 'Success'
+          , right: {
+                className: 'done'
+              , handler : function () {
+		            self.showCategoriesView(1, 'flipleft');
+                }
+            }
+        });
+        showNavigationView();
+        cart.emptyCart();     
+        showView(view.success, transition);
     }
 
     self.showSaveCreditCardView = function Flowtab_wallet_showSaveCreditCardView(transition) {
