@@ -782,7 +782,7 @@ textarea {
 .product form {
     padding: 10px 5%;
     width: 90%;
-    height: 115px;
+    height: 122px;
     margin: 0;
 }
 
@@ -798,13 +798,13 @@ textarea {
 .product form .subtract {
     background: url(/image/counter-minus.png) no-repeat;
     background-size: 100% auto;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     position: absolute;
-    right: 29%;
+    left: 11%;
     border: 1px solid #AAA;
     box-shadow: inset 0px 1px 0px 0px #EFEFEF;
-    margin: 7px 0;
+    margin: 12px 0;
 }
 
 .product form .value {
@@ -816,23 +816,30 @@ textarea {
     width: 28px;
     position: absolute;
     border: none;
-    right: 20%;
+    left: 21%;
     font-size: 15px;
     text-align: center;
-    margin: 10px 0;
+    margin: 15px 0;
     padding-top: 2px;
 }
 
 .product form .add  {
     background: url(/image/counter-plus.png) no-repeat;
     background-size: 100% auto;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     position: absolute;
-    right: 11%;
+    left: 30%;
     border: 1px solid #AAA;
     box-shadow: inset 0px 1px 0px 0px #EFEFEF;
-    margin: 7px 0;
+    margin: 12px 0;
+}
+
+.product form .submit  {
+	right: 10%;
+	padding: 8px;
+	height: 38px;
+	margin-top: 8px;
 }
 
 /* Checkout View */
