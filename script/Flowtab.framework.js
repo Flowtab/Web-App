@@ -92,8 +92,7 @@ Flowtab.framework = (function () {
 	                data.venues[i] = {
                         uuid: self.util.createUuid(),
 	                    id: value.id,
-	                    fullName: value.first,
-	                    shortName: value.short,
+	                    shortName: value.first,
 	                    address: {
 	                        streetNumber: value.address,
 	                        streetName: value.street,
