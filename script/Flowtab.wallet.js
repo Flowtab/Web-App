@@ -515,7 +515,7 @@ Flowtab.wallet = (function () {
         var $productValue = $container.find('form .value');
         var $productMessage = $container.find('form textarea');
         var $productSubmit = $container.find('form .submit');
-        var $productCount = 0;
+        var $productCount = 1;
         
         $productValue.html($productCount);
 
@@ -527,7 +527,7 @@ Flowtab.wallet = (function () {
         });
     
         $productSubtract.bind('click', function () {
-        	if ($productCount > 0) {
+        	if ($productCount > 1) {
             	$productCount = $productCount - 1;
             	$productValue.html($productCount);
         	}
@@ -537,11 +537,12 @@ Flowtab.wallet = (function () {
         	if ($productCount > 0) {
 	            cart.addItem(id, $productCount);
 	           	itemCount = cart.getCount();
-	            $productCount = 0;
+	            $productCount = 1;
 	            $productMessage.val('');
 	            $productValue.html($productCount);
 	            $checkoutValue.html(itemCount);
 	            console.log(itemCount);
+	            self.showProductsView('slideright', $category);
 	        }
         });
 
