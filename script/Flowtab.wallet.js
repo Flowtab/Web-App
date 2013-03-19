@@ -173,6 +173,8 @@ Flowtab.wallet = (function () {
         }
     }
 
+	// Load venues and menus
+
     self.loadVenues = function Flowtab_wallet_loadVenues() {
         if (currentView === view.venues)
             showSpinner();
@@ -213,6 +215,8 @@ Flowtab.wallet = (function () {
                 hideSpinner();
         });
     };
+    
+    // Build views functions
 
     self.buildWelcomeView = function Flowtab_wallet_buildWelcomeView() {
         var $container = view.welcome.$container
@@ -704,7 +708,7 @@ Flowtab.wallet = (function () {
           , left: {
                 className: 'back'
               , handler: function () {
-                    // body...
+                    self.showSettingsView('slideright');
                 }
             }
         });
@@ -730,56 +734,52 @@ Flowtab.wallet = (function () {
         buildNavigationView({
             title: 'How It Works'
           , left: {
-                className: 'settings'
+                className: 'back'
               , handler: function () {
                     self.showSettingsView('slideright');
                 }
             }
         });
         showView(view.works, transition);
-        removeTopbarBindings();
     };
 
     self.showSecurityView = function Flowtab_wallet_showSecurityView(transition) {
         buildNavigationView({
             title: 'Security'
           , left: {
-                className: 'settings'
+                className: 'back'
               , handler: function () {
                     self.showSettingsView('slideright');
                 }
             }
         });
         showView(view.security, transition);
-        removeTopbarBindings();
     };
 
     self.showShareView = function Flowtab_wallet_showShareView(transition) {
         buildNavigationView({
             title: 'Share'
           , left: {
-                className: 'settings'
+                className: 'back'
               , handler: function () {
                     self.showSettingsView('slideright');
                 }
             }
         });
         showView(view.share, transition);
-        removeTopbarBindings();
     };
 
     self.showFeedbackView = function Flowtab_wallet_showFeedbackView(transition) {
         buildNavigationView({
             title: 'Feedback'
           , left: {
-                className: 'settings'
+                className: 'back'
               , handler: function () {
                     self.showSettingsView('slideright');
                 }
             }
         });
         showView(view.feedback, transition);
-        removeTopbarBindings();
     };
 
     $('.view').each(function () {
