@@ -105,7 +105,7 @@
                 <div class="scroll">
                     <div class="wrapper text">
                         <h2 class="green">Order Sent!</h2>
-                        <p>We will text you once a runner accepts your order. Please stay in your seat.</p>
+                        <p>We will text you once a runner has accepted your order. Please stay in your seat.</p>
                     </div>
                 </div>
             </div>
@@ -184,9 +184,9 @@
         <script id="venues-template" type="text/html">
             <div class="scroll">
                 {% for venue in items %}
-                <div id="{{ venue.uuid }}" class="venue">
+                <div id="{{ venue.uuid }}" title="{{ venue.shortName }}" class="venue">
                     <div class="image"></div>
-                    <div class="title">{{ venue.fullName }}</div>
+                    <div class="title">{{ venue.shortName }}</div>
                     <div class="address">{{ venue.address.streetNumber }} {{ venue.address.streetName }} ({{ venue.address.hoodName }})</div>
                     <div class="arrow"></div>
                 </div>
@@ -262,7 +262,7 @@
                     {% for item in cart.items %}
                     {% set product = cart.products[loop.key] %}
                     <div class="cart row" id="{{ product.uuid }}">
-                        <span class="title">{{ product.name }} (x{{ product.quantity }})</span>
+                        <span class="title">{{ product.name }} ({{ product.quantity }})</span>
                         <span class="value">{{ product.price }}</span>
                     </div>
                     {% endfor %}
