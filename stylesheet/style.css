@@ -976,6 +976,63 @@ textarea {
     margin: 20px 0 5px;
 }
 
+/* Account View */
+
+#account .wrapper {
+    height: 285px;
+}
+
+#account .image {
+    background: url(/image/sign-up-image.png) no-repeat;
+    background-size: 100% auto;
+    width: 22%;
+    height: 75px;
+    margin: 25px 0 0 2%;
+    position: absolute;
+}
+
+#account .message {
+    margin-top: 230px;
+    width: 45%;
+    margin-left: 2%;
+}
+
+#account .first-name {
+    margin-left: 30%;
+    margin-top: 20px;
+    width: 50%;
+}
+
+#account .last-name {
+    margin-left: 30%;
+    margin-top: 60px;
+    width: 50%;
+}
+
+#account .email {
+    margin-left: 2%;
+    margin-top: 140px;
+    width: 78%;
+}
+
+#account .pin {
+    margin-left: 2%;
+    margin-top: 180px;
+    width: 78%;
+}
+
+#account .phone {
+    margin-left: 2%;
+    margin-top: 100px;
+    width: 78%;
+}
+
+#account button {
+    width: 28%;
+    margin-top: 230px;
+    margin-left: 166px;
+}
+
 
 
 
