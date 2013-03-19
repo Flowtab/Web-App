@@ -235,11 +235,6 @@ textarea {
     top: 10px;
 }
 
-#navigation .right {
-    right: 10px;
-    left: auto;
-}
-
 #navigation .back {
     background: url(/image/back-arrow.png) no-repeat;
     background-size: 82% auto;
@@ -248,6 +243,13 @@ textarea {
 #navigation .settings {
     background: url(/image/settings.png) no-repeat;
     background-size: 90% auto;
+}
+
+#navigation .done {
+    background: url(/image/done.png) no-repeat;
+    background-size: 90% auto;
+    right: 10px;
+    left: auto;
 }
 
 #navigation .x-arrow, #navigation .welcome {
@@ -896,7 +898,6 @@ textarea {
 
 #success .green {
     text-align: center;
-    color: #009933;
     font-size: 27px;
 }
 
