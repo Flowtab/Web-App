@@ -700,7 +700,7 @@ Flowtab.wallet = (function () {
           , left: {
                 className: 'back'
               , handler : function () {
-                    self.showCategoriesView(1, 'slideright');
+                    self.showCategoriesView(1, 'slideright', $title);
                     $($checkoutButton).addClass("visible");
                 }
             }
