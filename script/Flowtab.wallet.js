@@ -121,6 +121,17 @@ Flowtab.wallet = (function () {
     function hideSpinner() {
         $spinner.hide();
     }
+    
+    function stripeCheckout() {
+    	
+    	$result = 1;
+    	
+    	if ($result === 1) {
+    		self.showSuccessView('slideleft');
+    	} else {
+    		self.showCheckoutError();
+    	}
+    }
 
     // Navigation functions
 
@@ -497,7 +508,7 @@ Flowtab.wallet = (function () {
 
         $checkoutButton.bind('click', function () {
             self.buildCheckoutView();
-            self.showCheckoutView();
+            self.showCheckoutView('slideleft');
             $($checkoutButton).removeClass("visible");
         });
 
@@ -506,16 +517,17 @@ Flowtab.wallet = (function () {
     self.buildCheckoutView = function Flowtab_wallet_buildCheckoutView() {
         var $container = view.checkout.$container;
 
-        // This is not working... KAH 3/14/13
         $container.html(view.checkout.render({ product: cart.items }));
 
+        var $checkoutButton = $container.find('form button');
+        
+        $checkoutButton.bind('click', function () {
+        	stripeCheckout();
+        });
+
     };
 
-    self.buildConfirmationView = function Flowtab_wallet_buildConfirmationView() {
-        // body...
-    };
-
-    self.buildConfigurationView = function Flowtab_wallet_buildConfigurationView() {
+    self.buildSuccessView = function Flowtab_wallet_buildSuccessView() {
         // body...
     };
 
@@ -623,13 +635,14 @@ Flowtab.wallet = (function () {
         showView(view.product, 'slideleft');
     }
 
-    self.showCheckoutView = function Flowtab_wallet_showCheckoutView() {
+    self.showCheckoutView = function Flowtab_wallet_showCheckoutView(transition) {
         buildNavigationView({
             title: 'Checkout'
           , left: {
                 className: 'back'
               , handler : function () {
                     // body...
+                    $($checkoutButton).addClass("visible");
                 }
             }
         });
