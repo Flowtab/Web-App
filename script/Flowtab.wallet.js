@@ -13,6 +13,7 @@ Flowtab.wallet = (function () {
       , products = null
       , product = null
       , cart = null
+      , itemCount = null
       , pageHeight = null
       , windowHeight = null
       , hasLoadedUser = false
@@ -440,12 +441,12 @@ Flowtab.wallet = (function () {
         });
 
         $items.bind('click', function () {
+        	self.loadMenu(this.id);        
             self.showCategoriesView(1, 'slideleft', this.title);
-            self.loadMenu(this.id);
         });
     };
 
-    self.buildCategoriesView = function Flowtab_wallet_buildCategoriesView(items, targetView, nextView, name) {
+    self.buildCategoriesView = function Flowtab_wallet_buildCategoriesView(items, targetView, nextView) {
     
         var $container = targetView.$container;
 
@@ -457,6 +458,8 @@ Flowtab.wallet = (function () {
         $.extend(targetView, {
             $items: $items
         });
+        
+                    
 
         $items.bind('click', function () {
         
@@ -507,22 +510,39 @@ Flowtab.wallet = (function () {
         
         $container.html(view.product.render({ product: products[id] }));
 
-        var $productAdd = $container.find('.add');
-        var $productSubtract = $container.find('.subtract');
+        var $productAdd = $container.find('form .add');
+        var $productSubtract = $container.find('form .subtract');
         var $productValue = $container.find('form .value');
+        var $productMessage = $container.find('form textarea');
+        var $productSubmit = $container.find('form .submit');
+        var $productCount = 0;
+        
+        $productValue.html($productCount);
 
         $productAdd.bind('click', function () {
-            var itemCount = cart.addItem(id);
-            $checkoutValue.html(itemCount);
-            $productValue.html(itemCount);
-            console.log(itemCount);
+        	if ($productCount < 4) {
+	        	$productCount = $productCount + 1;
+	        	$productValue.html($productCount);
+        	}
         });
     
         $productSubtract.bind('click', function () {
-            var itemCount = cart.subtractItem(id);
-            $checkoutValue.html(itemCount);
-            $productValue.html(itemCount);
-            console.log(itemCount);
+        	if ($productCount > 0) {
+            	$productCount = $productCount - 1;
+            	$productValue.html($productCount);
+        	}
+        });
+
+        $productSubmit.bind('click', function () {
+        	if ($productCount > 0) {
+	            cart.addItem(id, $productCount);
+	           	itemCount = cart.getCount();
+	            $productCount = 0;
+	            $productMessage.val('');
+	            $productValue.html($productCount);
+	            $checkoutValue.html(itemCount);
+	            console.log(itemCount);
+	        }
         });
 
         $checkoutButton.bind('click', function () {
@@ -631,6 +651,8 @@ Flowtab.wallet = (function () {
                 className: 'back'
               , handler: function () {
                     self.showVenuesView('slideright');
+                    $($checkoutButton).removeClass("visible");
+        			cart.emptyCart();
                 }
             }
         });
@@ -660,7 +682,7 @@ Flowtab.wallet = (function () {
 
     self.showProductView = function Flowtab_wallet_showProductView(transition) {
         buildNavigationView({
-            title: 'Add to Cart'
+            title: 'Quantity'
           , left: {
                 className: 'back'
               , handler : function () {
@@ -693,7 +715,7 @@ Flowtab.wallet = (function () {
           , right: {
                 className: 'done'
               , handler : function () {
-		            self.showCategoriesView(1, 'flipleft');
+		            self.showCategoriesView(1, 'flipleft', $title);
                 }
             }
         });
