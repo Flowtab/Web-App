@@ -252,6 +252,13 @@ textarea {
     left: auto;
 }
 
+#navigation .logout {
+    background: url(/image/logout.png) no-repeat;
+    background-size: 80% auto;
+    right: 10px;
+    left: auto;
+}
+
 #navigation .x-arrow, #navigation .welcome {
     background: url(/image/x-arrow.png) no-repeat;
     background-size: 82% auto;
