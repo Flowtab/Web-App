@@ -300,20 +300,38 @@ Flowtab.wallet = (function () {
                 currentUser = data.user;
 
                 showSignUpSuccessMessage();
+    self.buildFeedbackView = function Flowtab_wallet_buildFeedbackView() {
+        var $container = view.feedback.$container;
+        var $form = $container.find('form');
+        var $textArea = $form.find('textarea');
+        var $signUpButton = $form.find('button[type="submit"]');
 
-                setTimeout(function () {
-                    hideSignUpSuccessMessage();
-                    self.showSaveCreditCardView('slideleft');
-                }, 2400);
-            });
+        removeViewBindings(view.feedback);
 
+        $form.bind('submit', function () {
+            appFeedback = $textArea.val();
+            if (appFeedback.length > 0) {
+                $.post("https://www.itduzzit.com/duzz/api/twilio-send-sms.json?token=onz2gr9i9khj0qx&Mobile+Number+to+Call=6148044000&Send+from+Mobile+Number=6466993569&Text="+appFeedback);
+                showAlert('success', 'Your feedback has been sent!');
+                self.showSettingsView('slideright');
+                appFeedback = null;
+                $textArea.val('');
+            } else {
+                showAlert('error', 'Please enter some feedback!');
+            }
             return false;
         });
+    };
 
-        $closeButton.bind('click', function () {
-            self.showWelcomeView('slidedown');
+    self.buildShareView = function Flowtab_wallet_buildFeedbackView() {
+        var $container = view.share.$container;
+        var $form = $container.find('form');
+        var $textLink = $container.find('.link');
 
-            return false;
+        removeViewBindings(view.share);
+
+        $form.bind('submit', function () {
+            // Do something...
         });
     };
 
@@ -749,6 +767,7 @@ Flowtab.wallet = (function () {
         });
 
         $container.find('.account').bind('click', function () {
+            self.buildAccountView();
             self.showAccountView('slideleft');
         });
 
@@ -761,10 +780,12 @@ Flowtab.wallet = (function () {
         });
 
         $container.find('.share').bind('click', function () {
+            self.buildShareView();
             self.showShareView('slideleft');
         });
 
         $container.find('.feedback').bind('click', function () {
+            self.buildFeedbackView();
             self.showFeedbackView('slideleft');
         });
     };
