@@ -35,6 +35,8 @@ Flowtab.wallet = (function () {
         }
 
         hideSpinner();
+
+        //showView(view.welcome, 'slidedown');
         
         if (currentUser === null) {
             showView(view.welcome, 'slidedown');
@@ -101,11 +103,11 @@ Flowtab.wallet = (function () {
         // body...
     }
 
-    function showSignInFailureMessage(error) {
+    function showlogInFailureMessage(error) {
         // body...
     }
 
-    function hideSignInFailureMessage() {
+    function hidelogInFailureMessage() {
         // body...
     }
 
@@ -221,24 +223,24 @@ Flowtab.wallet = (function () {
 
     self.buildWelcomeView = function Flowtab_wallet_buildWelcomeView() {
         var $container = view.welcome.$container
-          , $signUpButton = $container.find('#signup-button')
-          , $signInButton = $container.find('#signin-button');
+          , $signUpButton = $container.find('.sign-up')
+          , $logInButton = $container.find('.log-in');
 
         removeViewBindings(view.welcome);
 
         $.extend(view.welcome, {
             $signUpButton: $signUpButton
-          , $signInButton: $signInButton
+          , $logInButton: $logInButton
         });
 
         $signUpButton.bind('click', function () {
-            buildNavigationView('Sign Up','welcome','');
-            showView(view.signUp, 'slideup');
+            self.buildSignUpView();
+            self.showSignUpView('slideup');
         });
 
-        $signInButton.bind('click', function () {
-            buildNavigationView('Login','welcome','');
-            showView(view.signIn, 'slideup');
+        $logInButton.bind('click', function () {
+            self.buildlogInView();
+            self.showlogInView('slideup');
         });
     };
 
@@ -292,22 +294,22 @@ Flowtab.wallet = (function () {
         });
 
         $closeButton.bind('click', function () {
-            self.showWelcomeView();
+            self.showWelcomeView('slidedown');
 
             return false;
         });
     };
 
-    self.buildSignInView = function Flowtab_wallet_buildSignInView() {
-        var $container = view.signIn.$container
+    self.buildlogInView = function Flowtab_wallet_buildlogInView() {
+        var $container = view.logIn.$container
           , $closeButton = $("#topbar .welcome")
           , $form = $container.find('form')
           , $submitButton = $form.find('button[type="submit"]')
           , $passwordResetButton = $form.find('.password-reset-button');
 
-        removeViewBindings(view.signIn);
+        removeViewBindings(view.logIn);
 
-        $.extend(view.signIn, {
+        $.extend(view.logIn, {
             $closeButton: $closeButton
           , $form: $form
           , $submitButton: $submitButton
@@ -347,7 +349,7 @@ Flowtab.wallet = (function () {
         });
 
         $closeButton.bind('click', function () {
-            showView(view.welcome, 'slidedown');
+            self.showWelcomeView('slidedown');
             hideNavigationView();
             return false;
         });
@@ -601,10 +603,48 @@ Flowtab.wallet = (function () {
     
     // Show views functions
 
-    self.showWelcomeView = function Flowtab_wallet_showWelcomeView () {
+    self.showWelcomeView = function Flowtab_wallet_showWelcomeView(transition) {
         hideNavigationView();
-        showView(view.welcome, 'slidedown');
+        showView(view.welcome, transition);
     };
+
+    self.showSignUpView = function Flowtab_wallet_showSignUpView(transition) {  
+        buildNavigationView({
+            title: 'Sign Up'
+          , left: {
+                className: 'x-arrow'
+              , handler: function () {
+                    self.showWelcomeView("slidedown");
+                }
+            }
+        });
+        showNavigationView();
+        showView(view.signUp, transition);
+
+        if (!hasLoadedVenues)
+            showSpinner();
+        else if (venues === null)
+            showError();
+    }
+
+    self.showlogInView = function Flowtab_wallet_showlogInView(transition) {  
+        buildNavigationView({
+            title: 'Log In'
+          , left: {
+                className: 'x-arrow'
+              , handler: function () {
+                    self.showWelcomeView("slidedown");
+                }
+            }
+        });
+        showNavigationView();
+        showView(view.logIn, transition);
+
+        if (!hasLoadedVenues)
+            showSpinner();
+        else if (venues === null)
+            showError();
+    }
 
     self.showVenuesView = function Flowtab_wallet_showVenuesView(transition) {  
         buildNavigationView({
@@ -841,8 +881,6 @@ Flowtab.wallet = (function () {
         //showView(view.splash);
         showSpinner();
         self.buildWelcomeView();
-        self.buildSignUpView();
-        self.buildSignInView();
         self.buildSaveCreditCardView();
         self.buildSettingsView();
         hideNavigationView();
