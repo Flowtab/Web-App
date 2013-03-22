@@ -609,29 +609,21 @@ Flowtab.wallet = (function () {
                 }
               , function (status, data) {
                     if (data.error) {
-                        hideSpinner();
-                        showSaveCreditCardFailureMessage(data.error);
-
+                        showAlert('error', data.error);
                         return;
                     }
-                    
                     framework.service.saveUserCreditCard(data.id, function (data) {
-                        hideSpinner();
-
                         if (data.error) {
-                            showSaveCreditCardFailureMessage(data.error);
-
+                            showAlert('error', data.error);
                             return;
                         }
-
                         currentUser.creditCard = data.creditCard;
-
                         $form.get(0).reset();
+                        showAlert('success', 'Your card has been saved!');
                         self.showVenuesView('slideleft');
                     });
                 }
             );
-
             return false;
         });
     };
@@ -680,29 +672,21 @@ Flowtab.wallet = (function () {
                 }
               , function (status, data) {
                     if (data.error) {
-                        hideSpinner();
-                        showSaveCreditCardFailureMessage(data.error);
-
+                        showAlert('error', data.error);
                         return;
                     }
-                    
                     framework.service.saveUserCreditCard(data.id, function (data) {
-                        hideSpinner();
-
                         if (data.error) {
-                            showSaveCreditCardFailureMessage(data.error);
-
+                            showAlert('error', data.error);
                             return;
                         }
-
                         currentUser.creditCard = data.creditCard;
-
                         $form.get(0).reset();
-                        self.showSuccessView('slideleft');
+                        showAlert('success', 'Order placed! Please wait in your seat...', 30000);
+                        self.showCategoriesView(1, 'slideright', $title);
                     });
                 }
             );
-
             return false;
         });
     };
@@ -751,29 +735,21 @@ Flowtab.wallet = (function () {
                 }
               , function (status, data) {
                     if (data.error) {
-                        hideSpinner();
-                        showSaveCreditCardFailureMessage(data.error);
-
+                        showAlert('error', data.error);
                         return;
                     }
-                    
                     framework.service.saveUserCreditCard(data.id, function (data) {
-                        hideSpinner();
-
                         if (data.error) {
-                            showSaveCreditCardFailureMessage(data.error);
-
+                            showAlert('error', data.error);
                             return;
                         }
-
                         currentUser.creditCard = data.creditCard;
-
                         $form.get(0).reset();
+                        showAlert('success', 'Your card has been saved!');
                         self.showSettingsView('slideright');
                     });
                 }
             );
-
             return false;
         });
     };
