@@ -141,7 +141,8 @@ Flowtab.wallet = (function () {
     	$result = 1;
     	
     	if ($result === 1) {
-    		self.showSuccessView('slideleft');
+            showAlert('success', 'Order placed! Please wait in your seat...', 30000);
+            self.showCategoriesView(1, 'slideright', $title);
     	} else {
     		self.showCheckoutError();
     	}
@@ -754,10 +755,6 @@ Flowtab.wallet = (function () {
         });
     };
 
-    self.buildSuccessView = function Flowtab_wallet_buildSuccessView() {
-        // body...
-    };
-
     self.buildSettingsView = function Flowtab_wallet_buildSettingsView() {
         var $container = view.settings.$container;
 
@@ -937,21 +934,6 @@ Flowtab.wallet = (function () {
         });
         showNavigationView();
         showView(view.checkout, transition);
-    }
-
-    self.showSuccessView = function Flowtab_wallet_showSuccessView(transition) {
-        buildNavigationView({
-            title: 'Success'
-          , right: {
-                className: 'done'
-              , handler : function () {
-		            self.showCategoriesView(1, 'flipleft', $title);
-                }
-            }
-        });
-        showNavigationView();
-        cart.emptyCart();     
-        showView(view.success, transition);
     }
 
     self.showSaveCreditCardView = function Flowtab_wallet_showSaveCreditCardView(transition) {
