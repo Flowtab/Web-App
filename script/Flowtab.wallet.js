@@ -138,6 +138,13 @@ Flowtab.wallet = (function () {
     	}
     }
 
+    function logOut() {
+        showSpinner();
+        setTimeout(function(){
+            hideSpinner();
+        },1000);
+    }
+
     // Navigation functions
 
     function showNavigationView() {
@@ -786,6 +793,13 @@ Flowtab.wallet = (function () {
                 className: 'back'
               , handler: function () {
                     self.showSettingsView('slideright');
+                }
+            }
+          , right: {
+                className: 'logout'
+              , handler: function() {
+                    logOut();
+                    self.showWelcomeView('slidedown');
                 }
             }
         });
