@@ -156,46 +156,6 @@ Flowtab.wallet = (function () {
         },1000);
     }
 
-    // Navigation functions
-
-    function showNavigationView() {
-        $navigation.addClass('visible');
-    }
-
-    function hideNavigationView() {
-        $navigation.removeClass('visible');
-    }
-
-    function showSuccess() {
-        hideSpinner();
-    }
-
-    function showError() {
-        hideSpinner();
-    }
-
-    function buildNavigationView(options) {
-        $navigationTitle.html(options.title || '');
-        $navigationButtons
-        .hide()
-        .removeClass()
-        .unbind();
-        
-        if (options.left) {
-            $leftNavigationButton
-            .addClass(options.left.className)
-            .bind('click', options.left.handler)
-            .show();
-        }
-
-        if (options.right) {
-            $rightNavigationButton
-            .addClass(options.right.className)
-            .bind('click', options.right.handler)
-            .show();
-        }
-    }
-
 	// Load venues and menus
 
     self.loadVenues = function Flowtab_wallet_loadVenues() {
@@ -650,8 +610,8 @@ Flowtab.wallet = (function () {
             showSpinner();
 
             var formEntries = $form.serializeArray()
-              , i = formEntries.length
-              , data = {};
+            var i = formEntries.length;
+            var data = {};
 
 /*
             if (i > 0)
@@ -713,8 +673,8 @@ Flowtab.wallet = (function () {
             showSpinner();
 
             var formEntries = $form.serializeArray()
-              , i = formEntries.length
-              , data = {};
+            var i = formEntries.length;
+            var data = {};
 
 /*
             if (i > 0)
