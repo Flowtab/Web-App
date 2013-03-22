@@ -16,6 +16,7 @@ Flowtab.wallet = (function () {
       , itemCount = null
       , pageHeight = null
       , windowHeight = null
+      , hasCard = false
       , hasLoadedUser = false
       , hasLoadedDocument = false
       , hasLoadedVenues = false
@@ -128,6 +129,12 @@ Flowtab.wallet = (function () {
     }
     
     function stripeCheckout() {
+
+        if (hasCard === false) {
+            self.buildCheckoutCreditCardView();
+            self.showCheckoutCreditCardView('slideleft');
+            return;
+        }
     	
     	$result = 1;
     	
@@ -155,10 +162,12 @@ Flowtab.wallet = (function () {
         $navigation.removeClass('visible');
     }
 
+    function showSuccess() {
+        hideSpinner();
+    }
+
     function showError() {
         hideSpinner();
-        
-        //TODO: write error message to currentView
     }
 
     function buildNavigationView(options) {
@@ -292,8 +301,7 @@ Flowtab.wallet = (function () {
 
                 setTimeout(function () {
                     hideSignUpSuccessMessage();
-                    buildNavigationView('Save Card','','');
-                    showView(view.saveCreditCard, 'slideleft');
+                    self.showSaveCreditCardView('slideleft');
                 }, 2400);
             });
 
@@ -338,7 +346,7 @@ Flowtab.wallet = (function () {
                 hideSpinner();
 
                 if (data.error) {
-                    showSignInFailureMessage(data.error);
+                    showlogInFailureMessage(data.error);
 
                     return;
                 }
@@ -346,8 +354,7 @@ Flowtab.wallet = (function () {
                 currentUser = data.user;
 
                 if (currentUser.creditCard === null) {
-                    buildNavigationView('Save Card','','');
-                    showView(view.Venues, 'slideleft');
+                    self.showSaveCreditCardView('slideleft');
                 } else {
                     self.showVenuesView();
                 }     
@@ -363,75 +370,6 @@ Flowtab.wallet = (function () {
 
         $passwordResetButton.bind('click', function () {
             showView(view.passwordReset, 'slideleft');
-            return false;
-        });
-    };
-
-    self.buildSaveCreditCardView = function Flowtab_wallet_buildSaveCreditCardView() {
-        var $container = view.saveCreditCard.$container;
-
-        removeViewBindings(view.saveCreditCard);
-        
-        $container.html(view.saveCreditCard.render({ user: currentUser }));
-
-        var $form = $container.find('form')
-          , $submitButton = $form.find('button[type="submit"]')
-
-        $.extend(view.saveCreditCard, {
-            $form: $form
-          , $submitButton: $submitButton
-        });
-
-        $form.bind('submit', function () {
-            showSpinner();
-
-            var formEntries = $form.serializeArray()
-              , i = formEntries.length
-              , data = {};
-
-/*
-            if (i > 0)
-                for (; i !== -1; --i)
-                    data[formEntries[i].name] = formEntries[i].value;
-*/
-
-            //NOTE: fake data
-            data.number = '4111111111111111';
-            data.expirationMonth = '5';
-            data.expirationYear = '2015';
-            data.code = '123';
-
-            Stripe.createToken({
-                    number: data.number
-                  , exp_month: data.expirationMonth
-                  , exp_year: data.expirationYear
-                  , cvc: data.code
-                }
-              , function (status, data) {
-                    if (data.error) {
-                        hideSpinner();
-                        showSaveCreditCardFailureMessage(data.error);
-
-                        return;
-                    }
-                    
-                    framework.service.saveUserCreditCard(data.id, function (data) {
-                        hideSpinner();
-
-                        if (data.error) {
-                            showSaveCreditCardFailureMessage(data.error);
-
-                            return;
-                        }
-
-                        currentUser.creditCard = data.creditCard;
-
-                        $form.get(0).reset();
-                        self.showVenuesView();
-                    });
-                }
-            );
-
             return false;
         });
     };
@@ -548,7 +486,9 @@ Flowtab.wallet = (function () {
 	           	itemCount = cart.getCount();
 	            $productCount = 1;
 	            $productMessage.val('');
-	            $productValue.html($productCount);
+	            setTimeout(function(){
+	               $productValue.html($productCount);
+	            },300);
 	            $checkoutValue.html(itemCount);
 	            console.log(itemCount);
 	            self.showProductsView('slideright', $category);
@@ -573,7 +513,225 @@ Flowtab.wallet = (function () {
         $checkoutButton.bind('click', function () {
         	stripeCheckout();
         });
+    };
 
+    self.buildSaveCreditCardView = function Flowtab_wallet_buildSaveCreditCardView() {
+        var $container = view.saveCreditCard.$container;
+
+        removeViewBindings(view.saveCreditCard);
+        
+        $container.html(view.saveCreditCard.render({ user: currentUser }));
+
+        var $form = $container.find('form');
+        var $submitButton = $container.find('form button');
+        var $storeLater = $container.find('.store-later');
+
+        $submitButton.html('Save Card');
+        $storeLater.show();
+
+        $.extend(view.saveCreditCard, {
+            $form: $form
+          , $submitButton: $submitButton
+        });
+
+        $storeLater.bind('click', function () {
+            self.showVenuesView('slideleft');
+        });
+
+        $form.bind('submit', function () {
+            showSpinner();
+
+            var formEntries = $form.serializeArray()
+              , i = formEntries.length
+              , data = {};
+
+/*
+            if (i > 0)
+                for (; i !== -1; --i)
+                    data[formEntries[i].name] = formEntries[i].value;
+*/
+
+            //NOTE: fake data
+            data.number = '4111111111111111';
+            data.expirationMonth = '5';
+            data.expirationYear = '2015';
+            data.code = '123';
+
+            Stripe.createToken({
+                    number: data.number
+                  , exp_month: data.expirationMonth
+                  , exp_year: data.expirationYear
+                  , cvc: data.code
+                }
+              , function (status, data) {
+                    if (data.error) {
+                        hideSpinner();
+                        showSaveCreditCardFailureMessage(data.error);
+
+                        return;
+                    }
+                    
+                    framework.service.saveUserCreditCard(data.id, function (data) {
+                        hideSpinner();
+
+                        if (data.error) {
+                            showSaveCreditCardFailureMessage(data.error);
+
+                            return;
+                        }
+
+                        currentUser.creditCard = data.creditCard;
+
+                        $form.get(0).reset();
+                        self.showVenuesView('slideleft');
+                    });
+                }
+            );
+
+            return false;
+        });
+    };
+
+    self.buildCheckoutCreditCardView = function Flowtab_wallet_buildCheckoutCreditCardView() {
+        var $container = view.saveCreditCard.$container;
+        
+        $container.html(view.saveCreditCard.render({ user: currentUser }));
+
+        var $form = $container.find('form');
+        var $submitButton = $container.find('form button');
+        var $storeLater = $container.find('.store-later');
+
+        $submitButton.html('Place Order (Seriously)');
+        $storeLater.hide();
+
+        $.extend(view.saveCreditCard, {
+            $form: $form
+          , $submitButton: $submitButton
+        });
+
+        $form.bind('submit', function () {
+            showSpinner();
+
+            var formEntries = $form.serializeArray()
+              , i = formEntries.length
+              , data = {};
+
+/*
+            if (i > 0)
+                for (; i !== -1; --i)
+                    data[formEntries[i].name] = formEntries[i].value;
+*/
+
+            //NOTE: fake data
+            data.number = '4111111111111111';
+            data.expirationMonth = '5';
+            data.expirationYear = '2015';
+            data.code = '123';
+
+            Stripe.createToken({
+                    number: data.number
+                  , exp_month: data.expirationMonth
+                  , exp_year: data.expirationYear
+                  , cvc: data.code
+                }
+              , function (status, data) {
+                    if (data.error) {
+                        hideSpinner();
+                        showSaveCreditCardFailureMessage(data.error);
+
+                        return;
+                    }
+                    
+                    framework.service.saveUserCreditCard(data.id, function (data) {
+                        hideSpinner();
+
+                        if (data.error) {
+                            showSaveCreditCardFailureMessage(data.error);
+
+                            return;
+                        }
+
+                        currentUser.creditCard = data.creditCard;
+
+                        $form.get(0).reset();
+                        self.showSuccessView('slideleft');
+                    });
+                }
+            );
+
+            return false;
+        });
+    };
+
+    self.buildSettingsCreditCardView = function Flowtab_wallet_buildSettingsCreditCardView() {
+        var $container = view.saveCreditCard.$container;
+        
+        $container.html(view.saveCreditCard.render({ user: currentUser }));
+
+        var $form = $container.find('form');
+        var $submitButton = $container.find('form button');
+        var $storeLater = $container.find('.store-later');
+
+        $submitButton.html('Save Card');
+        $storeLater.hide();
+
+        $.extend(view.saveCreditCard, {
+            $form: $form
+          , $submitButton: $submitButton
+        });
+
+        $form.bind('submit', function () {
+            showSpinner();
+
+            var formEntries = $form.serializeArray()
+              , i = formEntries.length
+              , data = {};
+
+/*
+            if (i > 0)
+                for (; i !== -1; --i)
+                    data[formEntries[i].name] = formEntries[i].value;
+*/
+
+            //NOTE: fake data
+            data.number = '4111111111111111';
+            data.expirationMonth = '5';
+            data.expirationYear = '2015';
+            data.code = '123';
+
+            Stripe.createToken({
+                    number: data.number
+                  , exp_month: data.expirationMonth
+                  , exp_year: data.expirationYear
+                  , cvc: data.code
+                }
+              , function (status, data) {
+                    if (data.error) {
+                        hideSpinner();
+                        showSaveCreditCardFailureMessage(data.error);
+
+                        return;
+                    }
+                    
+                    framework.service.saveUserCreditCard(data.id, function (data) {
+                        hideSpinner();
+
+                        if (data.error) {
+                            showSaveCreditCardFailureMessage(data.error);
+
+                            return;
+                        }
+
+                        currentUser.creditCard = data.creditCard;
+
+                        $form.get(0).reset();
+                        self.showSettingsView('slideright');
+                    });
+                }
+            );
+
+            return false;
+        });
     };
 
     self.buildSuccessView = function Flowtab_wallet_buildSuccessView() {
@@ -584,7 +742,8 @@ Flowtab.wallet = (function () {
         var $container = view.settings.$container;
 
         $container.find('.cards').bind('click', function () {
-            self.showSaveCreditCardView('slideleft');
+            self.buildSettingsCreditCardView();
+            self.showSettingsCreditCardView('slideleft');
         });
 
         $container.find('.account').bind('click', function () {
@@ -774,11 +933,47 @@ Flowtab.wallet = (function () {
 
     self.showSaveCreditCardView = function Flowtab_wallet_showSaveCreditCardView(transition) {
         buildNavigationView({
+            title: 'Save Card'
+        });
+        showNavigationView();
+        showView(view.saveCreditCard, transition);
+    };
+
+    self.showCheckoutCreditCardView = function Flowtab_wallet_showCheckoutCreditCardView(transition) {
+        buildNavigationView({
+            title: 'Enter Card'
+          , left: {
+                className: 'back'
+              , handler: function () {
+                    self.showCheckoutView('slideright');
+                }
+            }
+        });
+        showNavigationView();
+        showView(view.saveCreditCard, transition);
+    };
+
+    self.showSettingsCreditCardView = function Flowtab_wallet_showSettingsCreditCardView(transition) {
+        buildNavigationView({
             title: 'Cards'
           , left: {
                 className: 'back'
               , handler: function () {
                     self.showSettingsView('slideright');
+                }
+            }
+        });
+        showNavigationView();
+        showView(view.saveCreditCard, transition);
+    };
+
+    self.showCheckoutCreditCardView = function Flowtab_wallet_showCheckoutCreditCardView(transition) {
+        buildNavigationView({
+            title: 'Enter Card'
+          , left: {
+                className: 'back'
+              , handler: function () {
+                    self.showCheckoutView('slideright');
                 }
             }
         });
