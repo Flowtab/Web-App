@@ -16,6 +16,7 @@ Flowtab.wallet = (function () {
       , itemCount = null
       , pageHeight = null
       , windowHeight = null
+      , appFeedback = null
       , hasCard = false
       , hasLoadedUser = false
       , hasLoadedDocument = false
