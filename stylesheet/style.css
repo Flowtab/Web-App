@@ -8,7 +8,7 @@ body {
 
 #jqt {
     max-height: 1136px !important;
-    max-width: 320px !important;
+    max-width: 322px !important;
 }
 
 .view {
@@ -262,6 +262,44 @@ textarea {
 #navigation .x-arrow, #navigation .welcome {
     background: url(/image/x-arrow.png) no-repeat;
     background-size: 82% auto;
+}
+
+/* Alerts */
+
+#alert {
+    width: 100%;
+    height: 22px;
+    position: fixed;
+    top: -24px; left: 0;
+    z-index: 1000;
+    max-width: 322px;
+    border-bottom: 1px solid #444;
+    border-top: 1px solid #444;
+	-webkit-transition: top .30s ease;
+}
+
+#alert.visible {
+    top: 44px !important;
+}
+
+#alert span {
+    text-align: center;
+    color: #FFFFFF;
+    font-family: 'Open Sans';
+    font-size: 13px;
+    line-height: 20px;
+    padding-bottom: 2px;
+    text-shadow: 1px 1px 1px black;
+    position: absolute;
+    width: 100%;
+}
+
+#alert .success {
+    background: #8FC14B;
+}
+
+#alert .error {
+    background: #990033;
 }
 
 /* Checkout Button */
@@ -523,7 +561,7 @@ textarea {
 
 #save-credit-card .ssl-text {
     font-size: 12px;
-    color: green;
+    color: #8FC14B;
     text-align: center;
     width: 78%;
     opacity: .60;
@@ -892,7 +930,7 @@ textarea {
 }
 
 #checkout .row.green {
-    color: #009933;
+    color: #8FC14B;
 }
 
 #checkout .message {

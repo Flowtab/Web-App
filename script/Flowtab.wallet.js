@@ -28,7 +28,11 @@ Flowtab.wallet = (function () {
       , $navigationButtons = $navigation.find('.navigation')
       , $leftNavigationButton = $navigationButtons.filter('.left')
       , $rightNavigationButton = $navigationButtons.filter('.right')
+      , $alert = $('#alert')
+      , $alertSpan = $alert.find('span')
       , $spinner = $('#spinner');
+
+    // Functions
 
     function initialize() {
         if (!hasLoadedDocument || !hasLoadedUser) {
@@ -46,10 +50,59 @@ Flowtab.wallet = (function () {
         }
     }
 
+    function showSpinner() {
+        $spinner.show();
+    }
+
+    function hideSpinner() {
+        $spinner.hide();
+    }
+
+    function showNavigationView() {
+        $navigation.addClass('visible');
+    }
+
+    function hideNavigationView() {
+        $navigation.removeClass('visible');
+    }
+
+    function showView(view, method) {
+        if (currentView === view) {
+            //console.warn('Flowtab.wallet.showView::view_already_shown_warning (view.id:' + view.id + ', ...)');
+            return;
+        }
+        currentView = view;
+        //console.info('Flowtab.wallet.showView::showView (view.id:' + view.id + ', ...)');
+        jQT.goTo(view.$container, method);
+    }
+
+    function showAlert(color, title, time) {
+        if (!time) {
+            time = 2000;
+        }
+        hideSpinner();
+        $alertSpan.removeClass().addClass(color).html(title);
+        $alert.addClass('visible');
+        setTimeout(function(){
+            $alert.removeClass('visible');
+        },time);
+    }
+
     function removeViewBindings(view) {
         for (var k in view)
             if (k.charAt(0) === '$')
                 view[k].unbind();
+    }
+
+    function buildNavigationView(options) {
+        $navigationTitle.html(options.title || '');
+        $navigationButtons.hide().removeClass().unbind();
+        if (options.left) {
+            $leftNavigationButton.addClass(options.left.className).bind('click', options.left.handler).show();
+        }
+        if (options.right) {
+            $rightNavigationButton.addClass(options.right.className).bind('click', options.right.handler).show();
+        }
     }
 
     function buildMenu(data, parent) {
@@ -77,57 +130,6 @@ Flowtab.wallet = (function () {
         }
     }
 
-    function showView(view, method) {
-        if (currentView === view) {
-            console.warn('Flowtab.wallet.showView::view_already_shown_warning (view.id:' + view.id + ', ...)');
-            return;
-        }
-
-        currentView = view;
-        console.info('Flowtab.wallet.showView::showView (view.id:' + view.id + ', ...)');
-        jQT.goTo(view.$container, method);
-    }
-
-    function showSignUpFailureMessage(error) {
-        // body...
-    }
-
-    function hideSignUpFailureMessage() {
-        // body...
-    }
-
-    function showSignUpSuccessMessage() {
-        // body...
-    }
-
-    function hideSignUpSuccessMessage() {
-        // body...
-    }
-
-    function showlogInFailureMessage(error) {
-        // body...
-    }
-
-    function hidelogInFailureMessage() {
-        // body...
-    }
-
-    function showSaveCreditCardFailureMessage() {
-        // body...
-    }
-
-    function hideSaveCreditCardFailureMessage() {
-        // body...
-    }
-
-    function showSpinner() {
-        $spinner.show();
-    }
-
-    function hideSpinner() {
-        $spinner.hide();
-    }
-    
     function stripeCheckout() {
 
         if (hasCard === false) {
