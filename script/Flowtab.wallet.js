@@ -264,23 +264,14 @@ Flowtab.wallet = (function () {
     };
 
     self.buildSignUpView = function Flowtab_wallet_buildSignUpView() {
-        var $container = view.signUp.$container
-          , $template = view.signUp.$template
-          , $closeButton = $("#topbar .welcome")
-          , $form = $container.find('form')
-          , $signUpButton = $form.find('button[type="submit"]');
+        var $container = view.signUp.$container;
+        var $form = $container.find('form');
+        var $signUpButton = $form.find('button[type="submit"]');
 
         removeViewBindings(view.signUp);
 
-        $.extend(view.signUp, {
-            $closeButton: $closeButton
-          , $form: $form
-          , $submitButton: $signUpButton
-        });
-
         $form.bind('submit', function () {
             showSpinner();
-
             var formEntries = $form.serializeArray()
               , i = formEntries.length
               , data = {};
@@ -289,18 +280,53 @@ Flowtab.wallet = (function () {
                 for (; i !== -1; --i)
                     data[formEntries[i].name] = formEntries[i].value;
 */
-            framework.service.createUser(data.firstName, data.lastName, data.phoneNumber, data.password, data.emailAddress, function (data) {
+            framework.service.createUser(data.firstName, data.lastName, data.phoneNumber, data.password, data.emailAddress, function(data) {
                 hideSpinner();
-
                 if (data.error) {
-                    showSignUpFailureMessage(data.error);
-
+                    showAlert('error', data.error);
                     return;
                 }
-
                 currentUser = data.user;
+                showAlert('success', 'You have registered successfully!');
+                self.showSaveCreditCardView('slideleft');
+                console.log("Done");
+            });
+            return false;
+        });
 
-                showSignUpSuccessMessage();
+    };
+
+    self.buildAccountView = function Flowtab_wallet_buildAccountView() {
+        var $container = view.account.$container;
+        var $form = $container.find('form');
+        var $signUpButton = $form.find('button[type="submit"]');
+
+        removeViewBindings(view.account);
+
+        $form.bind('submit', function () {
+            showSpinner();
+            var formEntries = $form.serializeArray()
+              , i = formEntries.length
+              , data = {};
+/*
+            if (i > 0)
+                for (; i !== -1; --i)
+                    data[formEntries[i].name] = formEntries[i].value;
+*/
+            framework.service.updateUser(data.firstName, data.lastName, data.phoneNumber, data.password, data.emailAddress, function(data) {
+                hideSpinner();
+                if (data.error) {
+                    showAlert('error', data.error);
+                    return;
+                }
+                currentUser = data.user;
+                showAlert('success', 'Your info has been updated!');
+                self.showSettingsView('slideright');
+            });
+            return false;
+        });
+    };
+
     self.buildFeedbackView = function Flowtab_wallet_buildFeedbackView() {
         var $container = view.feedback.$container;
         var $form = $container.find('form');
@@ -337,24 +363,15 @@ Flowtab.wallet = (function () {
     };
 
     self.buildlogInView = function Flowtab_wallet_buildlogInView() {
-        var $container = view.logIn.$container
-          , $closeButton = $("#topbar .welcome")
-          , $form = $container.find('form')
-          , $submitButton = $form.find('button[type="submit"]')
-          , $passwordResetButton = $form.find('.password-reset-button');
+        var $container = view.logIn.$container;
+        var $form = $container.find('form');
+        var $logInButton = $form.find('button[type="submit"]')
+        var $resetPasswordButton = $form.find('.forgot-password');
 
         removeViewBindings(view.logIn);
 
-        $.extend(view.logIn, {
-            $closeButton: $closeButton
-          , $form: $form
-          , $submitButton: $submitButton
-          , $passwordResetButton: $passwordResetButton
-        });
-
         $form.bind('submit', function () {
             showSpinner();
-
             var formEntries = $form.serializeArray()
               , i = formEntries.length
               , data = {};
@@ -363,34 +380,38 @@ Flowtab.wallet = (function () {
                 for (; i !== -1; --i)
                     data[formEntries[i].name] = formEntries[i].value;
 */
-            framework.service.authenticateUser(data.phoneNumber, data.password, function (data) {
+            framework.service.authenticateUser(data.phoneNumber, data.password, function(data) {
                 hideSpinner();
-
                 if (data.error) {
-                    showlogInFailureMessage(data.error);
-
+                    showAlert('error', data.error);
                     return;
                 }
-
                 currentUser = data.user;
-
-                if (currentUser.creditCard === null) {
-                    self.showSaveCreditCardView('slideleft');
-                } else {
-                    self.showVenuesView();
-                }     
+                showAlert('success', 'You have logged in successfully!');
+                self.showSaveCreditCardView('slideleft');    
             });
             return false;
         });
 
-        $closeButton.bind('click', function () {
-            self.showWelcomeView('slidedown');
-            hideNavigationView();
-            return false;
-        });
-
-        $passwordResetButton.bind('click', function () {
-            showView(view.passwordReset, 'slideleft');
+        $resetPasswordButton.bind('click', function () {
+            showSpinner();
+            var formEntries = $form.serializeArray()
+              , i = formEntries.length
+              , data = {};
+/*
+            if (i > 0)
+                for (; i !== -1; --i)
+                    data[formEntries[i].name] = formEntries[i].value;
+*/
+            framework.service.resetPassword(data.phoneNumber, function(data) {
+                hideSpinner();
+                if (data.error) {
+                    showAlert('error', data.error);
+                    return;
+                }
+                currentUser = data.user;
+                showAlert('success', 'We texted you a new password!');  
+            });
             return false;
         });
     };
