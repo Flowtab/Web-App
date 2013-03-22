@@ -354,7 +354,7 @@ textarea {
     bottom: 0;
 }
 
-#welcome .sign-in {
+#welcome .log-in {
     background: url(/image/login-btn.png) no-repeat;
     background-size: 100% auto;
     position: absolute;
@@ -433,19 +433,19 @@ textarea {
     margin-left: 166px;
 }
 
-/* Sign In View */
+/* Log In View */
 
 
-#sign-in .wrapper {
+#log-in .wrapper {
     height: 200px;
 }
 
-#sign-in .message {
+#log-in .message {
     margin-top: 110px;
     width: 78%;
 }
 
-#sign-in .first-name {
+#log-in .first-name {
     margin-left: 30%;
     margin-top: 20px;
     width: 50%;
@@ -457,25 +457,25 @@ textarea {
     width: 50%;
 }
 
-#sign-in .phone {
+#log-in .phone {
     margin-left: 2%;
     margin-top: 20px;
     width: 78%;
 }
 
-#sign-in .pin {
+#log-in .pin {
     margin-left: 2%;
     margin-top: 60px;
     width: 78%;
 }
 
-#sign-in button {
+#log-in button {
     width: 28%;
     margin-top: 149px;
     margin-left: 166px;
 }
 
-#sign-in .forgot-password {
+#log-in .forgot-password {
     box-shadow: inset 0px 1px 0px 0px #ffffff;
     background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9) );
     background-color: #f9f9f9;
@@ -544,7 +544,7 @@ textarea {
 
 #save-credit-card button {
     position: relative;
-    margin-top: 170px;
+    margin: 170px 0 15px;
     width: 100%;
 }
 
@@ -553,7 +553,7 @@ textarea {
     font-size: 15px;
     color: #378DE5;
     text-align: center;
-    padding: 20px 0;
+    padding: 0 0 20px;
     width: 100%;
     text-decoration: underline;
 }
