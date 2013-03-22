@@ -142,7 +142,7 @@ Flowtab.wallet = (function () {
     	$result = 1;
     	
     	if ($result === 1) {
-            showAlert('success', 'Order placed! Please wait in your seat...', 30000);
+            showAlert('success', 'Order placed! Please wait in your seat...', 20000);
             self.showCategoriesView(1, 'slideright', $title);
     	} else {
     		self.showCheckoutError();
@@ -643,7 +643,7 @@ Flowtab.wallet = (function () {
                         }
                         currentUser.creditCard = data.creditCard;
                         $form.get(0).reset();
-                        showAlert('success', 'Order placed! Please wait in your seat...', 30000);
+                        showAlert('success', 'Order placed! Please wait in your seat...', 20000);
                         self.showCategoriesView(1, 'slideright', $title);
                     });
                 }
