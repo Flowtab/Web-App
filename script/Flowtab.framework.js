@@ -80,6 +80,33 @@ Flowtab.framework = (function () {
                     callback(data);
             }, 1000);
         }
+      , resetPassword: function Flowtab_framework_service_resetPassword(phoneNumber, callback) {
+            var data = {
+                    error: null
+                };
+
+            setTimeout(function () {
+                if (callback)
+                    callback(data);
+            }, 1000);
+        }
+      , updateUser: function Flowtab_framework_service_updateUser(firstName, lastName, phoneNumber, password, emailAddress, callback) {
+            var data = {
+                    error: null
+                  , user: {
+                        firstName: firstName
+                      , lastName: lastName
+                      , phoneNumber: phoneNumber
+                      , emailAddress: emailAddress
+                      , creditCard: null
+                    }
+                };
+
+            setTimeout(function () {
+                if (callback)
+                    callback(data);
+            }, 1000);
+        }
       , getVenues: function Flowtab_framework_service_getVenues(callback) {
       
             var data = {
