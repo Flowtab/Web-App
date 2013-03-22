@@ -448,8 +448,6 @@ Flowtab.wallet = (function () {
             $items: $items
         });
         
-                    
-
         $items.bind('click', function () {
         
             var item = categories[this.id];
@@ -526,13 +524,17 @@ Flowtab.wallet = (function () {
         	if ($productCount > 0) {
 	            cart.addItem(id, $productCount);
 	           	itemCount = cart.getCount();
+	            if ($productCount === 1) {
+    	            showAlert('success', 'You added 1 item to your cart!');
+    	        } else {
+        	        showAlert('success', 'You added '+$productCount+' items to your cart!');
+    	        }
 	            $productCount = 1;
 	            $productMessage.val('');
 	            setTimeout(function(){
 	               $productValue.html($productCount);
 	            },300);
 	            $checkoutValue.html(itemCount);
-	            console.log(itemCount);
 	            self.showProductsView('slideright', $category);
 	        }
         });
@@ -584,8 +586,8 @@ Flowtab.wallet = (function () {
             showSpinner();
 
             var formEntries = $form.serializeArray()
-              , i = formEntries.length
-              , data = {};
+            var i = formEntries.length;
+            var data = {};
 
 /*
             if (i > 0)
