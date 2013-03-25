@@ -67,7 +67,7 @@
                 <div class="scroll">
                     <div class="wrapper">
                         <form>
-                            <p class="message">To reset your PIN enter your cell number only and hit <em>Forgot PIN</em>.</p>
+                            <p class="message">To reset your PIN enter your cell number only and hit <em>Forgot PIN</em> button.</p>
                             <input name="phone" type="tel" class="phone" placeholder="Cell number" maxlength="10" />
                             <input name="pin" type="tel" class="pin" placeholder="Enter PIN" maxlength="4" />
                             <button type="submit">Log In</button>
@@ -91,6 +91,7 @@
                 <div class="scroll">
                     <ul class="wrapper">
                         <li class="cards">Saved Cards<span class="arrow"></span></li>
+                        <li class="credits ">Redeem Credits<span class="arrow"></span></li>
                         <li class="account gap">Account Settings<span class="arrow"></span></li>
                         <!-- <li class="share ">Share the Love<span class="arrow"></span></li> -->
                         <li class="how-it-works">How it Works<span class="arrow"></span></li>
@@ -111,6 +112,18 @@
                             <input name="email" type="email" class="email" placeholder="Email address" />
                             <input name="pin" type="tel" class="pin" placeholder="New 4-digit PIN" maxlength="4" />
                             <button type="submit">Update</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="credits" class="view">
+                <div class="scroll">
+                    <div class="wrapper text">
+                        <h2>Laboris Nisi Aliquip</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <form>
+                            <input type="text" name="credits-code" class="credits-code" placeholder="Enter voucher code" maxlength="16" />
+                            <button type="submit">Redeem</button>
                         </form>
                     </div>
                 </div>
@@ -274,6 +287,7 @@
                     {% endfor %}
 -->
                     <div class="squiggle"></div>
+
                     <div class="subtotal row">
                         <span class="title">Subtotal:</span>
                         <span class="value">$0.00</span>
