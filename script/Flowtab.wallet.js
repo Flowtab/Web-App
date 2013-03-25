@@ -17,6 +17,7 @@ Flowtab.wallet = (function () {
       , pageHeight = null
       , windowHeight = null
       , appFeedback = null
+      , creditsCode = null
       , hasCard = false
       , hasLoadedUser = false
       , hasLoadedDocument = false
@@ -261,7 +262,34 @@ Flowtab.wallet = (function () {
             });
             return false;
         });
+    };
 
+    self.buildCreditsView = function Flowtab_wallet_buildCreditsView() {
+        var $container = view.credits.$container;
+        var $form = $container.find('form');
+        var $creditsCodeEntry = $form.find('.credits-code');
+
+        removeViewBindings(view.credits);
+
+        $form.bind('submit', function () {
+            showSpinner();
+            creditsCode = $creditsCodeEntry.val();
+            if (creditsCode.length > 0) {
+                framework.service.redeemCredits(creditsCode, function(data) {
+                    if (data.error) {
+                        showAlert('error', data.error);
+                        return;
+                    }
+                    showAlert('success', 'We have credited your account!');
+                    self.showSettingsView('slideright');
+                    setTimeout(function(){
+                         $creditsCodeEntry.val('');
+                    },1200);
+                });
+            } else {
+                showAlert('error', 'Please enter a voucher code!');
+            }   
+        });
     };
 
     self.buildAccountView = function Flowtab_wallet_buildAccountView() {
@@ -304,13 +332,18 @@ Flowtab.wallet = (function () {
         removeViewBindings(view.feedback);
 
         $form.bind('submit', function () {
+            showSpinner();
             appFeedback = $textArea.val();
             if (appFeedback.length > 0) {
-                $.post("https://www.itduzzit.com/duzz/api/twilio-send-sms.json?token=onz2gr9i9khj0qx&Mobile+Number+to+Call=6148044000&Send+from+Mobile+Number=6466993569&Text="+appFeedback);
-                showAlert('success', 'Your feedback has been sent!');
-                self.showSettingsView('slideright');
-                appFeedback = null;
-                $textArea.val('');
+                setTimeout(function(){
+                    $.post("https://www.itduzzit.com/duzz/api/twilio-send-sms.json?token=onz2gr9i9khj0qx&Mobile+Number+to+Call=6148044000&Send+from+Mobile+Number=6466993569&Text="+appFeedback);
+                    showAlert('success', 'Your feedback has been sent!');
+                    self.showSettingsView('slideright');
+                    setTimeout(function(){
+                        appFeedback = null;
+                        $textArea.val('');
+                    },1200);
+                },1200)
             } else {
                 showAlert('error', 'Please enter some feedback!');
             }
@@ -378,7 +411,7 @@ Flowtab.wallet = (function () {
                     return;
                 }
                 currentUser = data.user;
-                showAlert('success', 'We texted you a new password!');  
+                showAlert('success', 'Check your text messages!');  
             });
             return false;
         });
@@ -613,7 +646,7 @@ Flowtab.wallet = (function () {
         var $submitButton = $container.find('form button');
         var $storeLater = $container.find('.store-later');
 
-        $submitButton.html('Save Card');
+        $submitButton.html('Save Card (Go Back)');
         $storeLater.hide();
 
         $.extend(view.saveCreditCard, {
@@ -747,6 +780,11 @@ Flowtab.wallet = (function () {
         $container.find('.cards').bind('click', function () {
             self.buildSettingsCreditCardView();
             self.showSettingsCreditCardView('slideleft');
+        });
+
+        $container.find('.credits').bind('click', function () {
+            self.buildCreditsView();
+            self.showCreditsView('slideleft');
         });
 
         $container.find('.account').bind('click', function () {
@@ -965,6 +1003,20 @@ Flowtab.wallet = (function () {
         });
         showNavigationView();
         showView(view.saveCreditCard, transition);
+    };
+
+    self.showCreditsView = function Flowtab_wallet_showCreditsView(transition) {
+        buildNavigationView({
+            title: 'Credits'
+          , left: {
+                className: 'back'
+              , handler: function () {
+                    self.showSettingsView('slideright');
+                }
+            }
+        });
+        showNavigationView();
+        showView(view.credits, transition);
     };
 
     self.showAccountView = function Flowtab_wallet_showAccountView(transition) {
