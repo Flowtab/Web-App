@@ -107,6 +107,14 @@ Flowtab.framework = (function () {
                     callback(data);
             }, 1000);
         }
+      , redeemCredits: function Flowtab_framework_service_redeemCredits(voucherCode, callback) {
+            var data = 1;
+
+            setTimeout(function () {
+                if (callback)
+                    callback(data);
+            }, 1000);
+        }
       , getVenues: function Flowtab_framework_service_getVenues(callback) {
       
             var data = {
