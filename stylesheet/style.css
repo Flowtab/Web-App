@@ -264,6 +264,19 @@ textarea {
     left: auto;
 }
 
+#navigation .edit {
+    background: url(/image/edit.png) no-repeat;
+    background-size: 80% auto;
+    right: 10px;
+    left: auto;
+	-webkit-transition: all .25s linear;
+}
+
+#navigation .edit.active {
+    opacity: .75;
+    -webkit-transform: rotate(-15deg);
+}
+
 #navigation .logout {
     background: url(/image/logout.png) no-repeat;
     background-size: 80% auto;
@@ -922,15 +935,19 @@ textarea {
 #checkout .row {
     font-family: 'Open Sans';
     width: 90%;
-    font-size: 14px;
-    padding: 3px 5%;
+    font-size: 15px;
+    padding: 4px 5%;
     line-height: 15px;
     color: #444;
     height: 16px;
 }
 
-#checkout .row .title {
-    float: left;  
+#checkout .row span {
+    float: left;
+}
+
+#checkout .row span .quantity {
+    float: none;
 }
 
 #checkout .row .value {
@@ -957,6 +974,48 @@ textarea {
     width: 60%;
     height: 32px;
     margin: 5px 20% 0;
+}
+
+#checkout .subtract {
+    background: url(/image/counter-minus.png) no-repeat;
+    background-size: 100% auto;
+    width: 16px;
+    height: 17px;
+    margin-right: 7px;
+}
+
+#checkout .add {
+    background: url(/image/counter-plus.png) no-repeat;
+    background-size: 100% auto;
+    width: 16px;
+    height: 17px;
+    margin-left: 7px;
+}
+
+#checkout .meta-icon {
+    background: url(/image/meta-icon.png) no-repeat;
+    background-size: 100% auto;
+    width: 18px;
+    height: 18px;
+    margin: 0 0 -5px 5px;
+    /* display: none; */
+}
+
+#checkout .meta-list {
+    font-family: 'Open Sans';
+    text-shadow: 1px 1px 1px #F9F9F9;
+    line-height: 16px;
+    font-size: 12px;
+    margin: 3px 5% 3px 9%;
+    color: #AAA;
+}
+
+#checkout .editable {
+    display: none;
+}
+
+#checkout .active {
+    display: inline-block;
 }
 
 /* Success View */
