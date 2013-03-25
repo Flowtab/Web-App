@@ -114,7 +114,7 @@ Flowtab.framework = (function () {
               , venues: []
             }    
             
-	      	$.getJSON("/venues.json", function(venues){		      	
+	      	$.getJSON("/json/venues.json", function(venues){		      	
 		    	$.each(venues, function(i,value){
 	                data.venues[i] = {
                         uuid: self.util.createUuid(),
@@ -142,7 +142,7 @@ Flowtab.framework = (function () {
               , menu: []
             }    
 
-	      	$.getJSON("/menu.json", function(data){
+	      	$.getJSON("/json/menu.json", function(data){
 		      		response.menu = data;
 
 	                (function walk (data) {
