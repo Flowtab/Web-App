@@ -138,15 +138,22 @@ Flowtab.wallet = (function () {
             self.showCheckoutCreditCardView('slideleft');
             return;
         }
+
+        showSpinner();
     	
     	$result = 1;
-    	
-    	if ($result === 1) {
-            showAlert('success', 'Order placed! Please wait in your seat...', 20000);
-            self.showCategoriesView(1, 'slideright', $title);
-    	} else {
-    		self.showCheckoutError();
-    	}
+
+    	setTimeout(function() {
+        	if ($result === 1) {
+            	hideSpinner();
+            	self.buildSuccessView();
+                self.showSuccessView('slideleft');
+                
+        	} else {
+                hideSpinner();
+        		self.showCheckoutError();
+        	}
+        },1200);
     }
 
     function logOut() {
@@ -514,6 +521,14 @@ Flowtab.wallet = (function () {
         $container.html(view.checkout.render({ product: cart.items }));
 
         var $checkoutButton = $container.find('form button');
+        $checkoutButton.removeClass();
+
+        if (hasCard === false) {
+            $checkoutButton.addClass('gray');
+            $checkoutButton.html('Continue to Payment');
+        } else {
+            $checkoutButton.html('Place Order');
+        }
         
         $checkoutButton.bind('click', function () {
         	stripeCheckout();
@@ -598,7 +613,7 @@ Flowtab.wallet = (function () {
         var $submitButton = $container.find('form button');
         var $storeLater = $container.find('.store-later');
 
-        $submitButton.html('Place Order (Seriously)');
+        $submitButton.html('Save Card');
         $storeLater.hide();
 
         $.extend(view.saveCreditCard, {
@@ -643,8 +658,10 @@ Flowtab.wallet = (function () {
                         }
                         currentUser.creditCard = data.creditCard;
                         $form.get(0).reset();
-                        showAlert('success', 'Order placed! Please wait in your seat...', 20000);
-                        self.showCategoriesView(1, 'slideright', $title);
+                        hasCard = 1;
+                        self.buildCheckoutView();
+                        showAlert('success', 'Your card has been saved!');
+                        self.showCheckoutView('slideright');
                     });
                 }
             );
@@ -712,6 +729,15 @@ Flowtab.wallet = (function () {
                 }
             );
             return false;
+        });
+    };
+
+    self.buildSuccessView = function Flowtab_wallet_buildSuccessView() {
+        var $container = view.success.$container;
+        var $continueButton = $container.find('button');
+
+        $continueButton.bind('click', function () {
+            self.showCategoriesView(1, 'slideright', $title);
         });
     };
 
@@ -906,7 +932,7 @@ Flowtab.wallet = (function () {
 
     self.showCheckoutCreditCardView = function Flowtab_wallet_showCheckoutCreditCardView(transition) {
         buildNavigationView({
-            title: 'Enter Card'
+            title: 'Payment'
           , left: {
                 className: 'back'
               , handler: function () {
@@ -917,6 +943,15 @@ Flowtab.wallet = (function () {
         showNavigationView();
         showView(view.saveCreditCard, transition);
     };
+
+    self.showSuccessView = function Flowtab_wallet_showSuccessView(transition) {
+        buildNavigationView({
+            title: 'Success'
+        });
+        showNavigationView();
+        cart.emptyCart();     
+        showView(view.success, transition);
+    }
 
     self.showSettingsCreditCardView = function Flowtab_wallet_showSettingsCreditCardView(transition) {
         buildNavigationView({
@@ -925,20 +960,6 @@ Flowtab.wallet = (function () {
                 className: 'back'
               , handler: function () {
                     self.showSettingsView('slideright');
-                }
-            }
-        });
-        showNavigationView();
-        showView(view.saveCreditCard, transition);
-    };
-
-    self.showCheckoutCreditCardView = function Flowtab_wallet_showCheckoutCreditCardView(transition) {
-        buildNavigationView({
-            title: 'Enter Card'
-          , left: {
-                className: 'back'
-              , handler: function () {
-                    self.showCheckoutView('slideright');
                 }
             }
         });
