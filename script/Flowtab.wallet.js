@@ -23,6 +23,7 @@ Flowtab.wallet = (function () {
       , hasLoadedDocument = false
       , hasLoadedVenues = false
       , hasLoadedMenu = false
+      , toggleCheckout = false
       , jQT = new Zepto.jQTouch({})
       , $navigation = $('#navigation')
       , $checkoutValue = $('#checkout-button .counter .value')
@@ -554,6 +555,7 @@ Flowtab.wallet = (function () {
         $container.html(view.checkout.render({ product: cart.items }));
 
         var $checkoutButton = $container.find('form button');
+
         $checkoutButton.removeClass();
 
         if (hasCard === false) {
@@ -564,9 +566,40 @@ Flowtab.wallet = (function () {
         }
         
         $checkoutButton.bind('click', function () {
+            toggleCheckout = false;
         	stripeCheckout();
         });
     };
+
+    self.buildCheckoutEditView = function Flowtab_wallet_buildCheckoutEditView() {
+        var $container = view.checkout.$container;
+        var $editableList = $container.find('.editable');
+        if (toggleCheckout === false) {
+            $editableList.addClass('active');
+            $rightNavigationButton.addClass('active');
+            toggleCheckout = true;
+        } else {
+            $editableList.removeClass('active');
+            $rightNavigationButton.removeClass('active');
+            toggleCheckout = false;
+        }
+
+        var $subtractButton = $container.find('.subtract');
+        var $addButton = $container.find('.add');
+
+        $subtractButton.bind('click', function () {
+        	console.log('Subtract product');
+        	return false;
+        	// TODO: Subtract product function
+        });
+
+        $addButton.bind('click', function () {
+        	console.log('Add product');
+        	return false;
+        	// TODO: Add product function
+        });
+
+    }
 
     self.buildSaveCreditCardView = function Flowtab_wallet_buildSaveCreditCardView() {
         var $container = view.saveCreditCard.$container;
@@ -953,6 +986,13 @@ Flowtab.wallet = (function () {
               , handler : function () {
                     self.showCategoriesView(1, 'slideright', $title);
                     $($checkoutButton).addClass("visible");
+                    toggleCheckout = false;
+                }
+            }
+          , right: {
+                className: 'edit'
+              , handler : function () {
+                    self.buildCheckoutEditView();
                 }
             }
         });
