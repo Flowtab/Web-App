@@ -269,6 +269,7 @@ textarea {
     background-size: 80% auto;
     right: 10px;
     left: auto;
+    opacity: .5;
 }
 
 #navigation .x-arrow, #navigation .welcome {
@@ -1019,6 +1020,21 @@ textarea {
     width: 100%;
     margin: 10px 0 0;
     position: relative;
+}
+
+/* Credits View */
+
+#credits .credits-code {
+    position: relative;
+    margin: 15px 0 0;
+    width: 60%;
+}
+
+#credits button {
+    width: 35%;
+    position: relative;
+    float: right;
+    margin: 12px 0;
 }
 
 /* Feedback View */
