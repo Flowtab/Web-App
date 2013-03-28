@@ -24,6 +24,7 @@ Flowtab.framework = (function () {
                             lastGroup: '1234'
                           , type: 'AMEX'
                         }
+                      , credits: 1
                     }
                 };
 
@@ -154,8 +155,11 @@ Flowtab.framework = (function () {
 		      		response.menu = data;
 
 	                (function walk (data) {
-			      		for (var i = data.length - 1; i !== -1; --i) {
-				      		data[i].uuid = self.util.createUuid();
+			      		for (var i = data.length - 1, d; i !== -1; --i) {
+    			      		d = data[i];
+				      		d.uuid = self.util.createUuid();
+				      		d.price = Number( d.price );
+				      		d.prettyPrice = d.price.toFixed(2);
 
 			      			for (var k in data[i])
 				      			if (data[i][k] !== null && typeof data[i][k] === 'object')
