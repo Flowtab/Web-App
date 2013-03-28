@@ -872,7 +872,7 @@ textarea {
     width: 32px;
     height: 32px;
     position: absolute;
-    left: 11%;
+    left: 10%;
     border: 1px solid #AAA;
     box-shadow: inset 0px 1px 0px 0px #EFEFEF;
     margin: 12px 0;
@@ -887,7 +887,7 @@ textarea {
     width: 28px;
     position: absolute;
     border: none;
-    left: 21%;
+    left: 20%;
     font-size: 15px;
     text-align: center;
     margin: 15px 0;
@@ -900,7 +900,7 @@ textarea {
     width: 32px;
     height: 32px;
     position: absolute;
-    left: 30%;
+    left: 29%;
     border: 1px solid #AAA;
     box-shadow: inset 0px 1px 0px 0px #EFEFEF;
     margin: 12px 0;
