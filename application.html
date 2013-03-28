@@ -233,7 +233,7 @@
                 <div class="products" id="{{ product.uuid }}">
                     <span class="arrow"></span>
                     <div class="title">{{ product.name }}</div>
-                    <div class="price">${{ product.price }}</div>
+                    <div class="price">${{ product.prettyPrice }}</div>
                 </div>
                 {% endfor %}
             </div>
@@ -243,7 +243,7 @@
                 <div class="wrapper">
                     <div class="product" id="{{ product.uuid }}">
                         <div class="title">{{ product.name }}</div>
-                        <div class="description">{{ product.description }} (${{ product.price }})</div>
+                        <div class="description">{{ product.description }} (${{ product.prettyPrice }})</div>
                         <form>
                             <textarea name="message" placeholder="Do you have any special requests?" rows="3" autocomplete="off"></textarea>
                             <button class="subtract"></button>
@@ -262,58 +262,31 @@
                         <span class="title">Product (Qty)</span>
                         <span class="value">Price</span>
                     </div>
-
-                    <!--Just for testing purposes...-->
-                    <div class="cart" id="abcdef12345">
-                        <div class="row">
-                            <span class="subtract editable"></span>
-                            <span class="title">Blueberries <span class="quantity">(1)</span></span>
-                            <span class="value">$0.00</span>
-                            <span class="meta-icon"></span>
-                            <span class="add editable"></span>
-                        </div>
-                        <div class="meta-list editable">Blue, No sugar, Please add whipped cream and stuff&hellip;</div> 
-                    </div>
-                    <div class="cart" id="abcdef12345">
-                        <div class="row">
-                            <span class="subtract editable"></span>
-                            <span class="title">Strawberries <span class="quantity">(2)</span></span>
-                            <span class="value">$0.00</span>
-                            <span class="meta-icon"></span>
-                            <span class="add editable"></span>
-                        </div>
-                        <div class="meta-list editable">Red, No seeds, Please add whipped cream and stuff&hellip;</div> 
-                    </div>
-                    <div class="cart" id="abcdef12345">
-                        <div class="row">
-                            <span class="subtract editable"></span>
-                            <span class="title">Raspberries <span class="quantity">(2)</span></span>
-                            <span class="value">$0.00</span>
-                            <span class="meta-icon"></span>
-                            <span class="add editable"></span>
-                        </div>
-                    </div>
-
-<!--
                     {% for item in cart.items %}
                     {% set product = cart.products[loop.key] %}
-                    <div class="cart row" id="{{ product.uuid }}">
-                        <span class="subtract"></span>
-                        <span class="title">{{ product.name }} ({{ product.quantity }})</span>
-                        <span class="value">{{ product.price }}</span>
-                        <span class="add"></span>
-                        <span class="meta-list">{{ product.description }}&hellip;</span> 
+                    {% set metadata = item.metadata[loop.index] %}
+                    <div class="cart" id="{{ product.uuid }}">
+                        <div class="row">
+                            <span class="subtract editable"></span>
+                            <span class="title">{{ product.name }} ({{ item.count }})</span>
+                            <span class="value">${{ product.prettyPrice }}</span>
+                            {% if metadata %}
+                            <span class="meta-icon"></span>
+                            {% endif %}
+                            <span class="add editable"></span>
+                        </div>
+                        {% if metadata %}
+                        <span class="meta-list editable">{{ metadata }}&hellip;</span>
+                        {% endif %}
                     </div>
                     {% endfor %}
--->
                     <div class="squiggle"></div>
-
                     <div class="subtotal row">
                         <span class="title">Subtotal:</span>
                         <span class="value">$0.00</span>
                     </div>
                     <div class="discount row green">
-                        <span class="title">Discount:</span>
+                        <span class="title">Credit:</span>
                         <span class="value">$0.00</span>
                     </div>
                     <div class="gratuity row">
