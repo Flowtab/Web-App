@@ -5,6 +5,7 @@ Flowtab.wallet = (function () {
       , framework = Flowtab.framework
       , currentUser = null
       , currentView = null
+      , userCredits = null
       , venues = null
       , menu = null
       , categories = null
@@ -13,11 +14,16 @@ Flowtab.wallet = (function () {
       , products = null
       , product = null
       , cart = null
+      , metadata = null
       , itemCount = null
       , pageHeight = null
       , windowHeight = null
       , appFeedback = null
       , creditsCode = null
+      , checkoutSubTotal = null
+      , checkoutDiscount = null
+      , checkoutGratuity = null
+      , checkoutTotal = null
       , hasCard = false
       , hasLoadedUser = false
       , hasLoadedDocument = false
@@ -51,6 +57,7 @@ Flowtab.wallet = (function () {
         } else {
             self.showVenuesView('slideleft');
         }
+
     }
 
     function showSpinner() {
@@ -509,10 +516,8 @@ Flowtab.wallet = (function () {
         $productValue.html($productCount);
 
         $productAdd.bind('click', function () {
-        	if ($productCount < 4) {
-	        	$productCount = $productCount + 1;
-	        	$productValue.html($productCount);
-        	}
+        	$productCount = $productCount + 1;
+        	$productValue.html($productCount);
         });
     
         $productSubtract.bind('click', function () {
@@ -525,6 +530,8 @@ Flowtab.wallet = (function () {
         $productSubmit.bind('click', function () {
         	if ($productCount > 0) {
 	            cart.addItem(id, $productCount);
+	            metadata = $productMessage.val();
+	            //cart.addItemMetadata(id, metadata);
 	           	itemCount = cart.getCount();
 	            if ($productCount === 1) {
     	            showAlert('success', 'You added 1 item to your cart!');
@@ -552,9 +559,39 @@ Flowtab.wallet = (function () {
     self.buildCheckoutView = function Flowtab_wallet_buildCheckoutView() {
         var $container = view.checkout.$container;
 
-        $container.html(view.checkout.render({ product: cart.items }));
+        $container.html(view.checkout.render({ cart: cart }));
 
+        var $checkoutSubTotal = $container.find('.subtotal .value');
+        var $checkoutDiscountRow = $container.find('.discount');
+        var $checkoutDiscount = $container.find('.discount .value');
+        var $checkoutGratuity = $container.find('.gratuity .value');
+        var $checkoutTotal = $container.find('.total .value');
         var $checkoutButton = $container.find('form button');
+
+        checkoutSubTotal = Flowtab.wallet.cart.getTotal();
+        checkoutDiscount = userCredits;
+        checkoutGratuity = checkoutSubTotal * .20;
+        checkoutTotal = checkoutSubTotal + checkoutGratuity - checkoutDiscount;
+
+        checkoutSubTotal = checkoutSubTotal.toFixed(2);
+        checkoutDiscount = checkoutDiscount.toFixed(2);
+        checkoutGratuity = checkoutGratuity.toFixed(2);
+        checkoutTotal = checkoutTotal.toFixed(2);
+
+        $checkoutSubTotal.html('$'+checkoutSubTotal);
+        $checkoutDiscount.html('$'+checkoutDiscount);
+        $checkoutGratuity.html('$'+checkoutGratuity);
+        $checkoutTotal.html('$'+checkoutTotal);
+
+        if (checkoutDiscount > 0) {
+            $checkoutDiscountRow.show();
+        } else {
+            $checkoutDiscountRow.hide();
+        }
+
+        if (checkoutTotal < 0) {
+            $checkoutTotal.html('$0.00');
+        }
 
         $checkoutButton.removeClass();
 
@@ -1159,6 +1196,7 @@ Flowtab.wallet = (function () {
 
     framework.service.getCurrentUser(function (data) {
         currentUser = data.user;
+        userCredits = currentUser.credits;
         hasLoadedUser = true;
         initialize();
     });
